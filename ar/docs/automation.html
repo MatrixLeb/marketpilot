@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الأتمتة وسطر الأوامر — MarketPilot</title>
+  <meta name="description" content="الإيقاعات، والتشغيل الآلي، وأعلام سطر الأوامر، ومُجدول المهام، ومواقع البيانات والنسخ الاحتياطي في MarketPilot.">
+  <meta property="og:title" content="الأتمتة وسطر الأوامر — MarketPilot">
+  <meta property="og:description" content="الإيقاعات، والتشغيل الآلي، وأعلام سطر الأوامر، ومُجدول المهام، ومواقع البيانات والنسخ الاحتياطي في MarketPilot.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../../assets/dashboard.png">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body data-root="../">
+  <a class="skip-link" href="#main">انتقل إلى المحتوى</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="الصفحة الرئيسية لـ MarketPilot">
+        <svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#12201A"/>
+          <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+          <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+        </svg>
+        MarketPilot
+        <span class="brand-version">v1.0.0</span>
+      </a>
+
+      <nav class="header-nav" aria-label="القائمة الرئيسية">
+        <a href="../index.html#features">المزايا</a>
+        <a href="../docs/index.html" aria-current="page">التوثيق</a>
+        <a href="../downloads.html">التنزيلات</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-open-search aria-label="ابحث في التوثيق">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span>ابحث في التوثيق</span>
+          <kbd>/</kbd>
+        </button>
+        <a class="lang-switch" href="../../docs/automation.html" hreflang="en" lang="en" aria-label="Switch to English">English</a>
+        <a class="btn btn-primary btn-sm" href="../downloads.html#downloads">تنزيل</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="افتح القائمة">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" aria-label="قائمة الجوال">
+      <div class="container">
+        <a href="../index.html#features">المزايا</a>
+        <a href="../docs/index.html">التوثيق</a>
+        <a href="../downloads.html">التنزيلات</a>
+        <a href="../docs/faq.html">الأسئلة الشائعة واستكشاف الأخطاء</a>
+        <a class="lang-switch lang-switch-mobile" href="../../docs/automation.html" hreflang="en" lang="en">English</a>
+        <a class="btn btn-primary" href="../downloads.html#downloads">نزّل MarketPilot 1.0.0</a>
+      </div>
+    </nav>
+  </header>
+
+<main id="main">
+<section class="docs-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="مسار التنقل">
+          <a href="../index.html">الرئيسية</a><span>/</span>
+          <a href="index.html">التوثيق</a><span>/</span><span>الأتمتة</span>
+        </nav>
+        <div class="eyebrow"><span class="dot"></span> الفصل 03 · الإعداد</div>
+        <h1>الأتمتة وسطر الأوامر</h1>
+        <p>المجدول خط أنابيب واحد بثلاث مهام: تنفيذ الإيقاعات المستحقة، ونشر المنشورات المعتمدة التي
+          حان وقتها، وتحضير التواصل أو إرساله. يمكنه العمل في النافذة كل 30 ثانية، أو بلا واجهة من
+          مُجدول مهام Windows.</p>
+      </div>
+    </section>
+
+    <div class="container docs-shell">
+      <aside class="docs-sidebar">
+        <button class="docs-search-mini" type="button" data-open-search>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          ابحث في الدليل…
+        </button>
+        <div class="side-label">ابدأ هنا</div>
+        <nav aria-label="التوثيق">
+          <a href="index.html">الصفحة الرئيسية للتوثيق</a>
+          <a href="guide.html">دليل الإعداد</a>
+        </nav>
+        <div class="side-label">الإعداد</div>
+        <nav aria-label="الإعداد">
+          <a href="channels.html">القنوات وبيانات الاعتماد</a>
+          <a href="automation.html" aria-current="page">الأتمتة وسطر الأوامر</a>
+        </nav>
+        <div class="side-label">التشغيل</div>
+        <nav aria-label="التشغيل">
+          <a href="safety.html">الأمان والامتثال</a>
+          <a href="faq.html">الأسئلة الشائعة واستكشاف الأخطاء</a>
+          <a href="../downloads.html">التنزيلات</a>
+        </nav>
+      </aside>
+
+      <article class="docs-article">
+        <p class="lede">«الدورة» مرور واحد للمجدول. لا تنشر مسودة أبدًا ولا تتجاوز نافذة إرسال العلامة
+          أو الحد اليومي أو أدنى فاصل. وإذا كان مفتاح المجدول موقوفًا، فلا تفعل الدورة شيئًا ما لم
+          تمرّر <code>--force</code>.</p>
+
+        <h2 id="in-app">داخل التطبيق</h2>
+        <p>يبدأ المجدول عند فتح النافذة ويعمل كل 30 ثانية. تظهر نقطة أسفل الشريط الجانبي ما إذا كان
+          يعمل. ويجري زر <strong>Run tick</strong> في شريط الأدوات مرورًا واحدًا فورًا.</p>
+        <p>تنفّذ كل دورة هذه الخطوات بالترتيب:</p>
+        <ol class="steps">
+          <li><strong>الإيقاعات</strong><p>لكل إيقاع مفعّل وصل يوم أسبوعه ووقته ولم يعمل اليوم، ولّد
+            منشورًا واحدًا لكل قناة، وارسم التصميم، واحفظه كمسودة أو منشور معتمد.</p></li>
+          <li><strong>القائمة</strong><p>انشر المنشورات المعتمدة التي حان موعد <code>scheduledAt</code>
+            لها ومرّ وقت إعادة محاولتها. يحوّل التشغيل التجريبي ذلك إلى نتيجة <code>SIMULATED</code>
+            مسجّلة.</p></li>
+          <li><strong>التواصل</strong><p>للحملات النشطة التي أُشّر فيها على أساس قانوني، صِغ حتى الهدف
+            اليومي وأرسل الرسائل المعتمدة داخل نافذة الإرسال.</p></li>
+        </ol>
+        <p>إغلاق النافذة يوقف الحلقة داخل التطبيق. ولهذا يوجد مُجدول المهام.</p>
+
+        <h2 id="cadences">الإيقاعات</h2>
+        <p>افتح <strong>Automation → New cadence</strong>. يخزّن الإيقاع نية، لا محتوى:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>الحقل</th><th>السلوك</th></tr></thead>
+            <tbody>
+              <tr><td>الاسم</td><td>يظهر في قائمة الأتمتة وفي ملاحظات السجل.</td></tr>
+              <tr><td>القنوات</td><td>منشور مولّد واحد لكل قناة مختارة.</td></tr>
+              <tr><td>الأيام</td><td>مفاتيح الاثنين–الأحد. الإيقاع بلا أيام لا يعمل أبدًا.</td></tr>
+              <tr><td>الوقت</td><td><code>HH:mm</code> في المنطقة الزمنية <em>للعلامة</em>، لا للجهاز.</td></tr>
+              <tr><td>المحور والموجز</td><td>الزاوية والتعليمات الدائمة التي تُمرَّر إلى الكاتب.</td></tr>
+              <tr><td>مفعّل</td><td>الإيقاف يُبقي الإيقاع لكنه يستبعده من الدورات.</td></tr>
+              <tr><td>الاعتماد التلقائي</td><td>عند التفعيل — وقفل الموافقة موقوف — تنتقل المنشورات
+                المولدة مباشرة إلى القائمة بوقت استحقاق الآن.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>متى يعمل بالضبط</h3>
+        <ul>
+          <li>يعمل الإيقاع <strong>مرة واحدة يوميًا على الأكثر</strong>، في يوم أسبوع مختار، عند وقته أو
+            بعده. إذا كان الجهاز مغلقًا الساعة 09:00 وفتحت التطبيق الساعة 14:00، يعمل الإيقاع حينها.</li>
+          <li>يُعلَّم اليوم كمُنفَّذ حتى لو لم يولّد شيء، لذا لن يعيد مفتاح ذكاء اصطناعي معطّل المحاولة
+            طوال العصر. افحص ملاحظة السجل واضغط <strong>Run now</strong> بعد إصلاحه.</li>
+          <li><strong>Run now</strong> يولّد دفعة فورًا دون تغيير الجدول أو يوم آخر تشغيل.</li>
+          <li><strong>قفل الموافقة</strong> (Settings → Safety) يتجاوز الاعتماد التلقائي. ينتظر كل
+            منشور مولّد في القائمة كـ<code>DRAFT</code>.</li>
+        </ul>
+
+        <h3>لماذا لم يولّد إيقاع شيئًا</h3>
+        <ul>
+          <li>إنه معطّل، أو اليوم غير مختار، أو لم يحن الوقت في المنطقة الزمنية للعلامة.</li>
+          <li>إنه عمل بالفعل اليوم — افحص قائمة الأتمتة وسجل النشاط.</li>
+          <li>أعاد مزوّد الذكاء الاصطناعي خطأً، ولم يولّد القالب البديل محتوى قناة صالحًا أيضًا. يعرض
+            السجل المصدر والخطأ.</li>
+          <li>كل القنوات المختارة غير مهيأة، ما عدا اليدوي المتاح دائمًا.</li>
+        </ul>
+
+        <h2 id="gates">ما يحكم النشر</h2>
+        <p>يكون المنشور مرشحًا فقط عندما تتحقق كل هذه:</p>
+        <ul>
+          <li>الحالة <code>APPROVED</code>.</li>
+          <li>تم تعيين <code>scheduledAt</code> وهو في الماضي.</li>
+          <li><code>nextAttemptAt</code> صفر أو في الماضي.</li>
+        </ul>
+        <p>بعد الحجز، يجب أن يعبر المنشور ضوابط العلامة. وإن فشل، يُحتجز ويُكتب السبب في السجل:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>البوابة</th><th>القاعدة</th></tr></thead>
+            <tbody>
+              <tr><td>نافذة الإرسال</td><td>يجب أن يكون الوقت الحالي داخل نافذة العلامة، مثل <code>08:00–20:00</code>.</td></tr>
+              <tr><td>الحد اليومي</td><td>يجب أن تكون منشورات هذه القناة المنشورة <em>والمحاكاة</em> منذ منتصف الليل المحلي أقل من الحد.</td></tr>
+              <tr><td>أدنى فاصل</td><td>يجب أن تمر دقائق كافية منذ آخر نشر على القناة نفسها.</td></tr>
+              <tr><td>الحجز</td><td>يُنقل الصف ذريًا إلى <code>PUBLISHING</code>، فلا تستطيع دورة ثانية إرساله أيضًا.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>ولأن المنشورات المحاكاة تُحتسب في الحد والفاصل، يتصرف اختبار التشغيل التجريبي مثل النشر
+          المباشر. وإذا بدا اختبار عالقًا، افحص السجل بحثًا عن «daily cap» أو «minimum gap».</p>
+
+        <h2 id="cli">المشغّل بلا واجهة</h2>
+        <p>يكتشف المشغّل المعبأ أعلام سطر الأوامر ويعمل دون فتح نافذة. من نسخة مثبتة أو محمولة:</p>
+        <pre><code>MarketPilot.exe --once</code></pre>
+        <p>من المصدر، استخدم مهمة Gradle:</p>
+        <pre><code>$env:JAVA_HOME="C:\Program Files\Android\Android Studio\jbr"
+.\gradlew.bat runAuto --console=plain</code></pre>
+        <p>مرّر الأعلام إلى مهمة Gradle بـ<code>--args</code>:</p>
+        <pre><code>.\gradlew.bat runAuto --args="--status" --console=plain</code></pre>
+
+        <h3>الأعلام</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>العلم</th><th>الأثر</th></tr></thead>
+            <tbody>
+              <tr><td><code>--once</code></td><td>تشغيل دورة واحدة. هذا الافتراضي عند عدم تمرير علم.</td></tr>
+              <tr><td><code>--force</code></td><td>التشغيل حتى لو كان مفتاح المجدول موقوفًا في الإعدادات. تظل ضوابط الحماية مطبقة.</td></tr>
+              <tr><td><code>--dry-run</code></td><td>يضبط مفتاح التشغيل التجريبي المحفوظ على ON، ثم يشغّل. يبقى مفعّلًا للتشغيلات اللاحقة حتى توقفه في التطبيق.</td></tr>
+              <tr><td><code>--status</code></td><td>يطبع الأعداد ويخرج. لا يغيّر شيئًا، ولا حتى دورة.</td></tr>
+              <tr><td><code>--help</code>، <code>-h</code></td><td>يطبع قائمة الأعلام ويخرج.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout amber">
+          <p><strong><code>--dry-run</code> دائم، لا لكل دورة.</strong> يكتب الإعداد نفسه الذي تراه في
+            الشريط العلوي. للعودة إلى النشر المباشر، افتح التطبيق وبدّل الشريحة من <em>Dry run ON</em>
+            إلى <em>Live</em>. هذا مقصود: لا يجوز أن يتركك سكربت أتمتة فاشل في الوضع المباشر بصمت.</p>
+        </div>
+
+        <h3>المخرجات ورموز الخروج</h3>
+        <p>تطبع الدورة العادية سطر ملخص وحتى اثنتي عشرة ملاحظة. المخرجات آمنة ASCII لطرفية Windows.
+          رمز الخروج <code>1</code> يعني فشل إجراء نشر أو تواصل واحد على الأقل؛ أما العناصر المحتجزة
+          والمحاكاة فلا تُفشل المهمة.</p>
+        <pre><code>MarketPilot tick - dry run: true, scheduler: true
+Result: 1 generated - 1 simulated
+  - Cadence "Monday tips": ai copy (...)</code></pre>
+        <p>يطبع <code>--status</code> لقطة دون تغيير أي شيء:</p>
+        <pre><code>Brands:        1
+Drafts:        3
+Queued:        1
+Published:     0
+Simulated:     2
+Leads:         0
+Campaigns:     0 active
+Dry run:       true
+Scheduler:     true</code></pre>
+
+        <h2 id="task-scheduler">شغّله 24/7 مع مُجدول المهام</h2>
+        <p>يتشارك سطر الأوامر والنافذة الملفات نفسها والحجوزات الذرية نفسها، فلا يمكنهما النشر مرتين.
+          يمكنك ترك التطبيق مفتوحًا وتشغيل دورة مجدولة في الوقت نفسه.</p>
+
+        <h3>الإعداد الرسومي</h3>
+        <ol class="steps">
+          <li><strong>أنشئ مهمة</strong><p>افتح مُجدول المهام ← <em>Create Task</em> (لا «Basic Task»).
+            سمّها <code>MarketPilot tick</code>.</p></li>
+          <li><strong>أضف مشغّلًا</strong><p>يوميًا، بدءًا من وقت تختاره. أشّر <em>Repeat task every</em>
+            ← <code>15 minutes</code> ← <em>for a duration of</em> <code>Indefinitely</code>.</p></li>
+          <li><strong>أضف إجراءً</strong><p>ابدأ برنامجًا: المسار الكامل إلى <code>MarketPilot.exe</code>.
+            الوسائط: <code>--once</code>. ابدأ في: المجلد الذي يحتوي EXE.</p></li>
+          <li><strong>اختر الحساب</strong><p>إما «run only when the user is logged on» أو «run whether the
+            user is logged on or not». ولا يفتح سطر الأوامر نافذة في الحالتين.</p></li>
+          <li><strong>اختبرها</strong><p>انقر بزر الفأرة الأيمن على المهمة ← <em>Run</em>. يجب أن تكون
+            نتيجة آخر تشغيل <code>0x0</code>؛ وتعني <code>0x1</code> أن إجراءً فشل وأن السبب في سجل
+            النشاط.</p></li>
+        </ol>
+
+        <h3>الإنشاء من سطر الأوامر</h3>
+        <pre><code>$exe = "C:\Path\To\MarketPilot\MarketPilot.exe"
+schtasks /Create /TN "MarketPilot tick" /SC MINUTE /MO 15 /TR "`"$exe`" --once" /ST 08:00 /F
+schtasks /Run /TN "MarketPilot tick"</code></pre>
+        <p>استبدل المسار بموقع التثبيت الحقيقي. وتستخدم المهمة المجدولة بيانات <code>%APPDATA%</code>
+          نفسها فقط عندما تعمل كمستخدم ويندوز نفسه.</p>
+
+        <h3>Gradle بدل التطبيق المعبأ</h3>
+        <p>إذا كنت تعمل من المصدر، فوجّه المهمة إلى غلاف Gradle. يحتاج أول بناء إلى ذاكرة Gradle دافئة
+          وشبكة، لذا شغّله مرة يدويًا قبل الجدولة.</p>
+        <pre><code>Program:   E:\Business\MarketPilot\gradlew.bat
+Arguments: runAuto --console=plain
+Start in:  E:\Business\MarketPilot</code></pre>
+
+        <h2 id="statuses">الحالات في القائمة</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>الحالة</th><th>المعنى</th></tr></thead>
+            <tbody>
+              <tr><td><code>DRAFT</code></td><td>مولّد أو محفوظ، لم يُعتمد بعد. يتجاهله المجدول.</td></tr>
+              <tr><td><code>APPROVED</code></td><td>مضاف للقائمة بوقت استحقاق. مؤهل للدورة التالية.</td></tr>
+              <tr><td><code>PUBLISHING</code></td><td>محجوز بواسطة دورة. قصير؛ وقد يترك انهيار هنا صفًا لإعادة إضافته يدويًا.</td></tr>
+              <tr><td><code>PUBLISHED</code></td><td>قبلته الواجهة. قد يحمل الصف رابطًا خارجيًا.</td></tr>
+              <tr><td><code>SIMULATED</code></td><td>تشغيل تجريبي. لم يُرسل شيء؛ ويُحتسب في الحدود والفواصل.</td></tr>
+              <tr><td><code>FAILED</code></td><td>خطأ غير قابل لإعادة المحاولة أو استُهلكت ثلاث محاولات. اقرأ الخطأ وأصلحه وأعد الإضافة.</td></tr>
+              <tr><td><code>CANCELLED</code></td><td>أوقفك أنت. يمكن اعتماده مجددًا لاحقًا.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>تنتظر الأخطاء القابلة لإعادة المحاولة (حدود المعدل و5xx) 15 دقيقة بعد المحاولة الأولى و30
+          دقيقة بعد الثانية. وتُجرى ثلاث محاولات على الأكثر. أما أخطاء المصادقة والتحقق فتتوقف فورًا.</p>
+
+        <h2 id="data">البيانات والنسخ الاحتياطي والنقل</h2>
+        <p>كل شيء محلي، تحت <code>%APPDATA%\MarketPilot</code>:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>المسار</th><th>المحتويات</th></tr></thead>
+            <tbody>
+              <tr><td><code>data\workspace.json</code></td><td>العلامات والإيقاعات والمنشورات والعملاء المحتملون والحملات والسجلات.</td></tr>
+              <tr><td><code>data\settings.properties</code></td><td>مفاتيح الذكاء الاصطناعي وبيانات اعتماد القنوات، مخزّنة كنص عادي.</td></tr>
+              <tr><td><code>media\&lt;brand&gt;\</code></td><td>بطاقات PNG المولدة ومقاطع MP4.</td></tr>
+              <tr><td><code>outbox\&lt;brand&gt;\&lt;post&gt;\</code></td><td>حزم يدوية: التعليق، والصورة، والبيانات، وفيديو اختياري.</td></tr>
+              <tr><td><code>temp\</code></td><td>ملفات مؤقتة. آمن حذفها والتطبيق مغلق.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>النسخ الاحتياطي</h3>
+        <p>أغلق التطبيق، ثم انسخ <code>data</code> و<code>media</code> معًا. نسخ <code>data</code> وحدها
+          يستعيد القائمة لكن يترك مسارات الصور تشير إلى ملفات لم تعد موجودة. والصادر مخرجات قابلة
+          للتخلص، لا حالة.</p>
+        <p>تعامل مع <code>settings.properties</code> بشكل منفصل. إنه يحتوي رموزًا حية. لا تضعه في تخزين
+          سحابي مشترك أو مستودع عام. وعلى جهاز جديد، أعد إدخال بيانات الاعتماد بدل نسخ الملف إن كنت غير
+          متأكد ممن يستطيع قراءته.</p>
+
+        <h3>الاستعادة والترقية</h3>
+        <ol>
+          <li>أغلق MarketPilot.</li>
+          <li>انسخ المجلدات الاحتياطية مرة أخرى تحت <code>%APPDATA%\MarketPilot</code>.</li>
+          <li>ثبّت البنية الجديدة وشغّلها. تُفتح مساحة العمل بالعلامات والقائمة نفسها.</li>
+        </ol>
+        <p>تزيل أداة الإزالة البرنامج، لا <code>%APPDATA%\MarketPilot</code>. احذف ذلك المجلد بنفسك إن
+          أردت بداية نظيفة. لا يوجد تحديث تلقائي في 1.0.0.</p>
+
+        <h3>أكثر من علامة</h3>
+        <p>يعمل المجدول على كل علامة في مساحة العمل. الإيقاعات لكل علامة، وكذلك النوافذ والحدود وأدنى
+          الفواصل. وبيانات اعتماد القنوات لكل تثبيت، لذا تتشارك العلامات الحسابات المتصلة نفسها. راجع
+          <a href="faq.html#questions">إرشادات العلامات المتعددة</a> قبل أن تعد العملاء بحسابات منفصلة.</p>
+
+        <div class="callout">
+          <p><strong>التزامن آمن.</strong> يمكن أن تعمل الواجهة وسطر الأوامر في الوقت نفسه. يُحجز كل
+            منشور ذريًا قبل نشره، ويحمل المجدول قفلًا حول الدورة، فلا يُرسل العنصر نفسه مرتين أبدًا.</p>
+        </div>
+
+        <nav class="docs-pager" aria-label="تصفح التوثيق">
+          <a class="pager-link" href="channels.html">
+            <small>السابق</small>
+            <span>القنوات وبيانات الاعتماد</span>
+          </a>
+          <a class="pager-link next" href="safety.html">
+            <small>التالي</small>
+            <span>الأمان والامتثال</span>
+          </a>
+        </nav>
+      </article>
+    </div>
+</main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="../index.html">
+            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="8" fill="#12201A"/>
+              <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+              <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+            </svg>
+            MarketPilot
+          </a>
+          <p>الطيار الآلي للتسويق للشركات الصغيرة. تطبيق سطح مكتب لويندوز، بيانات محلية
+            أولًا، واجهات رسمية فقط، وفرامل تعمل فعلًا.</p>
+        </div>
+        <div class="footer-col">
+          <h4>المنتج</h4>
+          <a href="../index.html#features">المزايا</a>
+          <a href="../downloads.html">التنزيلات</a>
+          <a href="../downloads.html#requirements">متطلبات النظام</a>
+          <a href="../downloads.html#verify">تحقّق من التنزيل</a>
+        </div>
+        <div class="footer-col">
+          <h4>التوثيق</h4>
+          <a href="../docs/guide.html">دليل الإعداد</a>
+          <a href="../docs/channels.html">القنوات</a>
+          <a href="../docs/automation.html">الأتمتة وسطر الأوامر</a>
+          <a href="../docs/safety.html">الأمان والامتثال</a>
+        </div>
+        <div class="footer-col">
+          <h4>المساعدة</h4>
+          <a href="../docs/faq.html#troubleshooting">استكشاف الأخطاء</a>
+          <a href="../docs/faq.html#limits">القيود المعروفة</a>
+          <a href="../docs/automation.html#data">النسخ الاحتياطي والبيانات</a>
+          <a href="../docs/index.html">كل التوثيق</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> MarketPilot. صُنع لنظامي Windows 10 و11.</span>
+        <span class="note"><i></i> واجهات رسمية فقط · بلا كشط · بلا قوائم مشتراة</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search-dialog" id="searchDialog" aria-label="ابحث في التوثيق">
+    <div class="search-box">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="ابحث في التوثيق…" autocomplete="off" spellcheck="false" aria-label="ابحث في التوثيق">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="search-results" id="searchResults" role="listbox" aria-label="نتائج البحث"></ul>
+    <div class="search-hint"><span>↑ ↓ للتنقل</span><span>Enter للفتح</span><span>Esc للإغلاق</span></div>
+  </dialog>
+
+
+  <script src="../../assets/site.js"></script>
+</body>
+</html>

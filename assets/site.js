@@ -3,6 +3,7 @@
   "use strict";
 
   const root = document.body.dataset.root || "";
+  const isArabic = document.documentElement.lang === "ar" || document.documentElement.dir === "rtl";
   const $ = (sel, scope = document) => scope.querySelector(sel);
   const $$ = (sel, scope = document) => Array.from(scope.querySelectorAll(sel));
 
@@ -25,7 +26,7 @@
 
   /* ---------- Search index ---------- */
 
-  const searchIndex = [
+  const searchIndexEn = [
     {
       title: "Install MarketPilot",
       desc: "MSI installer, portable ZIP, SmartScreen and first launch.",
@@ -252,6 +253,210 @@
     }
   ];
 
+  // Arabic copy for the same destinations. Keys are the URLs above, so both
+  // locales keep identical hrefs and data-root resolution.
+  const searchIndexAr = {
+    "downloads.html#install": {
+      title: "تثبيت MarketPilot",
+      desc: "مثبّت MSI، ونسخة محمولة ZIP، وSmartScreen، وأول تشغيل.",
+      cat: "البداية",
+      keys: "تحميل تثبيت msi zip محمول smartscreen ويندوز exe"
+    },
+    "downloads.html#requirements": {
+      title: "متطلبات النظام",
+      desc: "Windows 10/11 x64، بلا حاجة إلى JDK للبنية المعبأة.",
+      cat: "البداية",
+      keys: "ويندوز 10 11 64 بت ذاكرة مساحة قرص متطلبات"
+    },
+    "downloads.html#verify": {
+      title: "تحقق من التنزيل",
+      desc: "افحص تجزئات SHA-256 في PowerShell قبل التثبيت.",
+      cat: "البداية",
+      keys: "sha256 تجزئة hash powershell تحقق سلامة موقّع"
+    },
+    "docs/index.html": {
+      title: "نظرة على التوثيق",
+      desc: "كيف رُتّب هذا الدليل ومن أين تبدأ.",
+      cat: "التوثيق",
+      keys: "توثيق دليل مساعدة فهرس نظرة بداية"
+    },
+    "docs/guide.html#layout": {
+      title: "أول تشغيل والتخطيط",
+      desc: "الشريط الجانبي، والشريط العلوي، وشريحة التشغيل التجريبي، وقفل الموافقة، والإشعارات.",
+      cat: "الدليل",
+      keys: "نافذة شريط جانبي لوحة تحكم شريط علوي تشغيل تجريبي مباشر دورة اعتماد الكل"
+    },
+    "docs/guide.html#brand": {
+      title: "املأ ملف العلامة",
+      desc: "الهوية، والعروض، والصوت، والألوان، وهوية المرسل، وضوابط الحماية.",
+      cat: "الدليل",
+      keys: "علامة ملف نبرة كلمات محظورة عروض منطقة زمنية نافذة إرسال حد يومي"
+    },
+    "docs/guide.html#ai": {
+      title: "اربط كاتب الذكاء الاصطناعي",
+      desc: "Gemini أو OpenAI أو OpenCode Zen أو Go، مع القالب البديل.",
+      cat: "الدليل",
+      keys: "ذكاء اصطناعي gemini openai opencode zen go مفتاح api طراز قالب كاتب"
+    },
+    "docs/guide.html#first-post": {
+      title: "اكتب منشورك الأول",
+      desc: "القنوات، والمحاور، والنسخ، والموجز، والنص المولد، والتصميم.",
+      cat: "الدليل",
+      keys: "استوديو محتوى منشور محور نصيحة دليل عرض قصة سؤال من الخلف محلي خرافة نسخ"
+    },
+    "docs/guide.html#publish": {
+      title: "راجع وانشر بأمان",
+      desc: "فلاتر القائمة، والاعتماد، والنشر الآن، وSIMULATED، وإعادة المحاولة.",
+      cat: "الدليل",
+      keys: "قائمة اعتماد نشر محاكى فشل إعادة محاولة إلغاء مباشر"
+    },
+    "docs/guide.html#manual-bundles": {
+      title: "حزم يدوية لتيك توك وReels",
+      desc: "تعليق الصادر، والصورة، وpost.json، ومقطع reel اختياري مدته 8 ثوانٍ.",
+      cat: "الدليل",
+      keys: "يدوي تيك توك reels قصص صادر حزمة ffmpeg فيديو"
+    },
+    "docs/guide.html#import": {
+      title: "استورد جهات الاتصال من CSV",
+      desc: "العناوين المقبولة، وإزالة التكرار، وفحوص الحظر.",
+      cat: "الدليل",
+      keys: "جمهور عملاء محتملون csv استيراد شركة بريد هاتف مدينة فئة ملاحظات مصدر"
+    },
+    "docs/guide.html#outreach": {
+      title: "شغّل حملة تواصل بارد",
+      desc: "الأساس القانوني، والتفعيل، والصياغة، والمراجعة، والإرسال.",
+      cat: "الدليل",
+      keys: "تواصل حملة بريد واتساب عميل محتمل رسائل اعتماد أساس قانوني"
+    },
+    "docs/guide.html#newsletter": {
+      title: "أرسل نشرة",
+      desc: "جهات الاتصال المشتركة فقط، ومسودات لكل مشترك، وإرسال SMTP.",
+      cat: "الدليل",
+      keys: "نشرة مشتركون بريد smtp حملة"
+    },
+    "docs/guide.html#local": {
+      title: "منشورات محلية وGoogle Business",
+      desc: "تحديثات محلية قصيرة وعروض بمقاس 1200x900.",
+      cat: "الدليل",
+      keys: "google business profile محلي مدينة حي منشور"
+    },
+    "docs/channels.html#facebook": {
+      title: "إعداد صفحة فيسبوك",
+      desc: "تطبيق Meta، ومعرّف الصفحة، ونطاقات الرمز، والنشر.",
+      cat: "القنوات",
+      keys: "فيسبوك meta صفحة معرّف رمز وصول pages_manage_posts pages_show_list"
+    },
+    "docs/channels.html#instagram": {
+      title: "إعداد إنستغرام",
+      desc: "حساب أعمال، ورمز صفحة، ورابط صورة عام مطلوب.",
+      cat: "القنوات",
+      keys: "إنستغرام حساب أعمال رابط أساس صورة عام رمز graph api"
+    },
+    "docs/channels.html#linkedin": {
+      title: "إعداد لينكدإن",
+      desc: "Author URN، والرمز، وإصدار الواجهة الاختياري.",
+      cat: "القنوات",
+      keys: "لينكدإن urn شخص مؤسسة w_member_social رمز واجهة إصدار"
+    },
+    "docs/channels.html#x": {
+      title: "إعداد X",
+      desc: "رمز مستخدم OAuth 2.0 مع صلاحية الكتابة وحدود المعدل.",
+      cat: "القنوات",
+      keys: "x twitter oauth رمز تغريدة حد معدل"
+    },
+    "docs/channels.html#google": {
+      title: "إعداد Google Business Profile",
+      desc: "معرّفات الحساب والموقع، وبيانات OAuth، ورمز التحديث.",
+      cat: "القنوات",
+      keys: "google business profile حساب موقع oauth عميل رمز تحديث محلي"
+    },
+    "docs/channels.html#email": {
+      title: "إعداد البريد وSMTP",
+      desc: "المضيف، والمنفذ، وكلمة مرور التطبيق، وهوية المرسل، وصندوق إلغاء الاشتراك.",
+      cat: "القنوات",
+      keys: "smtp بريد مضيف منفذ 587 465 كلمة مرور تطبيق مرسل إلغاء اشتراك"
+    },
+    "docs/channels.html#whatsapp": {
+      title: "إعداد WhatsApp Cloud API",
+      desc: "معرّف رقم الهاتف، والرمز، والقالب المعتمد، ونافذة الـ24 ساعة.",
+      cat: "القنوات",
+      keys: "واتساب cloud api رقم هاتف قالب لغة 24 ساعة"
+    },
+    "docs/channels.html#manual": {
+      title: "القناة اليدوية",
+      desc: "البديل المتاح دائمًا الذي يكتب حزمة صادر.",
+      cat: "القنوات",
+      keys: "يدوي قناة تيك توك reels صادر بديل"
+    },
+    "docs/automation.html#cadences": {
+      title: "الإيقاعات والمجدول",
+      desc: "منشورات متكررة حسب القناة ويوم الأسبوع والوقت والمحور.",
+      cat: "الأتمتة",
+      keys: "إيقاع أتمتة جدولة يوم أسبوع وقت محور اعتماد تلقائي شغّل الآن"
+    },
+    "docs/automation.html#task-scheduler": {
+      title: "شغّله بلا واجهة مع مُجدول المهام",
+      desc: "MarketPilot.exe --once كل 15 دقيقة بلا نافذة.",
+      cat: "الأتمتة",
+      keys: "مُجدول مهام بلا واجهة once cli 24/7 ويندوز"
+    },
+    "docs/automation.html#cli": {
+      title: "أعلام سطر الأوامر",
+      desc: "--once و--force و--dry-run و--status و--help.",
+      cat: "الأتمتة",
+      keys: "cli أعلام once force dry-run status help runauto رمز خروج"
+    },
+    "docs/automation.html#data": {
+      title: "البيانات والنسخ الاحتياطي ونقل التثبيت",
+      desc: "مساحة العمل، وبيانات الاعتماد، والوسائط، ومواقع الصادر.",
+      cat: "الأتمتة",
+      keys: "نسخ احتياطي بيانات appdata workspace json settings.properties وسائط صادر"
+    },
+    "docs/safety.html#defaults": {
+      title: "الإعدادات الآمنة الافتراضية",
+      desc: "التشغيل التجريبي، وقفل الموافقة، وحالة المجدول، ونافذة الإرسال.",
+      cat: "الأمان",
+      keys: "أمان تشغيل تجريبي قفل موافقة مجدول نافذة إرسال افتراضيات"
+    },
+    "docs/safety.html#guardrails": {
+      title: "ضوابط الحماية",
+      desc: "الحدود اليومية، وأدنى فاصل، وتراجع إعادة المحاولة، وساعات الهدوء.",
+      cat: "الأمان",
+      keys: "حد يومي أدنى فاصل إعادة محاولة تراجع ساعات هدوء حد معدل"
+    },
+    "docs/safety.html#compliance": {
+      title: "امتثال التواصل",
+      desc: "الأساس القانوني، والحظر، ومسار إلغاء الاشتراك، وهوية المرسل.",
+      cat: "الأمان",
+      keys: "gdpr أساس قانوني موافقة مصلحة مشروعة حظر إلغاء اشتراك امتثال بريد مزعج"
+    },
+    "docs/faq.html#troubleshooting": {
+      title: "استكشاف الأخطاء",
+      desc: "نافذة فارغة، ومنشورات SIMULATED، وأخطاء مصادقة، وصادر فارغ.",
+      cat: "المساعدة",
+      keys: "استكشاف أخطاء نافذة فارغة محاكى فشل 401 403 إنستغرام واتساب صادر reel إيقاع"
+    },
+    "docs/faq.html#limits": {
+      title: "القيود المعروفة",
+      desc: "بلا كشط، وبلا سلاسل تنقيط، والوصول إلى الواجهات وانتهاء الرموز.",
+      cat: "المساعدة",
+      keys: "قيود كشط قوائم مشتراة سلسلة تنقيط api اعتماد رموز"
+    },
+    "docs/faq.html#questions": {
+      title: "الأسئلة الشائعة",
+      desc: "علامات متعددة، وعملاء متعددون، والتحديثات والتكاليف.",
+      cat: "المساعدة",
+      keys: "أسئلة شائعة علامات عملاء تحديثات أسعار تكاليف حسابات سحابية"
+    }
+  };
+
+  const searchIndex = isArabic
+    ? searchIndexEn.map((item) => {
+        const ar = searchIndexAr[item.url];
+        return ar ? { ...item, ...ar } : item;
+      })
+    : searchIndexEn;
+
   /* ---------- Search dialog ---------- */
 
   const dialog = $("#searchDialog");
@@ -292,7 +497,9 @@
 
     active = current.length ? 0 : -1;
     if (!current.length) {
-      results.innerHTML = `<li class="search-empty">No matches for “${escapeHtml(query)}”. Try “instagram”, “dry run” or “backup”.</li>`;
+      results.innerHTML = isArabic
+        ? `<li class="search-empty">لا نتائج لـ«${escapeHtml(query)}». جرّب «إنستغرام» أو «تشغيل تجريبي» أو «نسخ احتياطي».</li>`
+        : `<li class="search-empty">No matches for “${escapeHtml(query)}”. Try “instagram”, “dry run” or “backup”.</li>`;
       return;
     }
     results.innerHTML = current
@@ -404,6 +611,10 @@
     }
   }
 
+  const copyUi = isArabic
+    ? { copy: "نسخ", copied: "تم النسخ", failed: "فشل", label: "نسخ الرمز إلى الحافظة" }
+    : { copy: "Copy", copied: "Copied", failed: "Failed", label: "Copy code to clipboard" };
+
   function flash(btn, label) {
     const original = btn.textContent;
     btn.textContent = label;
@@ -416,11 +627,11 @@
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "copy-btn";
-    btn.textContent = "Copy";
-    btn.setAttribute("aria-label", "Copy code to clipboard");
+    btn.textContent = copyUi.copy;
+    btn.setAttribute("aria-label", copyUi.label);
     btn.addEventListener("click", async () => {
       const ok = await copyText(code.innerText);
-      flash(btn, ok ? "Copied" : "Failed");
+      flash(btn, ok ? copyUi.copied : copyUi.failed);
     });
     pre.classList.add("has-copy");
     pre.appendChild(btn);
@@ -430,7 +641,7 @@
     btn.addEventListener("click", async () => {
       const value = btn.getAttribute("data-copy");
       const ok = await copyText(value);
-      flash(btn, ok ? "Copied" : "Failed");
+      flash(btn, ok ? copyUi.copied : copyUi.failed);
     });
   });
 

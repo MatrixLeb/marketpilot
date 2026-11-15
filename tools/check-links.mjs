@@ -19,7 +19,7 @@ const checkedLinks = new Set();
 
 function walk(dir, out = []) {
   for (const entry of readdirSync(dir)) {
-    if (entry === "downloads" || entry === "node_modules" || entry === ".git") continue;
+    if (entry === "downloads" || entry === "i18n" || entry === "node_modules" || entry === ".git") continue;
     const full = join(dir, entry);
     const stat = statSync(full);
     if (stat.isDirectory()) walk(full, out);
@@ -125,6 +125,7 @@ if (existsSync(jsFile)) {
 
 /* Every download shown on the site should be present. */
 for (const file of [
+  "downloads/MarketPilot-1.0.0.exe",
   "downloads/MarketPilot-1.0.0.msi",
   "downloads/MarketPilot-1.0.0-portable.zip",
   "downloads/SHA256SUMS.txt",

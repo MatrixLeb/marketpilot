@@ -1,28 +1,39 @@
 # Deploying the MarketPilot site
 
-The site is plain HTML, CSS and JavaScript. There is no build step, no framework, no
-package manager and no external font or analytics request. Upload the folder and it
-works.
+The site is plain HTML, CSS and JavaScript. There is no framework, no package manager
+and no external font or analytics request. Upload the folder and it works. The Arabic
+mirror under `ar/` is generated from `i18n/ar/` by `tools/build-ar.mjs`; the English
+pages are the source of truth.
 
 ## Live deployment
 
 | Item | Value |
 | --- | --- |
 | Site | <https://matrixleb.github.io/marketpilot/> |
+| Arabic site | <https://matrixleb.github.io/marketpilot/ar/> |
 | Repository | <https://github.com/MatrixLeb/marketpilot> |
 | Pages source | `main` branch, repository root, legacy build |
-| Download host | GitHub Release `v1.0.0` (2 GiB per asset) |
+| Download host | GitHub Release `v1.0.0` (EXE, MSI and portable ZIP) |
 
-The published repository contains the site only. The MSI and ZIP stay out of Git and
-are attached to the release; the download buttons on the site point straight at the
+The published repository contains the site only. The EXE, MSI and ZIP stay out of Git
+and are attached to the release; the download buttons on the site point straight at the
 release asset URLs. To publish an update:
 
 ```powershell
+cd E:\Business\MarketPilot\site
+node tools/build-ar.mjs
+node tools/check-links.mjs
+
+robocopy . E:\Business\MarketPilot\publish /MIR /XD .git i18n /XF *.exe *.msi *.zip /NFL /NDL /NJH /NJS /NP
 cd E:\Business\MarketPilot\publish
 git add -A
 git commit -m "Update site"
 git push
 ```
+
+`/MIR` also removes files that no longer exist in `site`, so keep `i18n/` excluded (it is
+source, not published output). `site/.nojekyll` must stay: without it, Pages runs Jekyll
+and hides paths that start with an underscore.
 
 A push to `main` rebuilds the Pages site automatically. Update the release assets and
 `SHA256SUMS.txt` separately with `gh release upload v1.0.0 <files> --clobber`.
@@ -31,9 +42,15 @@ A push to `main` rebuilds the Pages site automatically. Update the release asset
 
 ```
 site/
-  index.html                 landing page
-  downloads.html             install, requirements, checksums
-  404.html                   not-found page
+  index.html                 landing page (English)
+  downloads.html             install, requirements, checksums (English)
+  404.html                   not-found page (English)
+  .nojekyll                  required by GitHub Pages
+  ar/                        generated Arabic mirror (do not hand-edit)
+  i18n/ar/
+    header.html              shared Arabic header and navigation
+    footer.html              shared Arabic footer and search dialog
+    pages/*.main.html        Arabic <main> fragment for each page
   docs/
     index.html               documentation hub + filter
     guide.html               setup guide A–Z
@@ -47,12 +64,15 @@ site/
     favicon.svg
     dashboard.png            real app screenshot
   downloads/
+    MarketPilot-1.0.0.exe
     MarketPilot-1.0.0.msi
     MarketPilot-1.0.0-portable.zip
     SHA256SUMS.txt
   tools/
     serve.mjs                local preview with Range support
     check-links.mjs          offline link/anchor/search validation
+    build-ar.mjs             renders ar/ from i18n/ar/
+    add-lang-switch.mjs      one-off English header switch inserter
   README.md                  editing notes
   DEPLOY.md                  this file
 ```
@@ -94,15 +114,16 @@ Because the site is static, any of these work:
 
 | File | Size |
 | --- | --- |
+| `MarketPilot-1.0.0.exe` | 103,133,184 bytes (98.4 MB) |
 | `MarketPilot-1.0.0.msi` | 102,445,552 bytes (97.7 MB) |
 | `MarketPilot-1.0.0-portable.zip` | 101,026,920 bytes (96.3 MB) |
 
 Recommended pattern:
 
 1. Publish the HTML/CSS/JS on the static host.
-2. Upload the MSI and ZIP to **GitHub Releases**, S3/R2, or another download host that
-   supports large files and range requests.
-3. Replace the two `href` values in `index.html` and `downloads.html` with the hosted
+2. Upload the EXE, MSI and ZIP to **GitHub Releases**, S3/R2, or another download host
+   that supports large files and range requests.
+3. Replace the three `href` values in `index.html` and `downloads.html` with the hosted
    URLs. Keep `SHA256SUMS.txt` on the site and keep the hash values in sync.
 
 PowerShell replacement example:
@@ -166,8 +187,9 @@ The last command should return `206 Partial Content` and `Content-Range`. If it 
 
 ## Publishing a new app version
 
-1. Build the MSI and portable folder from the app project.
-2. Replace `site/downloads/MarketPilot-<version>.msi`.
+1. Build the EXE, MSI and portable folder from the app project
+   (`.\gradlew.bat packageExe packageMsi createDistributable`).
+2. Replace `site/downloads/MarketPilot-<version>.exe` and `.msi`.
 3. Recreate the portable ZIP from `build\compose\binaries\main\app\MarketPilot`:
 
    ```powershell
@@ -182,22 +204,25 @@ The last command should return `206 Partial Content` and `Content-Range`. If it 
 4. Recompute hashes and update **all** of these:
 
    ```powershell
+   Get-FileHash .\downloads\MarketPilot-<version>.exe -Algorithm SHA256
    Get-FileHash .\downloads\MarketPilot-<version>.msi -Algorithm SHA256
    Get-FileHash .\downloads\MarketPilot-<version>-portable.zip -Algorithm SHA256
    ```
 
    - `downloads/SHA256SUMS.txt`
-   - `index.html` — file names, sizes, both hash strings and their `data-copy` values
-   - `downloads.html` — file names, byte counts, sizes, both hashes and `data-copy`
+   - `index.html` — file names, sizes, all three hash strings and their `data-copy` values
+   - `downloads.html` — file names, byte counts, sizes, all three hashes and `data-copy`
+   - Arabic copies under `i18n/ar/pages/` for every field above
    - any version label (`v1.0.0`, “Version 1.0.0”) if the version changed
 
-5. Update docs where behaviour changed, and the `searchIndex` in `assets/site.js` if
-   sections moved.
-6. Run `node tools/check-links.mjs` and preview the affected pages.
+5. Update docs where behaviour changed, and the English search index in `assets/site.js`
+   plus `searchIndexAr` if sections moved.
+6. Rebuild Arabic pages and validate: `node tools/build-ar.mjs` then
+   `node tools/check-links.mjs`. Preview the affected English and Arabic pages.
 7. Re-verify the downloaded file:
 
    ```powershell
-   (Get-FileHash .\MarketPilot-<version>.msi -Algorithm SHA256).Hash.ToLower()
+   (Get-FileHash .\MarketPilot-<version>.exe -Algorithm SHA256).Hash.ToLower()
    ```
 
 ## Security and privacy
@@ -213,11 +238,12 @@ The last command should return `206 Partial Content` and `Content-Range`. If it 
 
 ## Post-deploy checklist
 
-- [ ] `/`, `/downloads.html` and all six docs pages return 200.
+- [ ] `/`, `/downloads.html`, all six English docs pages and all eight `/ar/` pages return 200.
 - [ ] A bad URL returns the styled 404 page.
+- [ ] The language switch goes from each English page to its Arabic twin and back.
 - [ ] Mobile nav opens and closes; docs chips scroll on a phone.
-- [ ] Search (`/` or the header button) finds “Instagram”, “dry run” and “backup”.
-- [ ] Both download links serve the full files and the hashes match.
-- [ ] `SHA256SUMS.txt` matches the copies on the site.
+- [ ] Search (`/` or the header button) finds “Instagram”, “dry run” and “backup” in English, and “إنستغرام” in Arabic.
+- [ ] All three download links serve the full files and the hashes match.
+- [ ] `SHA256SUMS.txt` matches the copies on the site and in the release.
 - [ ] No local file paths such as `E:\Business` appear in published docs.
 - [ ] HTTPS works and the domain serves the favicon.

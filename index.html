@@ -35,6 +35,7 @@
       </nav>
 
       <div class="header-actions">
+        <a class="lang-switch" href="ar/index.html" hreflang="ar" lang="ar" aria-label="Switch to Arabic">العربية</a>
         <button class="search-trigger" type="button" data-open-search aria-label="Search documentation">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
           <span>Search docs</span>
@@ -327,30 +328,30 @@
         <div class="section-head">
           <div class="kicker">Downloads</div>
           <h2>Take it with you.</h2>
-          <p>Version 1.0.0, built for 64-bit Windows. Install once per user, or keep the portable
-            folder on a drive and run it from there. No JDK required.</p>
+          <p>Version 1.0.0, built for 64-bit Windows. Download the EXE installer, use the MSI for
+            managed deployment, or keep the portable folder on a drive. No JDK required.</p>
         </div>
 
         <div class="download-grid">
           <article class="download-card recommended">
             <span class="rec-badge">Recommended</span>
-            <h2>Windows installer</h2>
-            <div class="file-name">MarketPilot-1.0.0.msi</div>
-            <p>Installs per user, adds a Start menu shortcut, and registers an uninstaller.</p>
+            <h2>Windows installer (.exe)</h2>
+            <div class="file-name">MarketPilot-1.0.0.exe</div>
+            <p>Double-click to install per user, add a Start menu shortcut, and register an uninstaller.</p>
             <ul class="spec-list">
               <li><span>Version</span><span>1.0.0</span></li>
-              <li><span>Size</span><span>97.7 MB</span></li>
+              <li><span>Size</span><span>98.4 MB</span></li>
               <li><span>Scope</span><span>Current user</span></li>
               <li><span>Signature</span><span>Unsigned</span></li>
             </ul>
-            <a class="btn btn-primary" href="https://github.com/MatrixLeb/marketpilot/releases/download/v1.0.0/MarketPilot-1.0.0.msi" download>
+            <a class="btn btn-primary" href="https://github.com/MatrixLeb/marketpilot/releases/download/v1.0.0/MarketPilot-1.0.0.exe" download>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-              Download MSI
+              Download EXE
             </a>
             <div class="hash-row">
               <span class="hash-label">SHA-256</span>
-              <code>704de36c21336839f6f85e6ef43d3b603dff68899840be2c454cc384474b998e</code>
-              <button class="copy-hash" type="button" data-copy="704de36c21336839f6f85e6ef43d3b603dff68899840be2c454cc384474b998e">Copy</button>
+              <code>c2cfd3f339929ffe336ece38bd49193ca524159e772c236ef67aaf9b47137c4c</code>
+              <button class="copy-hash" type="button" data-copy="c2cfd3f339929ffe336ece38bd49193ca524159e772c236ef67aaf9b47137c4c">Copy</button>
             </div>
           </article>
 
@@ -375,11 +376,32 @@
               <button class="copy-hash" type="button" data-copy="7d3e285f6017caac320d96ee79727566ed49be6cccbaa3d3dc178b6d992fb7c5">Copy</button>
             </div>
           </article>
+
+          <article class="download-card">
+            <h2>MSI installer</h2>
+            <div class="file-name">MarketPilot-1.0.0.msi</div>
+            <p>The same installer in MSI format for scripted or managed deployment.</p>
+            <ul class="spec-list">
+              <li><span>Version</span><span>1.0.0</span></li>
+              <li><span>Size</span><span>97.7 MB</span></li>
+              <li><span>Scope</span><span>Current user</span></li>
+              <li><span>Signature</span><span>Unsigned</span></li>
+            </ul>
+            <a class="btn btn-secondary" href="https://github.com/MatrixLeb/marketpilot/releases/download/v1.0.0/MarketPilot-1.0.0.msi" download>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+              Download MSI
+            </a>
+            <div class="hash-row">
+              <span class="hash-label">SHA-256</span>
+              <code>704de36c21336839f6f85e6ef43d3b603dff68899840be2c454cc384474b998e</code>
+              <button class="copy-hash" type="button" data-copy="704de36c21336839f6f85e6ef43d3b603dff68899840be2c454cc384474b998e">Copy</button>
+            </div>
+          </article>
         </div>
 
         <p class="small muted" style="margin-top:16px">
           The build is not code-signed, so Windows SmartScreen may ask for confirmation.
-          <a href="downloads.html#verify">Verify the SHA-256</a> before you run either file.
+          <a href="downloads.html#verify">Verify the SHA-256</a> before you run any file.
         </p>
       </div>
     </section>
