@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — MarketPilot</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-root="">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="MarketPilot home">
+        <svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#12201A"/>
+          <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+          <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+        </svg>
+        MarketPilot
+        <span class="brand-version">v1.0.0</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Main">
+        <a href="index.html#features">Features</a>
+        <a href="docs/index.html">Documentation</a>
+        <a href="downloads.html">Downloads</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-open-search aria-label="Search documentation">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span>Search docs</span>
+          <kbd>/</kbd>
+        </button>
+        <a class="btn btn-primary btn-sm" href="downloads.html#downloads">Download</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" aria-label="Mobile">
+      <div class="container">
+        <a href="index.html#features">Features</a>
+        <a href="docs/index.html">Documentation</a>
+        <a href="downloads.html">Downloads</a>
+        <a href="docs/faq.html">FAQ &amp; troubleshooting</a>
+        <a class="btn btn-primary" href="downloads.html#downloads">Download MarketPilot 1.0.0</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow"><span class="dot"></span> HTTP 404</div>
+        <h1>That page took a wrong turn.</h1>
+        <p>The link is old, mistyped, or the page moved. The documentation and downloads are one click
+          away.</p>
+        <div class="btn-row" style="margin-top:26px">
+          <a class="btn btn-primary" href="index.html">Back to the overview</a>
+          <a class="btn btn-secondary" href="docs/index.html">Browse documentation</a>
+          <a class="btn btn-ghost" href="downloads.html">Downloads</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <div class="grid-3">
+          <a class="doc-card" href="docs/guide.html">
+            <span class="doc-num">START HERE</span>
+            <h3>Setup guide</h3>
+            <p>Install, fill the brand profile and publish a simulated first post.</p>
+          </a>
+          <a class="doc-card" href="docs/channels.html">
+            <span class="doc-num">CONFIGURE</span>
+            <h3>Channel credentials</h3>
+            <p>Facebook, Instagram, LinkedIn, X, Google, SMTP, WhatsApp and Manual.</p>
+          </a>
+          <a class="doc-card" href="docs/faq.html">
+            <span class="doc-num">OPERATE</span>
+            <h3>Troubleshooting</h3>
+            <p>Expired tokens, image URLs, empty outbox and guard-rail holds.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="margin-top:0;border-top:0;padding-top:0">
+        <span>© <span data-year>2026</span> MarketPilot. Built for Windows 10 and 11.</span>
+        <span class="note"><i></i> Official APIs only · No scraping · No purchased lists</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search-dialog" id="searchDialog" aria-label="Search documentation">
+    <div class="search-box">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="Search the documentation…" autocomplete="off" spellcheck="false" aria-label="Search the documentation">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="search-results" id="searchResults" role="listbox" aria-label="Search results"></ul>
+    <div class="search-hint"><span>↑ ↓ to navigate</span><span>Enter to open</span><span>Esc to close</span></div>
+  </dialog>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>

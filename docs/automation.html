@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Automation &amp; CLI — MarketPilot</title>
+  <meta name="description" content="MarketPilot automation: cadences, the in-app scheduler, headless MarketPilot.exe --once, runAuto, Task Scheduler, exit codes and data backup.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-root="../">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="MarketPilot home">
+        <svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#12201A"/>
+          <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+          <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+        </svg>
+        MarketPilot
+        <span class="brand-version">v1.0.0</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Main">
+        <a href="../index.html#features">Features</a>
+        <a href="index.html" aria-current="page">Documentation</a>
+        <a href="../downloads.html">Downloads</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-open-search aria-label="Search documentation">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span>Search docs</span>
+          <kbd>/</kbd>
+        </button>
+        <a class="btn btn-primary btn-sm" href="../downloads.html#downloads">Download</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" aria-label="Mobile">
+      <div class="container">
+        <a href="../index.html#features">Features</a>
+        <a href="index.html">Documentation</a>
+        <a href="../downloads.html">Downloads</a>
+        <a href="faq.html">FAQ &amp; troubleshooting</a>
+        <a class="btn btn-primary" href="../downloads.html#downloads">Download MarketPilot 1.0.0</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="docs-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a><span>/</span>
+          <a href="index.html">Documentation</a><span>/</span><span>Automation</span>
+        </nav>
+        <div class="eyebrow"><span class="dot"></span> Chapter 03 · Configure</div>
+        <h1>Automation &amp; CLI</h1>
+        <p>The scheduler is one pipeline with three jobs: materialise due cadences, publish approved
+          posts whose time has come, and prepare or send outreach. It can run in the window every
+          30 seconds, or headless from Windows Task Scheduler.</p>
+      </div>
+    </section>
+
+    <div class="container docs-shell">
+      <aside class="docs-sidebar">
+        <button class="docs-search-mini" type="button" data-open-search>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          Search the manual…
+        </button>
+        <div class="side-label">Start here</div>
+        <nav aria-label="Documentation">
+          <a href="index.html">Documentation home</a>
+          <a href="guide.html">Setup guide</a>
+        </nav>
+        <div class="side-label">Configure</div>
+        <nav aria-label="Configure">
+          <a href="channels.html">Channels &amp; credentials</a>
+          <a href="automation.html" aria-current="page">Automation &amp; CLI</a>
+        </nav>
+        <div class="side-label">Operate</div>
+        <nav aria-label="Operate">
+          <a href="safety.html">Safety &amp; compliance</a>
+          <a href="faq.html">FAQ &amp; troubleshooting</a>
+          <a href="../downloads.html">Downloads</a>
+        </nav>
+      </aside>
+
+      <article class="docs-article">
+        <p class="lede">A “tick” is one scheduler pass. It never publishes a draft and never bypasses
+          the brand's sending window, daily cap or minimum gap. If the scheduler switch is off, a tick
+          does nothing unless you pass <code>--force</code>.</p>
+
+        <h2 id="in-app">Inside the app</h2>
+        <p>The scheduler starts when the window opens and ticks every 30 seconds. A dot at the bottom
+          of the sidebar shows whether it is running. The toolbar's <strong>Run tick</strong> button
+          performs one pass immediately.</p>
+        <p>Each tick runs these steps in order:</p>
+        <ol class="steps">
+          <li><strong>Cadences</strong><p>For each enabled cadence whose weekday and time have arrived
+            and which has not run today, generate one post per channel, render the artwork, and save it
+            as a draft or an approved post.</p></li>
+          <li><strong>Queue</strong><p>Publish approved posts whose <code>scheduledAt</code> is due and
+            whose retry time has passed. Dry run turns this into a logged <code>SIMULATED</code> result.</p></li>
+          <li><strong>Outreach</strong><p>For active campaigns with the lawful-basis box ticked, draft up
+            to the daily target and send approved messages inside the sending window.</p></li>
+        </ol>
+        <p>Closing the window stops the in-app loop. That is why Task Scheduler exists.</p>
+
+        <h2 id="cadences">Cadences</h2>
+        <p>Open <strong>Automation → New cadence</strong>. A cadence stores an intent, not content:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Field</th><th>Behaviour</th></tr></thead>
+            <tbody>
+              <tr><td>Name</td><td>Shown in the Automation list and in log notes.</td></tr>
+              <tr><td>Channels</td><td>One generated post per selected channel.</td></tr>
+              <tr><td>Days</td><td>Monday–Sunday toggles. A cadence with no days never fires.</td></tr>
+              <tr><td>Time</td><td><code>HH:mm</code> in the <em>brand's</em> time zone, not the PC's.</td></tr>
+              <tr><td>Pillar and brief</td><td>The angle and standing instruction passed to the writer.</td></tr>
+              <tr><td>Enabled</td><td>Off keeps the cadence but excludes it from ticks.</td></tr>
+              <tr><td>Auto-approve</td><td>When on — and the approval lock is off — generated posts go
+                straight to the queue with a due time of now.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Exactly when it fires</h3>
+        <ul>
+          <li>A cadence fires <strong>at most once per day</strong>, on a selected weekday, at or after
+            its time. If the PC was off at 09:00 and you open the app at 14:00, the cadence runs then.</li>
+          <li>The day is marked as run even if generation produced nothing, so a broken AI key will not
+            retry all afternoon. Check the log note and press <strong>Run now</strong> after fixing it.</li>
+          <li><strong>Run now</strong> generates a batch immediately without changing the schedule or the
+            last-run day.</li>
+          <li>The <strong>approval lock</strong> (Settings → Safety) overrides auto-approve. Every
+            generated post waits in Queue as <code>DRAFT</code>.</li>
+        </ul>
+
+        <h3>Why a cadence produced nothing</h3>
+        <ul>
+          <li>It is disabled, today is not selected, or the time has not arrived in the brand timezone.</li>
+          <li>It already ran today — check the Automation list and Activity log.</li>
+          <li>The AI provider returned an error and the template fallback also produced no valid channel
+            content. The log shows the source and the error.</li>
+          <li>All selected channels are unconfigured, except Manual, which is always available.</li>
+        </ul>
+
+        <h2 id="gates">What gates a publish</h2>
+        <p>A post is a candidate only when all of these are true:</p>
+        <ul>
+          <li>Status is <code>APPROVED</code>.</li>
+          <li><code>scheduledAt</code> is set and in the past.</li>
+          <li><code>nextAttemptAt</code> is zero or in the past.</li>
+        </ul>
+        <p>Once claimed, the post still has to pass the brand's guard rails. If it fails, it is held and
+          the reason is written to the log:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Gate</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>Sending window</td><td>Current time must be inside the brand's window, for example <code>08:00–20:00</code>.</td></tr>
+              <tr><td>Daily cap</td><td>Published <em>and simulated</em> posts for this channel since local midnight must be below the cap.</td></tr>
+              <tr><td>Minimum gap</td><td>Enough minutes must have passed since the last publish on the same channel.</td></tr>
+              <tr><td>Claim</td><td>The row is atomically moved to <code>PUBLISHING</code>, so a second tick cannot send it too.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Because simulated posts count towards the cap and gap, dry-run testing behaves like live
+          publishing. If a test seems stuck, check the log for “daily cap” or “minimum gap”.</p>
+
+        <h2 id="cli">Headless runner</h2>
+        <p>The packaged launcher detects CLI flags and runs without opening a window. From an installed
+          or portable copy:</p>
+        <pre><code>MarketPilot.exe --once</code></pre>
+        <p>From source, use the Gradle task:</p>
+        <pre><code>$env:JAVA_HOME="C:\Program Files\Android\Android Studio\jbr"
+.\gradlew.bat runAuto --console=plain</code></pre>
+        <p>Pass flags to the Gradle task with <code>--args</code>:</p>
+        <pre><code>.\gradlew.bat runAuto --args="--status" --console=plain</code></pre>
+
+        <h3>Flags</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Flag</th><th>Effect</th></tr></thead>
+            <tbody>
+              <tr><td><code>--once</code></td><td>Run a single tick. This is the default when no flag is given.</td></tr>
+              <tr><td><code>--force</code></td><td>Run even if the scheduler switch is off in Settings. Guard rails still apply.</td></tr>
+              <tr><td><code>--dry-run</code></td><td>Set the saved dry-run switch to ON, then run. It stays on for later runs until you turn it off in the app.</td></tr>
+              <tr><td><code>--status</code></td><td>Print counts and exit. Changes nothing, not even a tick.</td></tr>
+              <tr><td><code>--help</code>, <code>-h</code></td><td>Print the flag list and exit.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout amber">
+          <p><strong><code>--dry-run</code> is persistent, not per-tick.</strong> It writes the same
+            setting you see in the top bar. To return to live publishing, open the app and switch the
+            chip from <em>Dry run ON</em> to <em>Live</em>. This is deliberate: a failed automation
+            script must not silently leave you live.</p>
+        </div>
+
+        <h3>Output and exit codes</h3>
+        <p>A normal tick prints a one-line summary and up to twelve notes. Output is ASCII-safe for the
+          Windows console. Exit code <code>1</code> means at least one publish or outreach action failed;
+          held items and simulations do not fail the task.</p>
+        <pre><code>MarketPilot tick - dry run: true, scheduler: true
+Result: 1 generated - 1 simulated
+  - Cadence "Monday tips": ai copy (...)</code></pre>
+        <p><code>--status</code> prints a snapshot without changing anything:</p>
+        <pre><code>Brands:        1
+Drafts:        3
+Queued:        1
+Published:     0
+Simulated:     2
+Leads:         0
+Campaigns:     0 active
+Dry run:       true
+Scheduler:     true</code></pre>
+
+        <h2 id="task-scheduler">Run 24/7 with Task Scheduler</h2>
+        <p>The CLI and the window share the same files and the same atomic claims, so they cannot
+          double-post. You can leave the app open and still run a scheduled tick.</p>
+
+        <h3>Graphical setup</h3>
+        <ol class="steps">
+          <li><strong>Create a task</strong><p>Open Task Scheduler → <em>Create Task</em> (not “Basic
+            Task”). Name it <code>MarketPilot tick</code>.</p></li>
+          <li><strong>Add a trigger</strong><p>Daily, starting at a time you choose. Tick <em>Repeat task
+            every</em> → <code>15 minutes</code> → <em>for a duration of</em> <code>Indefinitely</code>.</p></li>
+          <li><strong>Add an action</strong><p>Start a program: the full path to
+            <code>MarketPilot.exe</code>. Arguments: <code>--once</code>. Start in: the folder that
+            contains the EXE.</p></li>
+          <li><strong>Choose the account</strong><p>Either “run only when the user is logged on” or “run
+            whether the user is logged on or not”. The CLI does not open a window either way.</p></li>
+          <li><strong>Test it</strong><p>Right-click the task → <em>Run</em>. The Last Run Result should
+            be <code>0x0</code>; <code>0x1</code> means an action failed and the Activity log has the
+            reason.</p></li>
+        </ol>
+
+        <h3>Command-line creation</h3>
+        <pre><code>$exe = "C:\Path\To\MarketPilot\MarketPilot.exe"
+schtasks /Create /TN "MarketPilot tick" /SC MINUTE /MO 15 /TR "`"$exe`" --once" /ST 08:00 /F
+schtasks /Run /TN "MarketPilot tick"</code></pre>
+        <p>Replace the path with your real install location. The scheduled task uses the same
+          <code>%APPDATA%</code> data only when it runs as the same Windows user.</p>
+
+        <h3>Gradle instead of the packaged app</h3>
+        <p>If you run from source, point the task at the wrapper. The first build needs a warm Gradle
+          cache and network, so run it once by hand before scheduling.</p>
+        <pre><code>Program:   E:\Business\MarketPilot\gradlew.bat
+Arguments: runAuto --console=plain
+Start in:  E:\Business\MarketPilot</code></pre>
+
+        <h2 id="statuses">Statuses in the queue</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><code>DRAFT</code></td><td>Generated or saved, not yet approved. The scheduler ignores it.</td></tr>
+              <tr><td><code>APPROVED</code></td><td>Queued with a due time. Eligible for the next tick.</td></tr>
+              <tr><td><code>PUBLISHING</code></td><td>Claimed by a tick. Brief; a crash here can leave a row to re-queue manually.</td></tr>
+              <tr><td><code>PUBLISHED</code></td><td>The API accepted it. The row may carry an external URL.</td></tr>
+              <tr><td><code>SIMULATED</code></td><td>Dry run. Nothing was sent; counts towards caps and gaps.</td></tr>
+              <tr><td><code>FAILED</code></td><td>Non-retryable error or three attempts used. Read the error, fix it, re-queue.</td></tr>
+              <tr><td><code>CANCELLED</code></td><td>Stopped by you. Can be approved again later.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Retryable failures (rate limits and 5xx) wait 15 minutes after the first attempt and 30
+          minutes after the second. At most three attempts are made. Authentication and validation
+          errors stop immediately.</p>
+
+        <h2 id="data">Data, backup and moving</h2>
+        <p>Everything is local, under <code>%APPDATA%\MarketPilot</code>:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Path</th><th>Contents</th></tr></thead>
+            <tbody>
+              <tr><td><code>data\workspace.json</code></td><td>Brands, cadences, posts, leads, campaigns and logs.</td></tr>
+              <tr><td><code>data\settings.properties</code></td><td>AI keys and channel credentials, stored as plain text.</td></tr>
+              <tr><td><code>media\&lt;brand&gt;\</code></td><td>Generated PNG cards and MP4 reels.</td></tr>
+              <tr><td><code>outbox\&lt;brand&gt;\&lt;post&gt;\</code></td><td>Manual bundles: caption, image, metadata, optional reel.</td></tr>
+              <tr><td><code>temp\</code></td><td>Scratch files. Safe to delete while the app is closed.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Backup</h3>
+        <p>Close the app, then copy <code>data</code> and <code>media</code> together. Copying only
+          <code>data</code> restores the queue but leaves image paths pointing at files that no longer
+          exist. The outbox is disposable output, not state.</p>
+        <p>Treat <code>settings.properties</code> separately. It contains live tokens. Do not put it in
+          shared cloud storage or a public repository. On a new machine, re-enter credentials rather
+          than copying the file if you are unsure who can read it.</p>
+
+        <h3>Restore and upgrade</h3>
+        <ol>
+          <li>Quit MarketPilot.</li>
+          <li>Copy the backed-up folders back under <code>%APPDATA%\MarketPilot</code>.</li>
+          <li>Install the new build and launch it. The workspace opens with the same brands and queue.</li>
+        </ol>
+        <p>The uninstaller removes the program, not <code>%APPDATA%\MarketPilot</code>. Delete that folder
+          yourself if you want a clean slate. There is no auto-update in 1.0.0.</p>
+
+        <h3>More than one brand</h3>
+        <p>The scheduler ticks every brand in the workspace. Cadences are per brand, as are windows,
+          caps and minimum gaps. Channel credentials are per installation, so brands share the same
+          connected accounts. See <a href="faq.html#questions">multi-brand guidance</a> before promising
+          separate accounts to customers.</p>
+
+        <div class="callout">
+          <p><strong>Concurrency is safe.</strong> The UI and the CLI can run at the same time. Each post
+            is claimed atomically before publishing, and the scheduler holds a mutex around a tick, so
+            the same item is never sent twice.</p>
+        </div>
+
+        <nav class="docs-pager" aria-label="Documentation pagination">
+          <a class="pager-link" href="channels.html">
+            <small>Previous</small>
+            <span>Channels &amp; credentials</span>
+          </a>
+          <a class="pager-link next" href="safety.html">
+            <small>Next</small>
+            <span>Safety &amp; compliance</span>
+          </a>
+        </nav>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="../index.html">
+            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="8" fill="#12201A"/>
+              <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+              <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+            </svg>
+            MarketPilot
+          </a>
+          <p>Marketing autopilot for small businesses. Windows desktop, local-first data,
+            official APIs, and brakes that work.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="../index.html#features">Features</a>
+          <a href="../downloads.html">Downloads</a>
+          <a href="../downloads.html#requirements">System requirements</a>
+          <a href="../downloads.html#verify">Verify a download</a>
+        </div>
+        <div class="footer-col">
+          <h4>Documentation</h4>
+          <a href="guide.html">Setup guide</a>
+          <a href="channels.html">Channels</a>
+          <a href="automation.html">Automation &amp; CLI</a>
+          <a href="safety.html">Safety &amp; compliance</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="faq.html#troubleshooting">Troubleshooting</a>
+          <a href="faq.html#limits">Known limitations</a>
+          <a href="automation.html#data">Backup &amp; data</a>
+          <a href="index.html">All documentation</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> MarketPilot. Built for Windows 10 and 11.</span>
+        <span class="note"><i></i> Official APIs only · No scraping · No purchased lists</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search-dialog" id="searchDialog" aria-label="Search documentation">
+    <div class="search-box">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="Search the documentation…" autocomplete="off" spellcheck="false" aria-label="Search the documentation">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="search-results" id="searchResults" role="listbox" aria-label="Search results"></ul>
+    <div class="search-hint"><span>↑ ↓ to navigate</span><span>Enter to open</span><span>Esc to close</span></div>
+  </dialog>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

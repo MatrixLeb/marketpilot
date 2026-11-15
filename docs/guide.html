@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Setup guide, A to Z — MarketPilot</title>
+  <meta name="description" content="The complete MarketPilot walkthrough: install, brand profile, AI writer, first post, dry run, cadences, manual bundles, contacts, outreach and daily routine.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-root="../">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="MarketPilot home">
+        <svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#12201A"/>
+          <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+          <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+        </svg>
+        MarketPilot
+        <span class="brand-version">v1.0.0</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Main">
+        <a href="../index.html#features">Features</a>
+        <a href="index.html" aria-current="page">Documentation</a>
+        <a href="../downloads.html">Downloads</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-open-search aria-label="Search documentation">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span>Search docs</span>
+          <kbd>/</kbd>
+        </button>
+        <a class="btn btn-primary btn-sm" href="../downloads.html#downloads">Download</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" aria-label="Mobile">
+      <div class="container">
+        <a href="../index.html#features">Features</a>
+        <a href="index.html">Documentation</a>
+        <a href="../downloads.html">Downloads</a>
+        <a href="faq.html">FAQ &amp; troubleshooting</a>
+        <a class="btn btn-primary" href="../downloads.html#downloads">Download MarketPilot 1.0.0</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="docs-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a><span>/</span>
+          <a href="index.html">Documentation</a><span>/</span><span>Setup guide</span>
+        </nav>
+        <div class="eyebrow"><span class="dot"></span> Chapter 01 · Start here</div>
+        <h1>Setup guide, A to Z</h1>
+        <p>A practical walkthrough from a blank install to a working autopilot. Follow it in order the
+          first time; after that, the daily routine at the end is all you need.</p>
+      </div>
+    </section>
+
+    <div class="container docs-shell">
+      <aside class="docs-sidebar">
+        <button class="docs-search-mini" type="button" data-open-search>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          Search the manual…
+        </button>
+        <div class="side-label">Start here</div>
+        <nav aria-label="Documentation">
+          <a href="index.html">Documentation home</a>
+          <a href="guide.html" aria-current="page">Setup guide</a>
+        </nav>
+        <div class="side-label">Configure</div>
+        <nav aria-label="Configure">
+          <a href="channels.html">Channels &amp; credentials</a>
+          <a href="automation.html">Automation &amp; CLI</a>
+        </nav>
+        <div class="side-label">Operate</div>
+        <nav aria-label="Operate">
+          <a href="safety.html">Safety &amp; compliance</a>
+          <a href="faq.html">FAQ &amp; troubleshooting</a>
+          <a href="../downloads.html">Downloads</a>
+        </nav>
+      </aside>
+
+      <article class="docs-article">
+        <p class="lede">Budget about 45 minutes for the first pass. You will install the app, describe
+          one business properly, connect one channel, and watch a simulated post travel from a brief
+          to the queue. Nothing will reach an audience until you decide it should.</p>
+
+        <h2 id="install">0. Install and open</h2>
+        <p><strong>Installer (recommended).</strong> Run <code>MarketPilot-1.0.0.msi</code>, approve
+          the SmartScreen prompt if Windows shows one, then launch <strong>MarketPilot</strong> from
+          the Start menu. The install is per user and does not need administrator rights.</p>
+        <p><strong>Portable.</strong> Extract the ZIP, keep the folder intact, and run
+          <code>MarketPilot\MarketPilot.exe</code>. The runtime is inside that folder; moving the EXE
+          alone will not work.</p>
+        <p>On first launch the app creates <code>%APPDATA%\MarketPilot</code> with one brand called
+          “My Business”, dry run <strong>ON</strong>, the scheduler <strong>ON</strong>, and the
+          approval lock <strong>ON</strong>. It also opens the Dashboard.</p>
+
+        <div class="callout">
+          <p><strong>No account, no onboarding wizard.</strong> The app does not ask you to sign up or
+            upload anything. The first useful step is the brand profile, not a tour.</p>
+        </div>
+
+        <h2 id="layout">1. Learn the layout</h2>
+        <p>The left sidebar is the whole app. The top bar holds the current brand, the dry-run switch,
+          <strong>Run tick</strong>, and <strong>Approve all drafts</strong>. Toasts appear at the
+          bottom right and every error also lands in the Activity log.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Screen</th><th>What it does</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Dashboard</strong></td><td>Readiness, today's queue, connector status, recent activity and a one-click tick.</td></tr>
+              <tr><td><strong>Content studio</strong></td><td>Pick channels, a pillar and a brief; write with AI or templates; preview the rendered card.</td></tr>
+              <tr><td><strong>Queue</strong></td><td>Every post with status, schedule, retry and publish controls. <code>SIMULATED</code> means dry run.</td></tr>
+              <tr><td><strong>Automation</strong></td><td>Recurring cadences: channel mix, weekdays, time, pillar, auto-approve.</td></tr>
+              <tr><td><strong>Audience</strong></td><td>Leads, CSV import, suppression list, outreach and newsletter campaigns, message review.</td></tr>
+              <tr><td><strong>Brand profile</strong></td><td>Positioning, offers, tone, banned words, sending identity, timezone, window and caps.</td></tr>
+              <tr><td><strong>Settings</strong></td><td>AI keys, channel credentials, safety switches, FFmpeg location and data folder.</td></tr>
+              <tr><td><strong>Activity log</strong></td><td>Every publish, send, hold and failure with the API response in plain language.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Two rules of the house:</p>
+        <ol>
+          <li><strong>Dry run ON</strong> means everything is simulated and marked <code>SIMULATED</code>.
+            Nothing is posted, emailed, messaged, or written to the outbox.</li>
+          <li><strong>Approval lock ON</strong> means even auto-approving cadences wait for you.</li>
+        </ol>
+        <p>Leave both alone until you have read the output and trust it.</p>
+
+        <h2 id="brand">2. Fill the brand profile</h2>
+        <p>Open <strong>Brand profile</strong>. This is the most important step: the writer treats these
+          fields as facts and will not invent what is missing.</p>
+
+        <h3>Identity and offer</h3>
+        <ul>
+          <li><strong>Business name, industry, city or area, time zone, website, booking link, phone.</strong>
+            The copy uses these literally.</li>
+          <li><strong>Services and proof</strong> — one item per line: services, what is genuinely
+            different, current offers. Be specific: “emergency call-outs within 60 minutes in Cluj”
+            beats “quality service”.</li>
+          <li><strong>Words your audience uses / never use</strong> — keywords sharpen the voice; banned
+            words are enforced in the prompt.</li>
+          <li><strong>Voice</strong> — tone in plain words, for example “Warm, direct, no hype. Short
+            sentences. Never talk down to the reader.”</li>
+        </ul>
+
+        <h3>Look and sending identity</h3>
+        <ul>
+          <li><strong>Brand and accent colour</strong> — used by the local artwork renderer for every card.</li>
+          <li><strong>From name, reply-to, mailing address, unsubscribe URL, signature</strong> —
+            required before real email outreach. Most countries require a physical address and a working
+            opt-out in commercial email.</li>
+        </ul>
+
+        <h3>Guard rails</h3>
+        <ul>
+          <li><strong>Sending window</strong> — default <code>08:00–20:00</code> in the brand timezone.
+            Nothing is published or sent outside it.</li>
+          <li><strong>Daily cap per channel</strong> — the scheduler holds anything over the cap.</li>
+          <li><strong>Minimum gap between posts</strong> — prevents a burst if several posts are due at once.</li>
+        </ul>
+        <p>Press <strong>Save profile</strong>. The Dashboard keeps a “Finish the brand profile first”
+          panel until name, one-liner and audience are filled.</p>
+
+        <h3>Several businesses</h3>
+        <p>Click <strong>New brand</strong> and repeat. The brand selector in the top bar switches the
+          whole app. Channel credentials are stored per installation, not per brand, so two brands on
+          one install share the same Page, token and mailbox. For two unrelated customers, use two
+          Windows users or two installs.</p>
+
+        <h2 id="ai">3. Connect the AI writer (optional)</h2>
+        <p>Open <strong>Settings → AI writer</strong>.</p>
+        <ol class="steps">
+          <li><strong>Pick a provider</strong><p>Gemini (the free tier is enough), OpenAI, OpenCode Zen
+            or OpenCode Go.</p></li>
+          <li><strong>Keep the preselected model or type one</strong><p>Any model available to your key
+            works; the app sends a strict-JSON request.</p></li>
+          <li><strong>Paste the matching key and save</strong><p>Then press <strong>Test key &amp;
+            model</strong>. Errors are shown in plain language rather than a raw stack trace.</p></li>
+        </ol>
+        <p>Without a key, everything still runs on deterministic templates. With a key, the copy is
+          tailored to the brand, the pillar and each lead. The key is stored in
+          <code>settings.properties</code> as plain text on your Windows account, so treat that account
+          as the security boundary.</p>
+        <div class="callout">
+          <p><strong>What leaves the machine.</strong> When you generate, the brand profile, brief and
+            selected channel limits are sent to the AI provider you configured. Artwork is rendered
+            locally. Without a key, no content leaves the machine at all.</p>
+        </div>
+
+        <h2 id="channels">4. Connect your channels</h2>
+        <p>Open <strong>Settings → Channels</strong>. Each card shows <code>configured</code> or
+          <code>not set up</code>. Fill only what you use, press <strong>Save</strong>, then
+          <strong>Test connection</strong>.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Channel</th><th>Minimum you need</th><th>Watch out for</th></tr></thead>
+            <tbody>
+              <tr><td>Facebook Page</td><td>Page ID + Page access token</td><td>Token needs posting and engagement scopes.</td></tr>
+              <tr><td>Instagram</td><td>Business account ID + Page token + public image base URL</td><td>Instagram fetches the image by URL.</td></tr>
+              <tr><td>LinkedIn</td><td>Author URN + token</td><td>Person tokens expire in about 60 days.</td></tr>
+              <tr><td>X</td><td>OAuth 2.0 user token</td><td>Free tiers are rate-limited; retries back off.</td></tr>
+              <tr><td>Google Business</td><td>Account ID, location ID, OAuth client + refresh token</td><td>Google must grant API access first.</td></tr>
+              <tr><td>Email / SMTP</td><td>Host, port, username, app password, From identity, unsubscribe mailbox</td><td>Use an app password, not your login password.</td></tr>
+              <tr><td>WhatsApp</td><td>Phone number ID, token, approved template + language</td><td>Marketing outside 24 hours needs the template.</td></tr>
+              <tr><td>Manual</td><td>Nothing</td><td>The fallback for TikTok, Reels and Stories.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Start with <strong>Manual</strong> and one real social channel. Do not configure everything on
+          day one. Full setup notes and credential field names are in
+          <a href="channels.html">Channels &amp; credentials</a>.</p>
+
+        <h2 id="first-post">5. Write your first post</h2>
+        <p>Open <strong>Content studio</strong>.</p>
+        <ol class="steps">
+          <li><strong>Channels</strong><p>Click one or more, for example Facebook + Instagram + Manual.</p></li>
+          <li><strong>Content pillar</strong><p>Choose the angle. Tip is the safest first post.</p></li>
+          <li><strong>Variants per channel</strong><p>1 is fine; 2–3 gives you options.</p></li>
+          <li><strong>Brief / topic</strong><p>Optional, but the more concrete the better: “explain why a
+            slow website loses bookings, with a before/after”.</p></li>
+          <li><strong>Generate drafts</strong><p>Each draft shows the copy, hashtags, CTA, character count
+            against the channel limit, and the generated branded card.</p></li>
+        </ol>
+
+        <h3>The eight pillars</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Pillar</th><th>What the writer aims for</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Tip</strong></td><td>Teach one useful thing the audience can apply today. Proof comes from the craft, not claims.</td></tr>
+              <tr><td><strong>Proof</strong></td><td>A concrete before/after, process detail or honest customer outcome. Never an invented testimonial.</td></tr>
+              <tr><td><strong>Offer</strong></td><td>The current offer clearly: who it is for, what they get, what to do next. No fake urgency.</td></tr>
+              <tr><td><strong>Story</strong></td><td>A short human story from running the business, ending with a lesson the reader can use.</td></tr>
+              <tr><td><strong>FAQ</strong></td><td>One question customers actually ask, answered in their words.</td></tr>
+              <tr><td><strong>Behind</strong></td><td>How the work is done, step by step, so the reader trusts the process.</td></tr>
+              <tr><td><strong>Local</strong></td><td>Ties the post to the town or neighbourhood and the people who live there.</td></tr>
+              <tr><td><strong>Myth</strong></td><td>Corrects a common misconception with a calm, factual explanation.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Edit any field in place: internal label, post text, hashtags, link, and the public image URL
+          (required for Instagram, optional elsewhere). Then choose:</p>
+        <ul>
+          <li><strong>Save</strong> — keeps it as a draft.</li>
+          <li><strong>Approve &amp; queue</strong> — approves it at the time in <em>Schedule</em>. Leave
+            the field empty to queue it for now, or press <strong>Use next hour</strong>.</li>
+          <li><strong>Publish now</strong> — same as approving for the next tick; guard rails still apply.</li>
+          <li><strong>Re-render art</strong> — rebuilds the PNG after changing text or colours.</li>
+        </ul>
+        <p>Nothing goes out yet. The post sits in <strong>Queue</strong> as <code>APPROVED</code>.</p>
+
+        <h2 id="publish">6. Publish it, safely</h2>
+        <p>Open <strong>Queue</strong>. Filters: All, Draft, Queued, Published, Dry run, Failed. Each row
+          has the controls it needs: approve, publish now, cancel, re-queue or open the image folder.</p>
+        <p>With dry run ON, the next scheduler tick — within 30 seconds — marks the post
+          <code>SIMULATED</code> and logs it. You can also press <strong>Run tick</strong> in the top bar.</p>
+
+        <p><strong>When you are ready for a real post:</strong></p>
+        <ol class="steps">
+          <li><strong>Switch the chip from Dry run ON to Live</strong><p>It is in the top bar and affects
+            publishing and outreach.</p></li>
+          <li><strong>Approve one post to a low-risk channel</strong><p>A Facebook Page is ideal for the
+            first live test.</p></li>
+          <li><strong>Run a tick or wait 30 seconds</strong><p>Then check the Activity log for the API
+            response and the Queue row for <code>PUBLISHED</code> and a working link.</p></li>
+          <li><strong>Turn dry run back ON</strong><p>Keep it on until you trust the cadence and the voice.</p></li>
+        </ol>
+        <p><code>FAILED</code> rows show the reason. Rate limits retry after 15 and then 30 minutes;
+          authentication errors stop immediately and need a new token.</p>
+
+        <h2 id="cadences">7. Automate with cadences</h2>
+        <p>Open <strong>Automation → New cadence</strong>. A cadence is a standing instruction, not a
+          piece of content.</p>
+        <ul>
+          <li><strong>Name</strong> — “Monday tips”.</li>
+          <li><strong>Channels</strong> — the mix for this cadence.</li>
+          <li><strong>Days</strong> — Mon–Sun toggles.</li>
+          <li><strong>Time (HH:mm)</strong> — in the brand timezone.</li>
+          <li><strong>Pillar and brief</strong> — what kind of content it writes.</li>
+          <li><strong>Enabled</strong> — on or off without deleting it.</li>
+          <li><strong>Auto-approve generated posts</strong> — posts go straight to the queue.</li>
+        </ul>
+        <p>Every day at the chosen time, the scheduler writes one post per channel, renders the artwork,
+          and either drafts or approves it. <strong>Run now</strong> generates a batch immediately
+          without changing the schedule.</p>
+        <p>With the <strong>approval lock ON</strong> (Settings → Safety), auto-approve is ignored and
+          every cadence post waits in Queue. That is the recommended setting for the first weeks.</p>
+        <div class="callout amber">
+          <p><strong>A cadence fires once per day.</strong> If no post appears, check: enabled, weekday,
+            time already passed, approval lock, and the Activity log. The
+            <a href="automation.html#cadences">automation chapter</a> has the full scheduling model.</p>
+        </div>
+
+        <h2 id="manual-bundles">8. Manual bundles for TikTok, Reels, Stories</h2>
+        <p>TikTok has no self-serve posting API for most accounts, so Manual is the honest path.</p>
+        <ol class="steps">
+          <li><strong>Use the Manual channel</strong><p>In Studio or a cadence, choose
+            <em>Manual / TikTok / Reels</em>.</p></li>
+          <li><strong>Generate, edit, approve and queue</strong><p>Exactly like any other post.</p></li>
+          <li><strong>Turn dry run OFF</strong><p>Dry run does not write bundles. This is the one action
+            that needs live mode even though nothing is uploaded.</p></li>
+          <li><strong>Run a tick</strong><p>Open <code>%APPDATA%\MarketPilot\outbox\&lt;brand&gt;\&lt;post&gt;\</code>,
+            also reachable from Settings → <strong>Open outbox folder</strong>.</p></li>
+        </ol>
+        <p>The bundle contains <code>caption.txt</code>, <code>image.png</code>, <code>post.json</code>,
+          <code>README.txt</code>, and <code>reel.mp4</code> when FFmpeg is available. Upload from your
+          phone, paste the caption and hashtags, done.</p>
+        <p>For reels: install FFmpeg, set its full path in <strong>Settings → Short-form video</strong>,
+          press <strong>Check</strong>, and keep <strong>Render vertical reels</strong> on. The app builds
+          an 8-second 1080×1920 clip from the branded card with a slow pan and zoom. No stock footage,
+          no API cost.</p>
+
+        <h2 id="import">9. Add contacts</h2>
+        <p>Open <strong>Audience → Import CSV</strong> or <strong>Add lead</strong>. A header row is
+          easiest and the columns can be in any order:</p>
+        <pre><code>company,name,email,phone,city,category,notes,source
+Northline Plumbing,Ana Pop,ana@northline.ro,+40740111222,Cluj,plumbing,met at expo,expo</code></pre>
+        <p>Accepted headers: <code>company</code>, <code>name</code>, <code>email</code>,
+          <code>phone</code>, <code>city</code>, <code>category</code>, <code>notes</code>,
+          <code>source</code>. Without a header, the order is company, contact, email, phone, city.
+          Rows are deduplicated on email or phone.</p>
+        <p>For each lead:</p>
+        <ul>
+          <li><strong>Subscribed to marketing</strong> — required for newsletters. One-to-one outreach
+            does not require it but still needs the campaign confirmation.</li>
+          <li><strong>Unsubscribe</strong> — adds the address to the permanent suppression list.</li>
+        </ul>
+
+        <h2 id="outreach">10. Run a cold-outreach campaign</h2>
+        <p>Open <strong>Audience → New campaign</strong>.</p>
+        <ol class="steps">
+          <li><strong>Type and channel</strong><p>One-to-one outreach, by Email or WhatsApp.</p></li>
+          <li><strong>Daily cap and goal</strong><p>How many messages this campaign may send per day, and
+            one sentence such as “book 5 site audits”.</p></li>
+          <li><strong>Subject and body templates</strong><p>Use <code>{{name}}</code>,
+            <code>{{company}}</code>, <code>{{city}}</code>, <code>{{topic}}</code> and
+            <code>{{business}}</code>. With an AI key these are rewritten per contact; without one the
+            placeholders are filled literally.</p></li>
+          <li><strong>Auto-approve personalised messages</strong><p>Off means every message is reviewed.
+            Keep it off while you are learning the voice.</p></li>
+          <li><strong>Save campaign</strong></li>
+        </ol>
+        <p>Then:</p>
+        <ol class="steps">
+          <li><strong>Tick “I have a lawful basis to contact these contacts”</strong><p>Without it the
+            campaign cannot be prepared or sent. This is your legal responsibility, not a formality.</p></li>
+          <li><strong>Activate</strong><p>The campaign is now eligible for drafting and sending.</p></li>
+          <li><strong>Draft 10 messages</strong><p>The engine personalises up to 10 contacts that are not
+            suppressed, not unsubscribed and not already in this campaign.</p></li>
+          <li><strong>Review every message</strong><p>Approve, skip, re-queue or delete it in the Messages
+            panel.</p></li>
+          <li><strong>Send approved</strong><p>Or let the scheduler send inside the brand's sending
+            window, within the daily cap.</p></li>
+        </ol>
+        <p>Guards that always apply: one message per contact per campaign, the suppression list, an
+          unsubscribe footer and header on email, quiet hours, the daily cap, and dry run (sends become
+          <code>SIMULATED</code>). When someone asks to stop, press <strong>Unsubscribe</strong> on the
+          lead; that suppresses them forever.</p>
+        <div class="callout danger">
+          <p><strong>Cold email rules differ by country.</strong> Legitimate interest, B2B-only rules and
+            opt-in requirements vary. MarketPilot records your confirmation and enforces the mechanics;
+            it cannot make the contact lawful. Use your own customers first, keep a real sender identity,
+            and honour opt-outs immediately.</p>
+        </div>
+
+        <h2 id="newsletter">11. Send a newsletter</h2>
+        <p>Same flow as outreach, with two differences:</p>
+        <ul>
+          <li><strong>Type</strong> — Newsletter.</li>
+          <li><strong>Recipients</strong> — only contacts marked <strong>Subscribed</strong>.</li>
+        </ul>
+        <p>It goes to email only. Drafts are personalised per subscriber, reviewed the same way, and sent
+          through SMTP. Keep the mailing address and unsubscribe URL in the brand profile accurate;
+          most countries require both.</p>
+
+        <h2 id="local">12. Local and Google Business posts</h2>
+        <p>Connect <strong>Google Business Profile</strong> in Settings, then choose that channel in
+          Studio or a cadence. The <strong>Local</strong> pillar ties copy to the city or neighbourhood.
+          These are short updates and offers, not blog articles, and the image is sized 1200×900 locally.</p>
+
+        <h2 id="routine">13. Your daily and weekly routine</h2>
+        <div class="grid-2">
+          <div class="note-panel" style="margin:0">
+            <h3>Daily — 5 minutes</h3>
+            <ol>
+              <li>Dashboard: scheduler running, failures, next cadence.</li>
+              <li>Queue: review cadence drafts, approve or edit.</li>
+              <li>Audience: approve outreach drafted overnight.</li>
+              <li>Activity log: read any <code>WARN</code> or <code>ERROR</code> and fix tokens or content.</li>
+            </ol>
+          </div>
+          <div class="note-panel" style="margin:0">
+            <h3>Weekly — 20 minutes</h3>
+            <ol>
+              <li>Generate one Studio batch with a strong brief.</li>
+              <li>Check reach and engagement on the platforms; adjust pillars.</li>
+              <li>Export a Manual bundle for TikTok or Reels.</li>
+              <li>Review the suppression list and unsubscribe replies.</li>
+              <li>Update offers in the brand profile so future copy stays true.</li>
+            </ol>
+          </div>
+        </div>
+
+        <h2 id="next">Where to go next</h2>
+        <p>You now have a safe, working loop. The rest of the manual goes deeper on the parts that cause
+          the most support questions.</p>
+        <ul>
+          <li><a href="channels.html">Channels &amp; credentials</a> — every field and every prerequisite.</li>
+          <li><a href="automation.html">Automation &amp; CLI</a> — run the scheduler 24/7 without the window.</li>
+          <li><a href="safety.html">Safety &amp; compliance</a> — the guard rails and outreach law.</li>
+          <li><a href="faq.html">FAQ &amp; troubleshooting</a> — when something fails, start here.</li>
+        </ul>
+
+        <nav class="docs-pager" aria-label="Documentation pagination">
+          <a class="pager-link" href="index.html">
+            <small>Previous</small>
+            <span>Documentation home</span>
+          </a>
+          <a class="pager-link next" href="channels.html">
+            <small>Next</small>
+            <span>Channels &amp; credentials</span>
+          </a>
+        </nav>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="../index.html">
+            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="8" fill="#12201A"/>
+              <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+              <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+            </svg>
+            MarketPilot
+          </a>
+          <p>Marketing autopilot for small businesses. Windows desktop, local-first data,
+            official APIs, and brakes that work.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="../index.html#features">Features</a>
+          <a href="../downloads.html">Downloads</a>
+          <a href="../downloads.html#requirements">System requirements</a>
+          <a href="../downloads.html#verify">Verify a download</a>
+        </div>
+        <div class="footer-col">
+          <h4>Documentation</h4>
+          <a href="guide.html">Setup guide</a>
+          <a href="channels.html">Channels</a>
+          <a href="automation.html">Automation &amp; CLI</a>
+          <a href="safety.html">Safety &amp; compliance</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="faq.html#troubleshooting">Troubleshooting</a>
+          <a href="faq.html#limits">Known limitations</a>
+          <a href="automation.html#data">Backup &amp; data</a>
+          <a href="index.html">All documentation</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> MarketPilot. Built for Windows 10 and 11.</span>
+        <span class="note"><i></i> Official APIs only · No scraping · No purchased lists</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search-dialog" id="searchDialog" aria-label="Search documentation">
+    <div class="search-box">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="Search the documentation…" autocomplete="off" spellcheck="false" aria-label="Search the documentation">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="search-results" id="searchResults" role="listbox" aria-label="Search results"></ul>
+    <div class="search-hint"><span>↑ ↓ to navigate</span><span>Enter to open</span><span>Esc to close</span></div>
+  </dialog>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

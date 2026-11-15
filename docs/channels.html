@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Channels &amp; credentials — MarketPilot</title>
+  <meta name="description" content="Set up Facebook, Instagram, LinkedIn, X, Google Business Profile, SMTP email, WhatsApp Cloud API and the Manual channel in MarketPilot.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-root="../">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="MarketPilot home">
+        <svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#12201A"/>
+          <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+          <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+        </svg>
+        MarketPilot
+        <span class="brand-version">v1.0.0</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Main">
+        <a href="../index.html#features">Features</a>
+        <a href="index.html" aria-current="page">Documentation</a>
+        <a href="../downloads.html">Downloads</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-open-search aria-label="Search documentation">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span>Search docs</span>
+          <kbd>/</kbd>
+        </button>
+        <a class="btn btn-primary btn-sm" href="../downloads.html#downloads">Download</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" aria-label="Mobile">
+      <div class="container">
+        <a href="../index.html#features">Features</a>
+        <a href="index.html">Documentation</a>
+        <a href="../downloads.html">Downloads</a>
+        <a href="faq.html">FAQ &amp; troubleshooting</a>
+        <a class="btn btn-primary" href="../downloads.html#downloads">Download MarketPilot 1.0.0</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="docs-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a><span>/</span>
+          <a href="index.html">Documentation</a><span>/</span><span>Channels</span>
+        </nav>
+        <div class="eyebrow"><span class="dot"></span> Chapter 02 · Configure</div>
+        <h1>Channels &amp; credentials</h1>
+        <p>Every connector uses an official API. This chapter lists the exact fields the Settings
+          screen expects, what each platform requires before the fields will work, and how images
+          travel — or do not.</p>
+      </div>
+    </section>
+
+    <div class="container docs-shell">
+      <aside class="docs-sidebar">
+        <button class="docs-search-mini" type="button" data-open-search>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          Search the manual…
+        </button>
+        <div class="side-label">Start here</div>
+        <nav aria-label="Documentation">
+          <a href="index.html">Documentation home</a>
+          <a href="guide.html">Setup guide</a>
+        </nav>
+        <div class="side-label">Configure</div>
+        <nav aria-label="Configure">
+          <a href="channels.html" aria-current="page">Channels &amp; credentials</a>
+          <a href="automation.html">Automation &amp; CLI</a>
+        </nav>
+        <div class="side-label">Operate</div>
+        <nav aria-label="Operate">
+          <a href="safety.html">Safety &amp; compliance</a>
+          <a href="faq.html">FAQ &amp; troubleshooting</a>
+          <a href="../downloads.html">Downloads</a>
+        </nav>
+      </aside>
+
+      <article class="docs-article">
+        <p class="lede">Open <strong>Settings → Channels</strong>. Each card shows whether it is
+          configured, and each card has its own <strong>Save</strong> and <strong>Test connection</strong>.
+          Fill only the channels you actually use; the rest can stay empty forever.</p>
+
+        <div class="callout">
+          <p><strong>Credentials are per installation, not per brand.</strong> They live in
+            <code>%APPDATA%\MarketPilot\data\settings.properties</code> as plain text. Two brands on one
+            install share the same Page, token and mailbox. For unrelated customers, use separate
+            Windows users or installs.</p>
+        </div>
+
+        <h2 id="overview">At a glance</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Channel</th><th>Authentication</th><th>What it publishes</th><th>Image</th></tr></thead>
+            <tbody>
+              <tr><td>Facebook Page</td><td>Page access token</td><td>Text, optional link</td><td>No upload</td></tr>
+              <tr><td>Instagram</td><td>Page token + business account ID</td><td>Image post + caption</td><td>Required, by public URL</td></tr>
+              <tr><td>LinkedIn</td><td>OAuth 2.0 bearer token</td><td>Text post</td><td>No upload</td></tr>
+              <tr><td>X</td><td>OAuth 2.0 user token</td><td>Single text post</td><td>No upload</td></tr>
+              <tr><td>Google Business</td><td>OAuth refresh token</td><td>Local post + CTA link</td><td>Optional, by public URL</td></tr>
+              <tr><td>Email / SMTP</td><td>SMTP username + app password</td><td>Plain-text email</td><td>No</td></tr>
+              <tr><td>WhatsApp</td><td>Cloud API token + template</td><td>Template message</td><td>No</td></tr>
+              <tr><td>Manual</td><td>None</td><td>Outbox bundle</td><td>PNG + optional MP4</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="artwork">How artwork travels</h2>
+        <p>Every post gets a branded PNG rendered locally. Whether a platform receives it depends on
+          the API:</p>
+        <ul>
+          <li><strong>Instagram</strong> requires a public image URL. Either paste one on the post, or
+            set an image base URL and upload the generated PNG to the matching folder on a static host.</li>
+          <li><strong>Google Business Profile</strong> accepts an optional public photo URL. Set a
+            per-post public image URL if you want the photo attached.</li>
+          <li><strong>Manual</strong> includes <code>image.png</code> (and an optional reel) in the
+            outbox bundle.</li>
+          <li><strong>Facebook, LinkedIn and X</strong> connectors publish text and links only. The PNG
+            stays in the local <code>media</code> folder for you to attach manually if you want an image.</li>
+        </ul>
+        <div class="callout amber">
+          <p><strong>There is no CDN inside MarketPilot.</strong> For Instagram and Google photos, host
+            the <code>media</code> folder somewhere public or maintain a small upload script. The app
+            deliberately does not upload your images to a third-party service.</p>
+        </div>
+
+        <h2 id="facebook">Facebook Page</h2>
+        <p><strong>Prerequisite:</strong> a Facebook Page and a Meta app of the Business type with the
+          Pages API. Connect the Page to the app, then generate a Page access token.</p>
+        <p><strong>Required scopes:</strong> <code>pages_manage_posts</code>,
+          <code>pages_read_engagement</code>, <code>pages_show_list</code>.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Field</th><th>Key</th><th>What to paste</th></tr></thead>
+            <tbody>
+              <tr><td>Page ID</td><td><code>page_id</code></td><td>The numeric ID of the Page (not the username).</td></tr>
+              <tr><td>Page access token</td><td><code>token</code></td><td>A Page token, not a user token.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Test connection resolves the Page name. Publishing sends the post text plus an optional link
+          to the Page feed. A user token usually fails with a permission error even when the Page is
+          correct.</p>
+
+        <h2 id="instagram">Instagram</h2>
+        <p><strong>Prerequisite:</strong> an Instagram <strong>Business</strong> account linked to a
+          Facebook Page. Publishing goes through the Instagram Graph API using that Page's app and
+          token.</p>
+        <p><strong>Required scopes:</strong> the Page scopes above plus Instagram content publishing
+          permissions granted through the linked Page.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Field</th><th>Key</th><th>What to paste</th></tr></thead>
+            <tbody>
+              <tr><td>Instagram Business account ID</td><td><code>user_id</code></td><td>The business account ID, not the @handle.</td></tr>
+              <tr><td>Page access token</td><td><code>token</code></td><td>The same Page token used for Facebook.</td></tr>
+              <tr><td>Public image base URL</td><td><code>image_base_url</code></td><td>Optional, but the usual way to publish images. Example: <code>https://example.com/marketpilot/media</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>If the post has a public image URL, that URL wins. Otherwise MarketPilot appends the generated
+          PNG's file name to the base URL. The exact file name must exist under that URL. If neither is
+          available, the post fails with a clear message instead of publishing the caption alone.</p>
+        <p>Instagram publishing is a two-step container flow: create the media container, then publish
+          it. The app waits and retries briefly while Instagram finishes processing the image.</p>
+
+        <h2 id="linkedin">LinkedIn</h2>
+        <p><strong>Prerequisite:</strong> a LinkedIn app with <code>w_member_social</code> for personal
+          posting, or access to the Community Management API for organisation pages.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Field</th><th>Key</th><th>What to paste</th></tr></thead>
+            <tbody>
+              <tr><td>Author URN</td><td><code>author</code></td><td><code>urn:li:person:…</code> or <code>urn:li:organization:…</code></td></tr>
+              <tr><td>Access token</td><td><code>token</code></td><td>OAuth 2.0 bearer token with post permission.</td></tr>
+              <tr><td>API version</td><td><code>version</code></td><td>Optional. Defaults to <code>202507</code>; use the version enabled for your app.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Posts are public text posts on the main feed. Person tokens last about 60 days; organisation
+          tokens differ. When the log shows a 401 or 403, re-issue the token and paste the new value.</p>
+
+        <h2 id="x">X</h2>
+        <p><strong>Prerequisite:</strong> an X developer app with OAuth 2.0 user-context write access.
+          The app posts one text update per action.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Field</th><th>Key</th><th>What to paste</th></tr></thead>
+            <tbody>
+              <tr><td>OAuth 2.0 user token</td><td><code>token</code></td><td>A user-context token with <code>tweet.write</code> and <code>users.read</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Free and lower tiers are rate-limited. The scheduler retries rate limits with backoff rather
+          than hammering the endpoint; a persistent 429 needs a smaller cadence or a higher tier.</p>
+
+        <h2 id="google">Google Business Profile</h2>
+        <p><strong>Prerequisite:</strong> the API is not self-serve. Request access through Google's
+          Business Profile API form, wait for approval, then create OAuth credentials with the Business
+          Profile scope.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Field</th><th>Key</th><th>What to paste</th></tr></thead>
+            <tbody>
+              <tr><td>Account ID</td><td><code>account_id</code></td><td>The Business Profile account ID, or leave blank to use <code>me</code>.</td></tr>
+              <tr><td>Location ID</td><td><code>location_id</code></td><td>The location to post to. Required.</td></tr>
+              <tr><td>OAuth client ID</td><td><code>client_id</code></td><td>From the Google Cloud OAuth client.</td></tr>
+              <tr><td>OAuth client secret</td><td><code>client_secret</code></td><td>From the same client.</td></tr>
+              <tr><td>Refresh token</td><td><code>refresh_token</code></td><td>Obtained with offline access and the Business Profile scope.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The app exchanges the refresh token for a short-lived access token and caches it until it
+          expires. Local posts are short updates with an optional call-to-action link; use the
+          <strong>Local</strong> pillar for neighbourhood-specific copy. A public image URL is required
+          if you want a photo attached.</p>
+
+        <h2 id="email">Email and SMTP</h2>
+        <p><strong>Prerequisite:</strong> any SMTP provider — Google Workspace, Microsoft 365, Brevo,
+          Mailgun SMTP, or your web host. Use an <strong>app password</strong>, not your normal login.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Field</th><th>Key</th><th>What to paste</th></tr></thead>
+            <tbody>
+              <tr><td>SMTP host</td><td><code>host</code></td><td>For example <code>smtp.gmail.com</code>.</td></tr>
+              <tr><td>Port</td><td><code>port</code></td><td><code>587</code> for STARTTLS or <code>465</code> for SSL.</td></tr>
+              <tr><td>SMTP username</td><td><code>user</code></td><td>Usually the full email address.</td></tr>
+              <tr><td>SMTP password</td><td><code>password</code></td><td>An app password, stored locally.</td></tr>
+              <tr><td>From address</td><td><code>from</code></td><td>The visible sender address. Must be allowed by the provider.</td></tr>
+              <tr><td>From name</td><td><code>from_name</code></td><td>The visible sender name.</td></tr>
+              <tr><td>Unsubscribe mailbox</td><td><code>unsubscribe_email</code></td><td>Where “stop” replies go. Every email also gets a <code>List-Unsubscribe</code> header.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Messages are plain text, sent to the From address with recipients in BCC, and include the
+          brand's postal address and an unsubscribe line. Replies to the unsubscribe mailbox must be
+          honoured manually: press <strong>Unsubscribe</strong> on the lead so future sends are blocked.</p>
+        <div class="callout">
+          <p><strong>Deliverability tip.</strong> Use a subdomain or a warmed-up mailbox for outreach,
+            keep volumes low, and send newsletters only to contacts marked <strong>Subscribed</strong>.
+            The app cannot fix a domain with no SPF, DKIM or DMARC.</p>
+        </div>
+
+        <h2 id="whatsapp">WhatsApp Cloud API</h2>
+        <p><strong>Prerequisite:</strong> a Meta app with WhatsApp Business, a verified sender, and an
+          <strong>approved template</strong> for marketing messages outside the 24-hour service window.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Field</th><th>Key</th><th>What to paste</th></tr></thead>
+            <tbody>
+              <tr><td>Phone number ID</td><td><code>phone_number_id</code></td><td>The Cloud API phone number ID, not the phone number.</td></tr>
+              <tr><td>Cloud API token</td><td><code>token</code></td><td>A system user or temporary token with messaging permission.</td></tr>
+              <tr><td>Approved template name</td><td><code>template</code></td><td>For example <code>marketing_update</code>. Leave blank only for open 24-hour conversations.</td></tr>
+              <tr><td>Template language</td><td><code>template_lang</code></td><td>For example <code>en_US</code>. Defaults to <code>en_US</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The message text is sent as the template's body parameter <code>{{1}}</code>. The template
+          itself must have exactly one body placeholder. Without a template, only free-form replies
+          inside an open 24-hour conversation work — that is a Meta rule, not an app setting.</p>
+
+        <h2 id="manual">Manual / TikTok / Reels</h2>
+        <p>No credentials, always available. Publishing writes a bundle to
+          <code>%APPDATA%\MarketPilot\outbox\&lt;brand&gt;\&lt;post&gt;\</code>:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>File</th><th>Contents</th></tr></thead>
+            <tbody>
+              <tr><td><code>caption.txt</code></td><td>Post text and hashtags, ready to paste.</td></tr>
+              <tr><td><code>image.png</code></td><td>The branded card rendered locally.</td></tr>
+              <tr><td><code>post.json</code></td><td>Structured post metadata for your own tooling.</td></tr>
+              <tr><td><code>README.txt</code></td><td>A short reminder of what to upload where.</td></tr>
+              <tr><td><code>reel.mp4</code></td><td>Optional 8-second 1080×1920 clip when FFmpeg is configured.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Dry run does not write bundles.</strong> Switch dry run off for this action, run a
+          tick, then upload from your phone. For reels, set the FFmpeg path in
+          <strong>Settings → Short-form video</strong>, press <strong>Check</strong>, and enable
+          <strong>Render vertical reels</strong>.</p>
+
+        <h2 id="testing">Testing and rotation</h2>
+        <ul>
+          <li><strong>Test connection</strong> performs a safe read — it never publishes. Use it after
+            every credential change.</li>
+          <li><strong>Expiry</strong> usually shows as a 401 or 403 in the Activity log. The queue row
+            stops retrying; paste a new token and re-queue the post.</li>
+          <li><strong>Rotation</strong> — replace the value in Settings and save. No restart is needed.</li>
+          <li><strong>Storage</strong> — tokens are plain text in <code>settings.properties</code>. Do not
+            sync that file to shared cloud storage. The Windows account is the security boundary.</li>
+        </ul>
+
+        <div class="callout danger">
+          <p><strong>Never paste credentials into a support ticket or screenshot.</strong> Tokens grant
+            posting rights to your Pages and accounts. Revoke a leaked token in the platform's developer
+            console first, then replace it here.</p>
+        </div>
+
+        <nav class="docs-pager" aria-label="Documentation pagination">
+          <a class="pager-link" href="guide.html">
+            <small>Previous</small>
+            <span>Setup guide, A to Z</span>
+          </a>
+          <a class="pager-link next" href="automation.html">
+            <small>Next</small>
+            <span>Automation &amp; CLI</span>
+          </a>
+        </nav>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="../index.html">
+            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="8" fill="#12201A"/>
+              <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+              <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+            </svg>
+            MarketPilot
+          </a>
+          <p>Marketing autopilot for small businesses. Windows desktop, local-first data,
+            official APIs, and brakes that work.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="../index.html#features">Features</a>
+          <a href="../downloads.html">Downloads</a>
+          <a href="../downloads.html#requirements">System requirements</a>
+          <a href="../downloads.html#verify">Verify a download</a>
+        </div>
+        <div class="footer-col">
+          <h4>Documentation</h4>
+          <a href="guide.html">Setup guide</a>
+          <a href="channels.html">Channels</a>
+          <a href="automation.html">Automation &amp; CLI</a>
+          <a href="safety.html">Safety &amp; compliance</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="faq.html#troubleshooting">Troubleshooting</a>
+          <a href="faq.html#limits">Known limitations</a>
+          <a href="automation.html#data">Backup &amp; data</a>
+          <a href="index.html">All documentation</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> MarketPilot. Built for Windows 10 and 11.</span>
+        <span class="note"><i></i> Official APIs only · No scraping · No purchased lists</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search-dialog" id="searchDialog" aria-label="Search documentation">
+    <div class="search-box">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="Search the documentation…" autocomplete="off" spellcheck="false" aria-label="Search the documentation">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="search-results" id="searchResults" role="listbox" aria-label="Search results"></ul>
+    <div class="search-hint"><span>↑ ↓ to navigate</span><span>Enter to open</span><span>Esc to close</span></div>
+  </dialog>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

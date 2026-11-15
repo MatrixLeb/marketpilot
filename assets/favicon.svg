@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="MarketPilot">
+  <rect width="32" height="32" rx="8" fill="#12201A"/>
+  <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+  <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+</svg>

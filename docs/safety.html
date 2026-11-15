@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Safety &amp; compliance — MarketPilot</title>
+  <meta name="description" content="MarketPilot safety model: dry run, approval lock, sending window, daily caps, retries, suppression list, lawful basis and unsubscribe requirements.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-root="../">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="MarketPilot home">
+        <svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#12201A"/>
+          <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+          <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+        </svg>
+        MarketPilot
+        <span class="brand-version">v1.0.0</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Main">
+        <a href="../index.html#features">Features</a>
+        <a href="index.html" aria-current="page">Documentation</a>
+        <a href="../downloads.html">Downloads</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-open-search aria-label="Search documentation">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span>Search docs</span>
+          <kbd>/</kbd>
+        </button>
+        <a class="btn btn-primary btn-sm" href="../downloads.html#downloads">Download</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" aria-label="Mobile">
+      <div class="container">
+        <a href="../index.html#features">Features</a>
+        <a href="index.html">Documentation</a>
+        <a href="../downloads.html">Downloads</a>
+        <a href="faq.html">FAQ &amp; troubleshooting</a>
+        <a class="btn btn-primary" href="../downloads.html#downloads">Download MarketPilot 1.0.0</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="docs-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a><span>/</span>
+          <a href="index.html">Documentation</a><span>/</span><span>Safety &amp; compliance</span>
+        </nav>
+        <div class="eyebrow"><span class="dot"></span> Chapter 04 · Operate</div>
+        <h1>Safety &amp; compliance</h1>
+        <p>MarketPilot is built to make the cautious path the default path. This chapter is the exact
+          model: what is on at first launch, what the scheduler refuses to do, and which legal
+          responsibilities remain yours.</p>
+      </div>
+    </section>
+
+    <div class="container docs-shell">
+      <aside class="docs-sidebar">
+        <button class="docs-search-mini" type="button" data-open-search>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          Search the manual…
+        </button>
+        <div class="side-label">Start here</div>
+        <nav aria-label="Documentation">
+          <a href="index.html">Documentation home</a>
+          <a href="guide.html">Setup guide</a>
+        </nav>
+        <div class="side-label">Configure</div>
+        <nav aria-label="Configure">
+          <a href="channels.html">Channels &amp; credentials</a>
+          <a href="automation.html">Automation &amp; CLI</a>
+        </nav>
+        <div class="side-label">Operate</div>
+        <nav aria-label="Operate">
+          <a href="safety.html" aria-current="page">Safety &amp; compliance</a>
+          <a href="faq.html">FAQ &amp; troubleshooting</a>
+          <a href="../downloads.html">Downloads</a>
+        </nav>
+      </aside>
+
+      <article class="docs-article">
+        <p class="lede">The defaults are deliberately boring. You can loosen them, but you have to mean
+          it: no hidden “skip for this one” path, no silent retry that outlives a broken token, and no
+          way to reach a suppressed contact through the normal send flow.</p>
+
+        <div class="callout amber">
+          <p><strong>This is product documentation, not legal advice.</strong> Cold email, WhatsApp
+            marketing and newsletters are regulated differently in different countries. The app
+            enforces mechanics; your business remains responsible for the lawful basis, the sender
+            identity and the content.</p>
+        </div>
+
+        <h2 id="defaults">The default switches</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Switch</th><th>Default</th><th>Where</th><th>What it controls</th></tr></thead>
+            <tbody>
+              <tr><td>Dry run</td><td><strong>ON</strong></td><td>Top bar / Settings → Safety</td><td>Publishing and sends are simulated and marked <code>SIMULATED</code>.</td></tr>
+              <tr><td>Approval lock</td><td><strong>ON</strong></td><td>Settings → Safety</td><td>Cadence auto-approve is ignored; generated posts wait as drafts.</td></tr>
+              <tr><td>Scheduler</td><td><strong>ON</strong></td><td>Settings → Safety</td><td>Allows ticks. It still only acts on approved, due items.</td></tr>
+              <tr><td>Lawful-basis confirmation</td><td><strong>OFF</strong></td><td>Each campaign</td><td>A campaign cannot prepare or send until you tick it.</td></tr>
+              <tr><td>Sending window</td><td><code>08:00–20:00</code></td><td>Brand profile</td><td>No publish or outreach outside the brand's local window.</td></tr>
+              <tr><td>Daily cap</td><td>Set per brand/channel</td><td>Brand profile</td><td>Maximum posts per channel per day, counting simulated ones.</td></tr>
+              <tr><td>Minimum gap</td><td>Set per brand</td><td>Brand profile</td><td>Minutes required between posts on the same channel.</td></tr>
+              <tr><td>Auto-approve</td><td><strong>OFF</strong> on cadences and campaigns</td><td>Automation / campaign</td><td>Whether generated items skip manual review.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="dry-run">Dry run, precisely</h2>
+        <p><strong>What it stops:</strong></p>
+        <ul>
+          <li>Social API publish calls. The post becomes <code>SIMULATED</code> with “Dry run — nothing was sent.”</li>
+          <li>SMTP sends and WhatsApp template or text messages. Outreach messages become
+            <code>SIMULATED</code>.</li>
+          <li>Manual outbox bundles. No folder is written for a simulated Manual post.</li>
+        </ul>
+        <p><strong>What it does not stop:</strong></p>
+        <ul>
+          <li>AI generation. Your configured provider still receives the brief and brand context.</li>
+          <li><strong>Test connection</strong> calls. Those are read-only checks and do not publish.</li>
+          <li>Drafting, scheduling, CSV import and local artwork rendering.</li>
+        </ul>
+        <p>Simulated posts still count towards the daily cap and minimum gap. That is intentional: a
+          dry-run test should behave like the real queue, including its limits.</p>
+        <div class="callout">
+          <p><strong><code>--dry-run</code> on the CLI is persistent.</strong> It writes the same saved
+            switch as the top-bar chip, so future scheduled ticks stay simulated until you turn dry run
+            off in the app. See <a href="automation.html#cli">CLI flags</a>.</p>
+        </div>
+
+        <h2 id="guardrails">Guard rails on every publish</h2>
+        <p>Before an approved post leaves the queue, the scheduler checks:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Check</th><th>Failure behaviour</th></tr></thead>
+            <tbody>
+              <tr><td>Inside the brand's sending window</td><td>Held with “outside 08:00–20:00” (or your window). The post stays approved for a later tick.</td></tr>
+              <tr><td>Daily cap for this channel</td><td>Held. Simulated posts from earlier today count.</td></tr>
+              <tr><td>Minimum gap since the last post</td><td>Held until enough minutes have passed.</td></tr>
+              <tr><td>Status still approved</td><td>Claimed atomically as <code>PUBLISHING</code> before the API call.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Failures are classified. Rate limits and server errors retry after 15 minutes, then 30, with
+          a maximum of three attempts. Authentication, permission and validation errors stop
+          immediately and leave the post <code>FAILED</code> with the API message.</p>
+
+        <h2 id="outreach">Outreach gates</h2>
+        <p>A campaign can prepare or send a message only when all of the following are true:</p>
+        <ul>
+          <li>The campaign is <strong>ACTIVE</strong>.</li>
+          <li>The <strong>lawful-basis confirmation</strong> is ticked.</li>
+          <li>The current time is inside the brand's sending window.</li>
+          <li>The campaign's daily cap has room.</li>
+          <li>The lead is not do-not-contact, not unsubscribed and not on the suppression list.</li>
+          <li>The lead has a valid email, or a phone number with at least eight digits for WhatsApp.</li>
+          <li>Newsletters additionally require <strong>Subscribed</strong>.</li>
+        </ul>
+
+        <h3>One contact per campaign</h3>
+        <p>MarketPilot deliberately does not do drip sequences or automatic follow-ups. Once a lead has
+          a message record in a campaign — drafted, sent, skipped or failed — that lead is not queued
+          again for the same campaign. To follow up, create a new campaign on purpose.</p>
+
+        <h3>The suppression list</h3>
+        <p>Pressing <strong>Unsubscribe</strong> on a lead sets do-not-contact, clears subscribed, and
+          adds the normalised email and phone to a permanent suppression list. Every prepare and send
+          path checks that list. Deleting the lead does not remove the suppression entry.</p>
+        <p>A suppression entry can only be removed by editing the workspace file directly. Do that only
+          when the person has explicitly asked to be contacted again and you have a lawful basis.</p>
+
+        <h3>Email mechanics</h3>
+        <p>Outreach and newsletter email is plain text. Each message includes:</p>
+        <ul>
+          <li>The sender name, postal address and a visible unsubscribe line.</li>
+          <li>A <code>List-Unsubscribe</code> mailto header and a one-click
+            <code>List-Unsubscribe-Post</code> header.</li>
+          <li>Recipients in BCC, with the From address in the To field.</li>
+        </ul>
+        <p>Replies to the unsubscribe mailbox are not processed automatically. Read them and press
+          <strong>Unsubscribe</strong> on the lead. WhatsApp messages append “Reply STOP to opt out.”;
+          honour those replies the same way.</p>
+
+        <h2 id="compliance">Your compliance checklist</h2>
+        <p><strong>Before the first outreach campaign:</strong></p>
+        <ul>
+          <li>You know <em>why</em> you may contact each person: consent, a legitimate-interest assessment,
+            an existing customer relationship, or another basis your jurisdiction recognises.</li>
+          <li>The sender identity is real and the From address belongs to your business.</li>
+          <li>The postal address and unsubscribe path are accurate and monitored.</li>
+          <li>The list contains only contacts you obtained lawfully — not a purchased or scraped list.</li>
+          <li>You have checked whether B2B rules, opt-in rules or a prior-consent requirement apply in
+            the recipient's country.</li>
+        </ul>
+        <p><strong>Before every send:</strong></p>
+        <ul>
+          <li>Read a sample of the messages. The writer can be wrong about a price, service or claim.</li>
+          <li>Check the campaign cap and the brand window are sensible for the audience.</li>
+          <li>Confirm the suppression list includes recent opt-outs.</li>
+        </ul>
+        <p><strong>After every send:</strong></p>
+        <ul>
+          <li>Read the unsubscribe mailbox and the Activity log.</li>
+          <li>Suppress anyone who asked to stop, immediately.</li>
+          <li>Keep a record of consent or legitimate-interest decisions outside the app; the app stores
+            the confirmation tick, not your legal reasoning.</li>
+        </ul>
+
+        <h2 id="limits">What MarketPilot refuses to do</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Not included</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td>Scraping websites or social profiles</td><td>Every connector uses an official API. Audience data comes from a CSV you supply.</td></tr>
+              <tr><td>Purchased or rented lists</td><td>The app cannot make a list lawful, and importing one undermines every downstream guard.</td></tr>
+              <tr><td>Drip sequences and automatic follow-ups</td><td>One contact per campaign prevents accidental harassment.</td></tr>
+              <tr><td>Fake urgency, invented reviews or statistics</td><td>The writer prompt forbids invented facts, prices and testimonials.</td></tr>
+              <tr><td>Hidden posting without approval</td><td>Dry run, approval lock and campaign confirmation are on by default.</td></tr>
+              <tr><td>Uploading your images to a CDN</td><td>Instagram and Google need a public URL; hosting that folder is your choice and your control.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="responsibilities">Your side of the bargain</h2>
+        <p>The app can enforce timing, caps and suppression. It cannot verify that a sentence is true, that
+          a contact is lawful, or that a token is stored safely. Keep these habits:</p>
+        <ul>
+          <li><strong>Keep the brand profile current.</strong> The writer cannot see your calendar,
+            inventory or prices. Stale offers become false advertising.</li>
+          <li><strong>Read before approving.</strong> Especially offers, prices, health claims and legal
+            claims.</li>
+          <li><strong>Watch the Activity log.</strong> A <code>WARN</code> about retries is a signal, not
+            noise.</li>
+          <li><strong>Protect the Windows account.</strong> Credentials are plain text in
+            <code>%APPDATA%</code>. Use a screen lock, a separate account for customer work, and never
+            sync the settings file.</li>
+          <li><strong>Respect platform rules.</strong> Rate limits, WhatsApp's 24-hour window and
+            Instagram's image requirement are not obstacles to work around.</li>
+        </ul>
+
+        <div class="callout danger">
+          <p><strong>Going live is a deliberate act.</strong> Turn dry run off for one low-risk channel,
+            publish one post, read the API response, then turn it back on until you trust the cadence.
+            Repeat that habit for every new brand.</p>
+        </div>
+
+        <nav class="docs-pager" aria-label="Documentation pagination">
+          <a class="pager-link" href="automation.html">
+            <small>Previous</small>
+            <span>Automation &amp; CLI</span>
+          </a>
+          <a class="pager-link next" href="faq.html">
+            <small>Next</small>
+            <span>FAQ &amp; troubleshooting</span>
+          </a>
+        </nav>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="../index.html">
+            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="8" fill="#12201A"/>
+              <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+              <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+            </svg>
+            MarketPilot
+          </a>
+          <p>Marketing autopilot for small businesses. Windows desktop, local-first data,
+            official APIs, and brakes that work.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="../index.html#features">Features</a>
+          <a href="../downloads.html">Downloads</a>
+          <a href="../downloads.html#requirements">System requirements</a>
+          <a href="../downloads.html#verify">Verify a download</a>
+        </div>
+        <div class="footer-col">
+          <h4>Documentation</h4>
+          <a href="guide.html">Setup guide</a>
+          <a href="channels.html">Channels</a>
+          <a href="automation.html">Automation &amp; CLI</a>
+          <a href="safety.html">Safety &amp; compliance</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="faq.html#troubleshooting">Troubleshooting</a>
+          <a href="faq.html#limits">Known limitations</a>
+          <a href="automation.html#data">Backup &amp; data</a>
+          <a href="index.html">All documentation</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> MarketPilot. Built for Windows 10 and 11.</span>
+        <span class="note"><i></i> Official APIs only · No scraping · No purchased lists</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search-dialog" id="searchDialog" aria-label="Search documentation">
+    <div class="search-box">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="Search the documentation…" autocomplete="off" spellcheck="false" aria-label="Search the documentation">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="search-results" id="searchResults" role="listbox" aria-label="Search results"></ul>
+    <div class="search-hint"><span>↑ ↓ to navigate</span><span>Enter to open</span><span>Esc to close</span></div>
+  </dialog>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

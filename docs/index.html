@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentation — MarketPilot</title>
+  <meta name="description" content="MarketPilot documentation: setup guide, channel credentials, automation and CLI, safety and compliance, FAQ and troubleshooting.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-root="../">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="MarketPilot home">
+        <svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#12201A"/>
+          <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+          <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+        </svg>
+        MarketPilot
+        <span class="brand-version">v1.0.0</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Main">
+        <a href="../index.html#features">Features</a>
+        <a href="index.html" aria-current="page">Documentation</a>
+        <a href="../downloads.html">Downloads</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-open-search aria-label="Search documentation">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span>Search docs</span>
+          <kbd>/</kbd>
+        </button>
+        <a class="btn btn-primary btn-sm" href="../downloads.html#downloads">Download</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" aria-label="Mobile">
+      <div class="container">
+        <a href="../index.html#features">Features</a>
+        <a href="index.html">Documentation</a>
+        <a href="../downloads.html">Downloads</a>
+        <a href="faq.html">FAQ &amp; troubleshooting</a>
+        <a class="btn btn-primary" href="../downloads.html#downloads">Download MarketPilot 1.0.0</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="docs-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a><span>/</span><span>Documentation</span>
+        </nav>
+        <div class="eyebrow"><span class="dot"></span> Manual for version 1.0.0</div>
+        <h1>Documentation</h1>
+        <p>Everything from a blank install to a 24/7 headless tick: the screens, the credentials,
+          the automation, and the rules the app will not let you break by accident.</p>
+      </div>
+    </section>
+
+    <div class="container docs-shell">
+      <aside class="docs-sidebar">
+        <button class="docs-search-mini" type="button" data-open-search>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          Search the manual…
+        </button>
+        <div class="side-label">Start here</div>
+        <nav aria-label="Documentation">
+          <a href="index.html" aria-current="page">Documentation home</a>
+          <a href="guide.html">Setup guide</a>
+        </nav>
+        <div class="side-label">Configure</div>
+        <nav aria-label="Configure">
+          <a href="channels.html">Channels &amp; credentials</a>
+          <a href="automation.html">Automation &amp; CLI</a>
+        </nav>
+        <div class="side-label">Operate</div>
+        <nav aria-label="Operate">
+          <a href="safety.html">Safety &amp; compliance</a>
+          <a href="faq.html">FAQ &amp; troubleshooting</a>
+          <a href="../downloads.html">Downloads</a>
+        </nav>
+      </aside>
+
+      <article class="docs-article">
+        <p class="lede">MarketPilot is a Windows desktop app for running a small business's marketing
+          week: writing posts, rendering artwork, scheduling a queue, publishing through official APIs,
+          and preparing lawful outreach. All state lives in local files.</p>
+
+        <div class="callout">
+          <p><strong>New here?</strong> Read the <a href="guide.html">setup guide</a> in order once.
+            It takes about 45 minutes to a first safe, simulated post. After that, the daily routine
+            at the end of the guide is enough.</p>
+        </div>
+
+        <h2 id="start">Start with the guide</h2>
+        <ol class="steps">
+          <li><strong>Install and open</strong><p>Use the MSI or the portable ZIP. First launch creates
+            <code>%APPDATA%\MarketPilot</code> with one brand and safe defaults.</p></li>
+          <li><strong>Fill the brand profile</strong><p>Name, one-liner, audience, services, city, voice
+            and banned words. The writer treats these as facts.</p></li>
+          <li><strong>Connect one channel</strong><p>Manual needs nothing. Add a social channel or SMTP
+            when you have credentials.</p></li>
+          <li><strong>Draft, queue, tick</strong><p>Watch a post become <code>SIMULATED</code>. Only then
+            consider live mode.</p></li>
+        </ol>
+
+        <h2 id="chapters">All chapters</h2>
+        <div class="filter-field">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <label class="visually-hidden" for="docFilter">Filter documentation</label>
+          <input id="docFilter" type="search" placeholder="Filter the manual…" data-doc-filter autocomplete="off" spellcheck="false">
+        </div>
+
+        <div class="doc-grid">
+          <a class="doc-card" href="guide.html" data-doc-card>
+            <span class="doc-num">01 · START HERE</span>
+            <h3>Setup guide, A to Z</h3>
+            <p>The complete walkthrough: install, layout, brand profile, AI writer, first post,
+              dry run, cadences, manual bundles, CSV import, outreach, newsletters and the daily routine.</p>
+            <div class="doc-tags"><span>install</span><span>brand</span><span>first post</span><span>outreach</span></div>
+          </a>
+
+          <a class="doc-card" href="channels.html" data-doc-card>
+            <span class="doc-num">02 · CONFIGURE</span>
+            <h3>Channels &amp; credentials</h3>
+            <p>Exact fields for Facebook, Instagram, LinkedIn, X, Google Business Profile, SMTP email,
+              WhatsApp Cloud API and the Manual channel — plus what each API requires first.</p>
+            <div class="doc-tags"><span>Facebook</span><span>Instagram</span><span>SMTP email</span><span>WhatsApp</span></div>
+          </a>
+
+          <a class="doc-card" href="automation.html" data-doc-card>
+            <span class="doc-num">03 · CONFIGURE</span>
+            <h3>Automation &amp; CLI</h3>
+            <p>Cadences, the 30-second in-app scheduler, the headless <code>runAuto</code> runner,
+              <code>MarketPilot.exe --once</code>, Task Scheduler, exit codes and the data layout.</p>
+            <div class="doc-tags"><span>cadences</span><span>CLI</span><span>Task Scheduler</span><span>backup</span></div>
+          </a>
+
+          <a class="doc-card" href="safety.html" data-doc-card>
+            <span class="doc-num">04 · OPERATE</span>
+            <h3>Safety &amp; compliance</h3>
+            <p>The default switches, guard rails, retry policy, suppression list, lawful-basis rule,
+              unsubscribe requirements and the things the app deliberately will not do.</p>
+            <div class="doc-tags"><span>dry run</span><span>caps</span><span>GDPR</span><span>suppression</span></div>
+          </a>
+
+          <a class="doc-card" href="faq.html" data-doc-card>
+            <span class="doc-num">05 · OPERATE</span>
+            <h3>FAQ &amp; troubleshooting</h3>
+            <p>Symptom-to-fix table for the common failures, known API limitations, multi-brand and
+              multi-customer guidance, update and uninstall notes.</p>
+            <div class="doc-tags"><span>errors</span><span>tokens</span><span>limits</span><span>brands</span></div>
+          </a>
+
+          <a class="doc-card" href="../downloads.html" data-doc-card>
+            <span class="doc-num">06 · REFERENCE</span>
+            <h3>Downloads &amp; install</h3>
+            <p>MSI and portable ZIP, system requirements, SHA-256 checksums, SmartScreen notes and
+              the first-launch checklist.</p>
+            <div class="doc-tags"><span>MSI</span><span>portable</span><span>checksums</span><span>requirements</span></div>
+          </a>
+        </div>
+        <div class="no-results">No chapter matches that filter. Try “email”, “schedule” or “safety”.</div>
+
+        <h2 id="conventions">Conventions used here</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Convention</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><code>SIMULATED</code></td><td>Dry run was on. The action was logged but nothing left the machine.</td></tr>
+              <tr><td><code>%APPDATA%\MarketPilot</code></td><td>The per-user data folder, usually <code>C:\Users\&lt;you&gt;\AppData\Roaming\MarketPilot</code>.</td></tr>
+              <tr><td><code>Settings → …</code></td><td>A section inside the app's Settings screen.</td></tr>
+              <tr><td><code>Monospace</code></td><td>A file path, credential value, command or literal state.</td></tr>
+              <tr><td>“Tick”</td><td>One scheduler pass: materialise cadences, publish due posts, send approved messages.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="reference">Quick reference</h2>
+        <div class="grid-2">
+          <div class="note-panel" style="margin:0">
+            <h3>Headless in one line</h3>
+            <p>From the installed app:</p>
+            <pre style="margin:0"><code>MarketPilot.exe --once</code></pre>
+            <p style="margin-top:10px">Add <code>--dry-run</code>, <code>--force</code> or <code>--status</code>.
+              See <a href="automation.html#cli">CLI flags</a>.</p>
+          </div>
+          <div class="note-panel" style="margin:0">
+            <h3>Where everything lives</h3>
+            <p><code>data\workspace.json</code> — brands, posts, leads, campaigns, logs.<br>
+              <code>data\settings.properties</code> — keys and tokens, plain text.<br>
+              <code>media\</code> — images and reels.<br>
+              <code>outbox\</code> — manual bundles.</p>
+          </div>
+        </div>
+
+        <div class="callout amber">
+          <p><strong>Version note.</strong> This manual documents MarketPilot 1.0.0. The app does not
+            auto-update. When you replace the build, keep <code>%APPDATA%\MarketPilot</code> to retain
+            brands, queue and history.</p>
+        </div>
+
+        <nav class="docs-pager" aria-label="Documentation pagination">
+          <a class="pager-link" href="../index.html">
+            <small>Back to</small>
+            <span>Product overview</span>
+          </a>
+          <a class="pager-link next" href="guide.html">
+            <small>Next</small>
+            <span>Setup guide, A to Z</span>
+          </a>
+        </nav>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="../index.html">
+            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="8" fill="#12201A"/>
+              <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+              <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+            </svg>
+            MarketPilot
+          </a>
+          <p>Marketing autopilot for small businesses. Windows desktop, local-first data,
+            official APIs, and brakes that work.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="../index.html#features">Features</a>
+          <a href="../downloads.html">Downloads</a>
+          <a href="../downloads.html#requirements">System requirements</a>
+          <a href="../downloads.html#verify">Verify a download</a>
+        </div>
+        <div class="footer-col">
+          <h4>Documentation</h4>
+          <a href="guide.html">Setup guide</a>
+          <a href="channels.html">Channels</a>
+          <a href="automation.html">Automation &amp; CLI</a>
+          <a href="safety.html">Safety &amp; compliance</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="faq.html#troubleshooting">Troubleshooting</a>
+          <a href="faq.html#limits">Known limitations</a>
+          <a href="automation.html#data">Backup &amp; data</a>
+          <a href="index.html">All documentation</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> MarketPilot. Built for Windows 10 and 11.</span>
+        <span class="note"><i></i> Official APIs only · No scraping · No purchased lists</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search-dialog" id="searchDialog" aria-label="Search documentation">
+    <div class="search-box">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="Search the documentation…" autocomplete="off" spellcheck="false" aria-label="Search the documentation">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="search-results" id="searchResults" role="listbox" aria-label="Search results"></ul>
+    <div class="search-hint"><span>↑ ↓ to navigate</span><span>Enter to open</span><span>Esc to close</span></div>
+  </dialog>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

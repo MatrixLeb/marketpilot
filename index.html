@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MarketPilot — Marketing autopilot for Windows</title>
+  <meta name="description" content="MarketPilot is a Windows desktop app that writes social posts, renders the artwork, runs the queue and handles lawful outreach through official APIs. Dry run on by default.">
+  <meta property="og:title" content="MarketPilot — Marketing autopilot for Windows">
+  <meta property="og:description" content="Content studio, queue, cadences, cold outreach and local posts in one local-first Windows app. Official APIs only.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/dashboard.png">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-root="">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="MarketPilot home">
+        <svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#12201A"/>
+          <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+          <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+        </svg>
+        MarketPilot
+        <span class="brand-version">v1.0.0</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Main">
+        <a href="index.html#features">Features</a>
+        <a href="docs/index.html">Documentation</a>
+        <a href="downloads.html">Downloads</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-open-search aria-label="Search documentation">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span>Search docs</span>
+          <kbd>/</kbd>
+        </button>
+        <a class="btn btn-primary btn-sm" href="downloads.html#downloads">Download</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" aria-label="Mobile">
+      <div class="container">
+        <a href="index.html#features">Features</a>
+        <a href="docs/index.html">Documentation</a>
+        <a href="downloads.html">Downloads</a>
+        <a href="docs/faq.html">FAQ &amp; troubleshooting</a>
+        <a class="btn btn-primary" href="downloads.html#downloads">Download MarketPilot 1.0.0</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Windows desktop · Version 1.0.0</div>
+          <h1>Your marketing week, <span class="accent">on autopilot.</span></h1>
+          <p class="hero-sub">
+            MarketPilot writes social posts, draws the branded artwork, keeps the queue and runs
+            lawful outreach — all from one quiet Windows app. Official APIs only, and
+            <strong>dry run stays on until you say otherwise.</strong>
+          </p>
+          <div class="btn-row">
+            <a class="btn btn-primary btn-lg" href="downloads.html#downloads">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+              Download for Windows
+            </a>
+            <a class="btn btn-secondary btn-lg" href="docs/guide.html">Read the setup guide</a>
+          </div>
+          <div class="hero-meta">
+            <span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 4 4 10-10"/></svg>
+              Windows 10 / 11 · x64
+            </span>
+            <span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 4 4 10-10"/></svg>
+              MSI installer + portable ZIP
+            </span>
+            <span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 4 4 10-10"/></svg>
+              No account, no cloud
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-shot">
+          <div class="window">
+            <div class="window-bar" aria-hidden="true">
+              <i></i><i></i><i></i>
+              <span class="window-title">MarketPilot — Dashboard</span>
+            </div>
+            <img src="assets/dashboard.png" width="1382" height="744" alt="The MarketPilot dashboard showing brand readiness, today's queue, connector status and recent activity." fetchpriority="high">
+          </div>
+          <p class="shot-caption">The dashboard: readiness, today's queue, connectors and recent activity.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="fact-strip" aria-label="Product principles">
+      <div class="container fact-grid">
+        <div class="fact">
+          <strong>Local-first</strong>
+          <span>Your data stays in %APPDATA% on this PC.</span>
+        </div>
+        <div class="fact">
+          <strong>Official APIs only</strong>
+          <span>No scraping, no purchased lists.</span>
+        </div>
+        <div class="fact">
+          <strong>Safe by default</strong>
+          <span>Dry run and approval lock are on.</span>
+        </div>
+        <div class="fact">
+          <strong>Bring your own keys</strong>
+          <span>Gemini, OpenAI, OpenCode or templates.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">What is inside</div>
+          <h2>A studio, a queue and a safety net.</h2>
+          <p>Eight screens cover the whole weekly routine: create the content, decide when it goes out,
+            keep an eye on the connectors, and talk to your audience without breaking the rules.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon-box" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="m18.4 5.6-2.1 2.1M7.7 16.3l-2.1 2.1M18.4 18.4l-2.1-2.1M7.7 7.7 5.6 5.6"/></svg>
+            </div>
+            <h3>Content studio</h3>
+            <p>Pick channels, a content pillar and a brief. Get on-brand copy, hashtags, a CTA and a
+              locally rendered card. Eight pillars, multiple variants, editable before anything is queued.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon-box" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2.4"/></svg>
+            </div>
+            <h3>Queue and scheduler</h3>
+            <p>Everything sits in one queue with its status, time, retries and publish controls.
+              Guard rails hold anything that would exceed a cap or leave the sending window.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon-box" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/><path d="M3.5 3.5 5 5M20.5 3.5 19 5"/></svg>
+            </div>
+            <h3>Recurring cadences</h3>
+            <p>Say “Mon/Wed/Fri at 09:00, a tip, Facebook and Instagram” once. The scheduler writes,
+              renders and either drafts or approves each batch. Auto-approve is optional.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon-box" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="7.5" r="3.5"/><path d="M17 8h4M19 6v4"/></svg>
+            </div>
+            <h3>Audience and outreach</h3>
+            <p>Import a CSV of your own contacts, check each lead, draft personalised email or WhatsApp
+              messages and approve them one by one. Suppression is checked before every send.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon-box amber" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V7l8-4 8 4v13"/><path d="M9 20v-6h6v6"/><path d="M8 9h.01M12 9h.01M16 9h.01"/></svg>
+            </div>
+            <h3>A brand per business</h3>
+            <p>Keep several brands in one workspace with separate profiles, colours, sending windows
+              and guard rails. Switch the whole app from the top bar.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon-box" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l2.5-6 4 12 2.5-6h5"/></svg>
+            </div>
+            <h3>Activity log</h3>
+            <p>Every publish, send, hold and failure is recorded with the API response in plain language.
+              When a token expires, the log tells you which one and why.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="how">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">How it works</div>
+          <h2>From a sentence to a scheduled post.</h2>
+          <p>Each step is visible and editable. Nothing jumps straight from an AI response to your
+            audience.</p>
+        </div>
+
+        <div class="pipeline" aria-label="Content pipeline">
+          <div class="pipe-step">
+            <span class="num">01</span>
+            <strong>Brief</strong>
+            <span>Pillar, channels and an optional topic.</span>
+          </div>
+          <div class="pipe-step">
+            <span class="num">02</span>
+            <strong>Write</strong>
+            <span>AI provider or deterministic template.</span>
+          </div>
+          <div class="pipe-step">
+            <span class="num">03</span>
+            <strong>Design</strong>
+            <span>Branded card rendered locally with Java2D.</span>
+          </div>
+          <div class="pipe-step">
+            <span class="num">04</span>
+            <strong>Approve</strong>
+            <span>You read it, edit it, choose the time.</span>
+          </div>
+          <div class="pipe-step">
+            <span class="num">05</span>
+            <strong>Publish</strong>
+            <span>Official API, outbox bundle, or a dry-run log.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="safety">
+      <div class="container split">
+        <div>
+          <div class="kicker">The safety model</div>
+          <h2>Aggressive automation. Unusually cautious defaults.</h2>
+          <p>Marketing tools tend to assume you want maximum reach immediately. MarketPilot assumes
+            the opposite: you want to read the output first, and you want a clear record of what left
+            the machine.</p>
+          <ul>
+            <li>Dry run is ON at first launch. Posts and messages are marked <code>SIMULATED</code> and nothing is uploaded.</li>
+            <li>Approval lock is ON, so auto-approving cadences still wait for a human.</li>
+            <li>Sending window, daily cap per channel and minimum gap are enforced by the scheduler.</li>
+            <li>Retries only for rate limits and 5xx errors. Authentication failures stop immediately.</li>
+            <li>One contact per campaign, a permanent suppression list, and a lawful-basis confirmation before outreach.</li>
+          </ul>
+          <a class="text-link" href="docs/safety.html">Read the full safety model
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <div class="status-panel" aria-label="Default safety settings">
+          <div class="status-head">
+            <strong>New installation</strong>
+            <span class="chip gray">Defaults</span>
+          </div>
+          <ul class="status-list">
+            <li>
+              <span class="status-name"><b>Dry run</b><small>Nothing leaves the machine</small></span>
+              <span class="chip">On</span>
+            </li>
+            <li>
+              <span class="status-name"><b>Approval lock</b><small>Human review before queue</small></span>
+              <span class="chip">On</span>
+            </li>
+            <li>
+              <span class="status-name"><b>In-app scheduler</b><small>Ticks every 30 seconds</small></span>
+              <span class="chip">On</span>
+            </li>
+            <li>
+              <span class="status-name"><b>Outreach</b><small>Requires lawful-basis confirmation</small></span>
+              <span class="chip amber">Locked</span>
+            </li>
+            <li>
+              <span class="status-name"><b>Data location</b><small>Plain files in %APPDATA%</small></span>
+              <span class="chip gray">Local</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="channels">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">Channels</div>
+          <h2>One queue. Eight destinations.</h2>
+          <p>Connect what you actually use. The dashboard only shows configured channels, and
+            <strong>Manual</strong> is always there for the places without a self-serve API.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3 style="margin-top:0">Social, through official APIs</h3>
+            <p>Facebook Pages, Instagram Business, LinkedIn (person or organisation), X, and Google
+              Business Profile for local updates and offers.</p>
+          </article>
+          <article class="card">
+            <h3 style="margin-top:0">Direct, with consent checks</h3>
+            <p>Email through any SMTP provider, with unsubscribe headers and a suppression list.
+              WhatsApp Cloud API with approved marketing templates.</p>
+          </article>
+          <article class="card">
+            <h3 style="margin-top:0">Manual, when there is no API</h3>
+            <p>TikTok, Reels and Stories get a complete bundle in the outbox: caption, image, post
+              metadata, and an optional 8-second vertical reel rendered with FFmpeg.</p>
+          </article>
+        </div>
+
+        <div class="channel-list" aria-label="Supported channels">
+          <span class="channel-pill"><i></i>Facebook Page</span>
+          <span class="channel-pill"><i></i>Instagram</span>
+          <span class="channel-pill"><i></i>LinkedIn</span>
+          <span class="channel-pill"><i></i>X</span>
+          <span class="channel-pill"><i></i>Google Business Profile</span>
+          <span class="channel-pill"><i></i>Email / SMTP</span>
+          <span class="channel-pill"><i></i>WhatsApp Cloud API</span>
+          <span class="channel-pill manual"><i></i>Manual / TikTok / Reels</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="downloads">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">Downloads</div>
+          <h2>Take it with you.</h2>
+          <p>Version 1.0.0, built for 64-bit Windows. Install once per user, or keep the portable
+            folder on a drive and run it from there. No JDK required.</p>
+        </div>
+
+        <div class="download-grid">
+          <article class="download-card recommended">
+            <span class="rec-badge">Recommended</span>
+            <h2>Windows installer</h2>
+            <div class="file-name">MarketPilot-1.0.0.msi</div>
+            <p>Installs per user, adds a Start menu shortcut, and registers an uninstaller.</p>
+            <ul class="spec-list">
+              <li><span>Version</span><span>1.0.0</span></li>
+              <li><span>Size</span><span>97.7 MB</span></li>
+              <li><span>Scope</span><span>Current user</span></li>
+              <li><span>Signature</span><span>Unsigned</span></li>
+            </ul>
+            <a class="btn btn-primary" href="https://github.com/MatrixLeb/marketpilot/releases/download/v1.0.0/MarketPilot-1.0.0.msi" download>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+              Download MSI
+            </a>
+            <div class="hash-row">
+              <span class="hash-label">SHA-256</span>
+              <code>704de36c21336839f6f85e6ef43d3b603dff68899840be2c454cc384474b998e</code>
+              <button class="copy-hash" type="button" data-copy="704de36c21336839f6f85e6ef43d3b603dff68899840be2c454cc384474b998e">Copy</button>
+            </div>
+          </article>
+
+          <article class="download-card">
+            <h2>Portable ZIP</h2>
+            <div class="file-name">MarketPilot-1.0.0-portable.zip</div>
+            <p>Self-contained folder with its own runtime. Extract and run
+              <code>MarketPilot\MarketPilot.exe</code>.</p>
+            <ul class="spec-list">
+              <li><span>Version</span><span>1.0.0</span></li>
+              <li><span>Size</span><span>96.3 MB</span></li>
+              <li><span>Extracted</span><span>165 MB</span></li>
+              <li><span>Install</span><span>None</span></li>
+            </ul>
+            <a class="btn btn-secondary" href="https://github.com/MatrixLeb/marketpilot/releases/download/v1.0.0/MarketPilot-1.0.0-portable.zip" download>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+              Download ZIP
+            </a>
+            <div class="hash-row">
+              <span class="hash-label">SHA-256</span>
+              <code>7d3e285f6017caac320d96ee79727566ed49be6cccbaa3d3dc178b6d992fb7c5</code>
+              <button class="copy-hash" type="button" data-copy="7d3e285f6017caac320d96ee79727566ed49be6cccbaa3d3dc178b6d992fb7c5">Copy</button>
+            </div>
+          </article>
+        </div>
+
+        <p class="small muted" style="margin-top:16px">
+          The build is not code-signed, so Windows SmartScreen may ask for confirmation.
+          <a href="downloads.html#verify">Verify the SHA-256</a> before you run either file.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="questions">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">Common questions</div>
+          <h2>Before you flip the switch.</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Will it post anything without my approval?</summary>
+            <div class="faq-body"><p>No, not on a fresh install. Dry run is on, so publishes and sends are
+              simulated and marked <code>SIMULATED</code>. The approval lock is also on, so cadence
+              auto-approve is ignored until you turn it off. You can loosen both, but you have to do it deliberately.</p></div>
+          </details>
+          <details>
+            <summary>Do I need API keys on day one?</summary>
+            <div class="faq-body"><p>No. Without an AI key the app uses deterministic templates, and the
+              Manual channel needs no credentials at all. Add a Gemini, OpenAI or OpenCode key when you
+              want copy tailored to each brand and contact.</p></div>
+          </details>
+          <details>
+            <summary>Can I use it for my customers too?</summary>
+            <div class="faq-body"><p>Yes. Add a brand per business in the same workspace, or install a
+              second copy under another Windows user. Channel credentials are stored per installation,
+              not per brand, so unrelated customers should not share one install.</p></div>
+          </details>
+          <details>
+            <summary>Does it scrape or use purchased lists?</summary>
+            <div class="faq-body"><p>No. Every connector uses an official API, and every outreach
+              campaign requires you to confirm a lawful basis. There are no drip sequences and no
+              automatic follow-ups — one contact per campaign, by design.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <h2>Ready to put the week on autopilot?</h2>
+            <p>Start in dry run, generate a few drafts, and only go live when the voice sounds like you.</p>
+          </div>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="downloads.html#downloads">Download 1.0.0</a>
+            <a class="btn btn-ghost" href="docs/guide.html">Open the guide</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="8" fill="#12201A"/>
+              <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+              <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+            </svg>
+            MarketPilot
+          </a>
+          <p>Marketing autopilot for small businesses. Windows desktop, local-first data,
+            official APIs, and brakes that work.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="index.html#features">Features</a>
+          <a href="downloads.html">Downloads</a>
+          <a href="downloads.html#requirements">System requirements</a>
+          <a href="downloads.html#verify">Verify a download</a>
+        </div>
+        <div class="footer-col">
+          <h4>Documentation</h4>
+          <a href="docs/guide.html">Setup guide</a>
+          <a href="docs/channels.html">Channels</a>
+          <a href="docs/automation.html">Automation &amp; CLI</a>
+          <a href="docs/safety.html">Safety &amp; compliance</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="docs/faq.html#troubleshooting">Troubleshooting</a>
+          <a href="docs/faq.html#limits">Known limitations</a>
+          <a href="docs/automation.html#data">Backup &amp; data</a>
+          <a href="docs/index.html">All documentation</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> MarketPilot. Built for Windows 10 and 11.</span>
+        <span class="note"><i></i> Official APIs only · No scraping · No purchased lists</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search-dialog" id="searchDialog" aria-label="Search documentation">
+    <div class="search-box">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="Search the documentation…" autocomplete="off" spellcheck="false" aria-label="Search the documentation">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="search-results" id="searchResults" role="listbox" aria-label="Search results"></ul>
+    <div class="search-hint"><span>↑ ↓ to navigate</span><span>Enter to open</span><span>Esc to close</span></div>
+  </dialog>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>

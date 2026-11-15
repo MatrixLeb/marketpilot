@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ &amp; troubleshooting — MarketPilot</title>
+  <meta name="description" content="MarketPilot troubleshooting table, known limitations, multi-brand guidance, update and uninstall notes.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-root="../">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="MarketPilot home">
+        <svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#12201A"/>
+          <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+          <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+        </svg>
+        MarketPilot
+        <span class="brand-version">v1.0.0</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Main">
+        <a href="../index.html#features">Features</a>
+        <a href="index.html" aria-current="page">Documentation</a>
+        <a href="../downloads.html">Downloads</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-open-search aria-label="Search documentation">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span>Search docs</span>
+          <kbd>/</kbd>
+        </button>
+        <a class="btn btn-primary btn-sm" href="../downloads.html#downloads">Download</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" aria-label="Mobile">
+      <div class="container">
+        <a href="../index.html#features">Features</a>
+        <a href="index.html">Documentation</a>
+        <a href="../downloads.html">Downloads</a>
+        <a href="faq.html">FAQ &amp; troubleshooting</a>
+        <a class="btn btn-primary" href="../downloads.html#downloads">Download MarketPilot 1.0.0</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="docs-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a><span>/</span>
+          <a href="index.html">Documentation</a><span>/</span><span>FAQ &amp; troubleshooting</span>
+        </nav>
+        <div class="eyebrow"><span class="dot"></span> Chapter 05 · Operate</div>
+        <h1>FAQ &amp; troubleshooting</h1>
+        <p>Start with the symptom table. Most failures are a missing image URL, an expired token, dry
+          run still on, or a guard rail doing its job — and the Activity log usually names the one.</p>
+      </div>
+    </section>
+
+    <div class="container docs-shell">
+      <aside class="docs-sidebar">
+        <button class="docs-search-mini" type="button" data-open-search>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          Search the manual…
+        </button>
+        <div class="side-label">Start here</div>
+        <nav aria-label="Documentation">
+          <a href="index.html">Documentation home</a>
+          <a href="guide.html">Setup guide</a>
+        </nav>
+        <div class="side-label">Configure</div>
+        <nav aria-label="Configure">
+          <a href="channels.html">Channels &amp; credentials</a>
+          <a href="automation.html">Automation &amp; CLI</a>
+        </nav>
+        <div class="side-label">Operate</div>
+        <nav aria-label="Operate">
+          <a href="safety.html">Safety &amp; compliance</a>
+          <a href="faq.html" aria-current="page">FAQ &amp; troubleshooting</a>
+          <a href="../downloads.html">Downloads</a>
+        </nav>
+      </aside>
+
+      <article class="docs-article">
+        <p class="lede">Every failure is recorded twice: on the item (queue row or message) and in the
+          Activity log with the API response. Read those two places before changing settings at random.</p>
+
+        <h2 id="troubleshooting">Symptom → fix</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Symptom</th><th>What to check</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Window is blank or the app fails to draw</td>
+                <td>The app should already use software rendering. If you set <code>MARKETPILOT_GPU=1</code>, remove it and restart. On a remote desktop or VM, keep software rendering.</td>
+              </tr>
+              <tr>
+                <td>“Nothing due” on a tick</td>
+                <td>No enabled cadence at this weekday/time, no approved post whose schedule has passed, scheduler switch off, or an active campaign with nothing prepared. <code>--status</code> shows the counts.</td>
+              </tr>
+              <tr>
+                <td>Post is <code>SIMULATED</code></td>
+                <td>Dry run is on. That is expected; nothing was sent. Switch to Live only when you mean it.</td>
+              </tr>
+              <tr>
+                <td>Post is <code>FAILED</code> with 401 or 403</td>
+                <td>The token expired or lacks a scope. Re-issue it, paste it in Settings, press <strong>Test connection</strong>, then re-queue the post.</td>
+              </tr>
+              <tr>
+                <td>Post fails with 429 or a rate-limit message</td>
+                <td>The platform's tier is too low for the cadence. The scheduler retries after 15 and 30 minutes; reduce the cadence or raise the tier if it persists.</td>
+              </tr>
+              <tr>
+                <td>Instagram fails about an image</td>
+                <td>Set a per-post public image URL, or set the image base URL and upload the generated PNG under exactly the same file name. The URL must be publicly reachable without a login.</td>
+              </tr>
+              <tr>
+                <td>WhatsApp fails outside the 24-hour window</td>
+                <td>Configure an approved marketing template and its language in Settings. Free-form text only works inside an open conversation.</td>
+              </tr>
+              <tr>
+                <td>Manual outbox is empty</td>
+                <td>Dry run is on. Bundles are only written in live mode, even though nothing is uploaded.</td>
+              </tr>
+              <tr>
+                <td>Reel is missing from the bundle</td>
+                <td>FFmpeg path is wrong, <strong>Check</strong> has not passed, or <strong>Render vertical reels</strong> is off. Re-render or re-queue after fixing it.</td>
+              </tr>
+              <tr>
+                <td>Cadence produces nothing</td>
+                <td>Check enabled, selected weekdays, the brand timezone, whether it already ran today, and the Activity log. Press <strong>Run now</strong> to test generation without waiting.</td>
+              </tr>
+              <tr>
+                <td>Nothing sends to leads</td>
+                <td>Campaign not ACTIVE, lawful-basis box not ticked, all leads suppressed or uncontactable, outside the sending window, or the campaign cap is already reached. The log names the reason.</td>
+              </tr>
+              <tr>
+                <td>Newsletter has no recipients</td>
+                <td>Newsletters only go to leads marked <strong>Subscribed</strong>. One-to-one outreach does not require that flag.</td>
+              </tr>
+              <tr>
+                <td>AI test fails</td>
+                <td>Provider and key do not match, the model name is not available to that key, the free quota is exhausted, or a proxy blocks the request. The error is shown in plain language.</td>
+              </tr>
+              <tr>
+                <td>Two brands but one set of accounts</td>
+                <td>Credentials are per installation, not per brand. Use separate Windows users or installs for unrelated customers.</td>
+              </tr>
+              <tr>
+                <td>SmartScreen blocks the installer</td>
+                <td>The 1.0.0 build is unsigned. Verify the SHA-256, then choose <em>More info → Run anyway</em>. Sign future builds before public distribution.</td>
+              </tr>
+              <tr>
+                <td>Gradle task hangs after closing the app</td>
+                <td>A stale Gradle or Java daemon can hold the build lock. End the stray <code>java</code> process and retry with <code>--no-daemon</code>. This affects building from source, not the installed app.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="diagnostics">Diagnostics that help</h2>
+        <ol class="steps">
+          <li><strong>Read the Activity log</strong><p>Filter by <code>WARN</code> and <code>ERROR</code>.
+            The message includes the connector and the API's own error text.</p></li>
+          <li><strong>Run <code>MarketPilot.exe --status</code></strong><p>Shows counts, dry run and
+            scheduler state without changing anything.</p></li>
+          <li><strong>Test the connector</strong><p>Settings → Channels → <strong>Test connection</strong>.
+            It performs a safe read and never publishes.</p></li>
+          <li><strong>Check the clock and timezone</strong><p>Cadence times and sending windows use the
+            brand timezone, not the Windows clock's zone.</p></li>
+          <li><strong>Inspect the data folder</strong><p><code>%APPDATA%\MarketPilot\data</code> holds
+            <code>workspace.json</code> and <code>settings.properties</code>. Close the app before
+            copying or editing them.</p></li>
+        </ol>
+
+        <div class="callout danger">
+          <p><strong>Never delete <code>workspace.json</code> to fix a bug.</strong> It contains every
+            brand, post, lead, campaign and log entry. Back up the folder first. If you must reset,
+            rename the file rather than removing it, so it can be recovered.</p>
+        </div>
+
+        <h2 id="limits">Known limitations</h2>
+        <ul>
+          <li><strong>Instagram needs a public image URL.</strong> The app does not upload images to a
+            CDN. Host the <code>media</code> folder yourself, or paste a per-post URL.</li>
+          <li><strong>WhatsApp marketing needs a pre-approved template</strong> with exactly one body
+            placeholder. Only that parameter is filled.</li>
+          <li><strong>Google Business Profile access must be granted by Google</strong> before the
+            connector works. It is not a self-serve API.</li>
+          <li><strong>TikTok has no self-serve posting API for most accounts.</strong> Use the Manual
+            channel and upload from your phone.</li>
+          <li><strong>LinkedIn and Google tokens expire.</strong> Refresh them in Settings when the log
+            says so. Person tokens last about 60 days.</li>
+          <li><strong>Facebook, LinkedIn and X publish text and links only.</strong> The branded PNG is
+            saved locally but not uploaded by those connectors.</li>
+          <li><strong>The in-app scheduler only runs while the window is open.</strong> Use Task
+            Scheduler for 24/7 operation.</li>
+          <li><strong>No drip sequences, follow-up automation, scraping or purchased lists.</strong> One
+            contact per campaign. These are deliberate product choices, not missing features.</li>
+          <li><strong>The AI writer cannot see your calendar, inventory or prices.</strong> Keep offers
+            current in the brand profile so the copy stays truthful.</li>
+          <li><strong>Credentials are per installation, not per brand.</strong> Separate customers need
+            separate Windows users or installs.</li>
+          <li><strong>No auto-update.</strong> Replace the build manually; the data folder is preserved.</li>
+          <li><strong>The 1.0.0 build is unsigned.</strong> Windows SmartScreen will warn on first run.</li>
+        </ul>
+
+        <h2 id="questions">Frequently asked questions</h2>
+        <div class="faq">
+          <details>
+            <summary>Is there a subscription or a MarketPilot account?</summary>
+            <div class="faq-body"><p>No. The app has no sign-up, no license server and no telemetry. You
+              pay your own AI provider and any platform fees. Channel APIs are used with your own
+              credentials.</p></div>
+          </details>
+          <details>
+            <summary>Can I use one install for several customers?</summary>
+            <div class="faq-body"><p>For brands that share the same accounts, yes: add a brand per
+              business. Credentials are per installation, so two unrelated customers should not share
+              one Windows user. Install a second copy under another Windows user, or use a separate
+              PC/VM. Back up each data folder separately.</p></div>
+          </details>
+          <details>
+            <summary>Does it work offline?</summary>
+            <div class="faq-body"><p>You can open the app, edit the brand profile, review the queue and
+              read logs offline. AI generation and every publish or send need internet access. Manual
+              bundles are written locally but still require live mode.</p></div>
+          </details>
+          <details>
+            <summary>Can it post to Instagram Stories, TikTok or Reels directly?</summary>
+            <div class="faq-body"><p>Not directly. TikTok has no self-serve posting API for most
+              accounts, and Stories/Reels are covered by the Manual channel. You get a caption, image,
+              optional 8-second MP4 reel and metadata in the outbox, ready to upload from the phone.</p></div>
+          </details>
+          <details>
+            <summary>Can I reply to comments or DMs automatically?</summary>
+            <div class="faq-body"><p>No. MarketPilot publishes content, sends approved outreach and
+              records activity. It does not monitor inboxes, scrape comments or automate replies.</p></div>
+          </details>
+          <details>
+            <summary>Is the AI writer required?</summary>
+            <div class="faq-body"><p>No. Without a key the app uses deterministic templates that fill the
+              brand facts into proven structures. With a key, the copy is tailored per brand, pillar and
+              lead. You can switch providers at any time.</p></div>
+          </details>
+          <details>
+            <summary>What happens to my content when I use AI?</summary>
+            <div class="faq-body"><p>The brand profile, brief and channel limits are sent to the provider
+              you configured. Artwork is rendered locally. Nothing is sent to MarketPilot itself. Review
+              your provider's data policy before pasting confidential offers or customer details into a
+              brief.</p></div>
+          </details>
+          <details>
+            <summary>Can I use a different language?</summary>
+            <div class="faq-body"><p>The interface is English. Write the brand voice and brief in the
+              language you want, and review the generated copy. Platform limits are applied by character
+              count, so check the preview before approving.</p></div>
+          </details>
+          <details>
+            <summary>Does it run on macOS or Linux?</summary>
+            <div class="faq-body"><p>The published build is Windows only. The source is Kotlin/Compose
+              Desktop, which is cross-platform, but the packaged 1.0.0 artifact and its instructions are
+              Windows 10/11 x64.</p></div>
+          </details>
+          <details>
+            <summary>How do I update or uninstall?</summary>
+            <div class="faq-body"><p>Install the new MSI over the old version, or replace the portable
+              folder. There is no auto-update. To uninstall the MSI, use <em>Settings → Apps → Installed
+              apps → MarketPilot → Uninstall</em>; for the portable build, delete the folder. The
+              uninstaller does not remove <code>%APPDATA%\MarketPilot</code> — delete that separately if
+              you want a clean slate.</p></div>
+          </details>
+          <details>
+            <summary>Can I move the workspace to another PC?</summary>
+            <div class="faq-body"><p>Yes. Close the app, copy <code>data</code> and <code>media</code> to
+              the same location on the new PC, install MarketPilot, and launch. Re-enter channel
+              credentials instead of copying <code>settings.properties</code> if you are unsure who can
+              read the old machine. See <a href="automation.html#data">data and backup</a>.</p></div>
+          </details>
+          <details>
+            <summary>Why is my post held instead of published?</summary>
+            <div class="faq-body"><p>One of the guard rails fired: outside the sending window, daily cap
+              reached for that channel, or the minimum gap has not passed. Simulated posts count too.
+              The Activity log states the exact reason, and the post stays approved for a later tick.</p></div>
+          </details>
+        </div>
+
+        <h2 id="support">Before you ask for help</h2>
+        <p>Collect these details; they make almost every issue reproducible without access to your
+          machine:</p>
+        <ul>
+          <li>MarketPilot version (1.0.0) and whether you use the MSI or portable build.</li>
+          <li>Windows version and whether this is a normal desktop, VM or remote session.</li>
+          <li>The exact queue status or message status, plus the Activity log lines around the failure.</li>
+          <li>The channel, the step (test, publish, send) and the API error text.</li>
+          <li>What changed since it last worked: token, key, cadence, timezone, network.</li>
+        </ul>
+        <div class="callout amber">
+          <p><strong>Redact before sharing.</strong> Remove tokens, API keys, email addresses and phone
+            numbers from screenshots and log excerpts. Nobody needs your Page token to diagnose a
+            scheduling problem.</p>
+        </div>
+
+        <nav class="docs-pager" aria-label="Documentation pagination">
+          <a class="pager-link" href="safety.html">
+            <small>Previous</small>
+            <span>Safety &amp; compliance</span>
+          </a>
+          <a class="pager-link next" href="index.html">
+            <small>Back to</small>
+            <span>Documentation home</span>
+          </a>
+        </nav>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="../index.html">
+            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="8" fill="#12201A"/>
+              <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
+              <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
+            </svg>
+            MarketPilot
+          </a>
+          <p>Marketing autopilot for small businesses. Windows desktop, local-first data,
+            official APIs, and brakes that work.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="../index.html#features">Features</a>
+          <a href="../downloads.html">Downloads</a>
+          <a href="../downloads.html#requirements">System requirements</a>
+          <a href="../downloads.html#verify">Verify a download</a>
+        </div>
+        <div class="footer-col">
+          <h4>Documentation</h4>
+          <a href="guide.html">Setup guide</a>
+          <a href="channels.html">Channels</a>
+          <a href="automation.html">Automation &amp; CLI</a>
+          <a href="safety.html">Safety &amp; compliance</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="faq.html#troubleshooting">Troubleshooting</a>
+          <a href="faq.html#limits">Known limitations</a>
+          <a href="automation.html#data">Backup &amp; data</a>
+          <a href="index.html">All documentation</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> MarketPilot. Built for Windows 10 and 11.</span>
+        <span class="note"><i></i> Official APIs only · No scraping · No purchased lists</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search-dialog" id="searchDialog" aria-label="Search documentation">
+    <div class="search-box">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="Search the documentation…" autocomplete="off" spellcheck="false" aria-label="Search the documentation">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="search-results" id="searchResults" role="listbox" aria-label="Search results"></ul>
+    <div class="search-hint"><span>↑ ↓ to navigate</span><span>Enter to open</span><span>Esc to close</span></div>
+  </dialog>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>
