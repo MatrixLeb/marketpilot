@@ -38,6 +38,21 @@ and hides paths that start with an underscore.
 A push to `main` rebuilds the Pages site automatically. Update the release assets and
 `SHA256SUMS.txt` separately with `gh release upload v1.0.0 <files> --clobber`.
 
+### If the live site suddenly returns 404
+
+Pages can end up disabled on the repository even though the deployment history still
+looks healthy. Check and re-enable it:
+
+```powershell
+gh api repos/MatrixLeb/marketpilot --jq '.has_pages'
+gh api --method POST repos/MatrixLeb/marketpilot/pages `
+  -f "source[branch]=main" -f "source[path]=/"
+gh api repos/MatrixLeb/marketpilot/pages/builds/latest --jq '.status'
+```
+
+Wait for `built`, then reload `/` and `/ar/`. The repository must stay public, and
+`.nojekyll` must remain in the published root.
+
 ## Folder map
 
 ```
