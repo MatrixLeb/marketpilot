@@ -3,6 +3,11 @@
 Static marketing site and documentation for MarketPilot 1.0.0, with the Windows
 installer and portable build attached.
 
+**Live:** <https://matrixleb.github.io/marketpilot/>
+
+The public repo at <https://github.com/MatrixLeb/marketpilot> contains the site only.
+The 96–98 MB downloads are GitHub Release assets, not Git files.
+
 ## Preview
 
 ```powershell

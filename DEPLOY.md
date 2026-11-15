@@ -4,6 +4,29 @@ The site is plain HTML, CSS and JavaScript. There is no build step, no framework
 package manager and no external font or analytics request. Upload the folder and it
 works.
 
+## Live deployment
+
+| Item | Value |
+| --- | --- |
+| Site | <https://matrixleb.github.io/marketpilot/> |
+| Repository | <https://github.com/MatrixLeb/marketpilot> |
+| Pages source | `main` branch, repository root, legacy build |
+| Download host | GitHub Release `v1.0.0` (2 GiB per asset) |
+
+The published repository contains the site only. The MSI and ZIP stay out of Git and
+are attached to the release; the download buttons on the site point straight at the
+release asset URLs. To publish an update:
+
+```powershell
+cd E:\Business\MarketPilot\publish
+git add -A
+git commit -m "Update site"
+git push
+```
+
+A push to `main` rebuilds the Pages site automatically. Update the release assets and
+`SHA256SUMS.txt` separately with `gh release upload v1.0.0 <files> --clobber`.
+
 ## Folder map
 
 ```
