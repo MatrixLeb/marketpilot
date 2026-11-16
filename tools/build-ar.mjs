@@ -20,11 +20,23 @@ const pages = [
     enPath: "index.html"
   },
   {
+    out: "pricing.html",
+    main: "pricing.main.html",
+    title: "الأسعار والترخيص — MarketPilot",
+    description:
+      "أسعار MarketPilot: تجربة مجانية 72 ساعة، ثم 15 دولارًا لشهر أو 39 دولارًا لثلاثة أشهر أو 129 دولارًا لسنة. اطلب عبر واتساب وفعّل المفتاح دون اتصال.",
+    current: "pricing",
+    site: "../",
+    ar: "",
+    dataRoot: "",
+    enPath: "pricing.html"
+  },
+  {
     out: "downloads.html",
     main: "downloads.main.html",
-    title: "تنزيل MarketPilot 1.0.0 لويندوز",
+    title: "تنزيل MarketPilot 1.1.0 لويندوز",
     description:
-      "نزّل مثبّت MarketPilot 1.0.0 لويندوز 10 و11 بصيغة EXE أو MSI أو حزمة ZIP محمولة، مع بصمات SHA-256 وتعليمات التثبيت.",
+      "نزّل مثبّت MarketPilot 1.1.0 لويندوز 10 و11 بصيغة EXE أو MSI أو حزمة ZIP محمولة، مع بصمات SHA-256 وتعليمات التثبيت.",
     current: "downloads",
     site: "../",
     ar: "",
@@ -115,6 +127,7 @@ function fill(template, page) {
     .replaceAll("{{enPath}}", page.enPath)
     .replaceAll("{{current_features}}", page.current === "features" ? ' aria-current="page"' : "")
     .replaceAll("{{current_docs}}", page.current === "docs" ? ' aria-current="page"' : "")
+    .replaceAll("{{current_pricing}}", page.current === "pricing" ? ' aria-current="page"' : "")
     .replaceAll("{{current_downloads}}", page.current === "downloads" ? ' aria-current="page"' : "");
 }
 

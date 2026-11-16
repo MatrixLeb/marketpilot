@@ -1,0 +1,11 @@
+{
+  "whatsapp": "9613091136",
+  "whatsappDisplay": "+961 30 911 36",
+  "currency": "USD",
+  "trialHours": 72,
+  "plans": {
+    "month": 15,
+    "quarter": 39,
+    "year": 129
+  }
+}

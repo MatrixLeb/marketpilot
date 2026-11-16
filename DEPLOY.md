@@ -13,7 +13,7 @@ pages are the source of truth.
 | Arabic site | <https://matrixleb.github.io/marketpilot/ar/> |
 | Repository | <https://github.com/MatrixLeb/marketpilot> |
 | Pages source | `main` branch, repository root, legacy build |
-| Download host | GitHub Release `v1.0.0` (EXE, MSI and portable ZIP) |
+| Download host | GitHub Release `v1.1.0` (EXE, MSI and portable ZIP) |
 
 The published repository contains the site only. The EXE, MSI and ZIP stay out of Git
 and are attached to the release; the download buttons on the site point straight at the
@@ -21,6 +21,7 @@ release asset URLs. To publish an update:
 
 ```powershell
 cd E:\Business\MarketPilot\site
+node tools/build-pricing.mjs
 node tools/build-ar.mjs
 node tools/check-links.mjs
 
@@ -36,7 +37,44 @@ source, not published output). `site/.nojekyll` must stay: without it, Pages run
 and hides paths that start with an underscore.
 
 A push to `main` rebuilds the Pages site automatically. Update the release assets and
-`SHA256SUMS.txt` separately with `gh release upload v1.0.0 <files> --clobber`.
+`SHA256SUMS.txt` separately with `gh release upload v1.1.0 <files> --clobber`.
+
+## Pricing and licence keys
+
+Prices live in **two** places and must match: `site/site.config.json` (one number per
+plan, plus the WhatsApp number) and the `Plan` enum in
+`src/main/kotlin/com/marketpilot/app/licensing/Licensing.kt`.
+
+Change a price:
+
+1. Edit `site/site.config.json`.
+2. Edit the `Plan` enum in `Licensing.kt` (same price and day count).
+3. Run `node tools/build-pricing.mjs` — it regenerates the four plan-card blocks
+   between `<!-- plans:start -->` and `<!-- plans:end -->` in `index.html`,
+   `pricing.html` and the two Arabic fragments.
+4. Run `node tools/build-ar.mjs` to rebuild the Arabic mirror.
+
+Keys are Ed25519-signed. The private key lives in `.license/private.key` in the app
+project and must **never** be committed, copied into `site/`, or uploaded. Only this
+public key ships in the app:
+
+```
+MCowBQYDK2VwAyEAdsOGxbdBaDZSLU0fDtDdMTWPatr62zxh6bou1Rh2OHw
+```
+
+Issue a key after a WhatsApp order:
+
+```powershell
+cd E:\Business\MarketPilot
+node tools\license\issue-key.mjs --plan year --ref ORDER-1042
+node tools\license\issue-key.mjs --plan quarter --count 3
+node tools\license\issue-key.mjs --verify "MP1.YEAR.K7Q2M9XD.2026-11-15...."
+```
+
+The script prints the key on stdout and a ready-to-paste WhatsApp reply on stderr.
+Keys are single-use per installation and add their full term from the activation date.
+Rotating the keypair with `node tools\license\new-keypair.mjs --force` invalidates every
+key already sold and needs a new app release.
 
 ### If the live site suddenly returns 404
 
@@ -58,8 +96,10 @@ Wait for `built`, then reload `/` and `/ar/`. The repository must stay public, a
 ```
 site/
   index.html                 landing page (English)
+  pricing.html               plans, licence FAQ (English)
   downloads.html             install, requirements, checksums (English)
   404.html                   not-found page (English)
+  site.config.json           prices and WhatsApp number (single source for the site)
   .nojekyll                  required by GitHub Pages
   ar/                        generated Arabic mirror (do not hand-edit)
   i18n/ar/
@@ -79,14 +119,15 @@ site/
     favicon.svg
     dashboard.png            real app screenshot
   downloads/
-    MarketPilot-1.0.0.exe
-    MarketPilot-1.0.0.msi
-    MarketPilot-1.0.0-portable.zip
+    MarketPilot-1.1.0.exe
+    MarketPilot-1.1.0.msi
+    MarketPilot-1.1.0-portable.zip
     SHA256SUMS.txt
   tools/
     serve.mjs                local preview with Range support
     check-links.mjs          offline link/anchor/search validation
     build-ar.mjs             renders ar/ from i18n/ar/
+    build-pricing.mjs        injects plan cards from site.config.json
     add-lang-switch.mjs      one-off English header switch inserter
   README.md                  editing notes
   DEPLOY.md                  this file
@@ -109,7 +150,7 @@ Validate everything before uploading:
 node tools/check-links.mjs
 ```
 
-It checks every local `href`/`src`, every `#anchor`, the 32-entry documentation
+It checks every local `href`/`src`, every `#anchor`, the 34-entry documentation
 search index in `assets/site.js`, duplicate ids, and the presence of the download
 files.
 
@@ -129,9 +170,9 @@ Because the site is static, any of these work:
 
 | File | Size |
 | --- | --- |
-| `MarketPilot-1.0.0.exe` | 103,133,184 bytes (98.4 MB) |
-| `MarketPilot-1.0.0.msi` | 102,445,552 bytes (97.7 MB) |
-| `MarketPilot-1.0.0-portable.zip` | 101,026,920 bytes (96.3 MB) |
+| `MarketPilot-1.1.0.exe` | 103,206,912 bytes (98.4 MB) |
+| `MarketPilot-1.1.0.msi` | 102,523,376 bytes (97.8 MB) |
+| `MarketPilot-1.1.0-portable.zip` | 101,103,163 bytes (96.4 MB) |
 
 Recommended pattern:
 
@@ -148,13 +189,13 @@ $site = "E:\Business\MarketPilot\site"
 $base = "https://downloads.example.com/marketpilot"
 
 (Get-Content "$site\index.html" -Raw) `
-  -replace 'href="downloads/MarketPilot-1\.0\.0\.msi"', "href=`"$base/MarketPilot-1.0.0.msi`"" `
-  -replace 'href="downloads/MarketPilot-1\.0\.0-portable\.zip"', "href=`"$base/MarketPilot-1.0.0-portable.zip`"" `
+  -replace 'href="downloads/MarketPilot-1\.1\.0\.msi"', "href=`"$base/MarketPilot-1.1.0.msi`"" `
+  -replace 'href="downloads/MarketPilot-1\.1\.0-portable\.zip"', "href=`"$base/MarketPilot-1.1.0-portable.zip`"" `
   | Set-Content "$site\index.html" -NoNewline
 
 (Get-Content "$site\downloads.html" -Raw) `
-  -replace 'href="downloads/MarketPilot-1\.0\.0\.msi"', "href=`"$base/MarketPilot-1.0.0.msi`"" `
-  -replace 'href="downloads/MarketPilot-1\.0\.0-portable\.zip"', "href=`"$base/MarketPilot-1.0.0-portable.zip`"" `
+  -replace 'href="downloads/MarketPilot-1\.1\.0\.msi"', "href=`"$base/MarketPilot-1.1.0.msi`"" `
+  -replace 'href="downloads/MarketPilot-1\.1\.0-portable\.zip"', "href=`"$base/MarketPilot-1.1.0-portable.zip`"" `
   | Set-Content "$site\downloads.html" -NoNewline
 ```
 
@@ -193,8 +234,8 @@ DNS, test:
 
 ```powershell
 curl.exe -I https://your-domain.example/
-curl.exe -I https://your-domain.example/downloads/MarketPilot-1.0.0.msi
-curl.exe -I -H "Range: bytes=0-1023" https://your-domain.example/downloads/MarketPilot-1.0.0.msi
+curl.exe -I https://your-domain.example/downloads/MarketPilot-1.1.0.msi
+curl.exe -I -H "Range: bytes=0-1023" https://your-domain.example/downloads/MarketPilot-1.1.0.msi
 ```
 
 The last command should return `206 Partial Content` and `Content-Range`. If it returns
@@ -228,16 +269,26 @@ The last command should return `206 Partial Content` and `Content-Range`. If it 
    - `index.html` — file names, sizes, all three hash strings and their `data-copy` values
    - `downloads.html` — file names, byte counts, sizes, all three hashes and `data-copy`
    - Arabic copies under `i18n/ar/pages/` for every field above
-   - any version label (`v1.0.0`, “Version 1.0.0”) if the version changed
+   - any version label (`v1.1.0`, “Version 1.1.0”, and `1.1.0` in titles) if the version changed
 
-5. Update docs where behaviour changed, and the English search index in `assets/site.js`
-   plus `searchIndexAr` if sections moved.
-6. Rebuild Arabic pages and validate: `node tools/build-ar.mjs` then
-   `node tools/check-links.mjs`. Preview the affected English and Arabic pages.
-7. Re-verify the downloaded file:
+5. Update docs where behaviour changed, and the search index entries in `assets/site.js`
+   — `searchIndexEn` and its Arabic twin `searchIndexAr`.
+6. Rebuild the plan cards and the Arabic pages, then validate:
+   `node tools/build-pricing.mjs`, `node tools/build-ar.mjs`, `node tools/check-links.mjs`.
+   Preview the affected English and Arabic pages.
+7. Upload the release assets, then push the site:
 
    ```powershell
-   (Get-FileHash .\MarketPilot-<version>.exe -Algorithm SHA256).Hash.ToLower()
+   $env:Path = "$env:LOCALAPPDATA\GitHubCLI\bin;$env:Path"
+   gh release create v1.1.0 <exe> <msi> <zip> downloads\SHA256SUMS.txt `
+     --repo MatrixLeb/marketpilot --title "MarketPilot 1.1.0" --notes-file notes.md
+   gh release upload v1.1.0 <files> --clobber   # for later corrections
+   ```
+
+8. Confirm the local file matches:
+
+   ```powershell
+   (Get-FileHash .\downloads\MarketPilot-1.1.0.exe -Algorithm SHA256).Hash.ToLower()
    ```
 
 ## Security and privacy
@@ -253,11 +304,13 @@ The last command should return `206 Partial Content` and `Content-Range`. If it 
 
 ## Post-deploy checklist
 
-- [ ] `/`, `/downloads.html`, all six English docs pages and all eight `/ar/` pages return 200.
+- [ ] `/`, `/pricing.html`, `/downloads.html`, all six English docs pages and all nine `/ar/` pages return 200.
 - [ ] A bad URL returns the styled 404 page.
 - [ ] The language switch goes from each English page to its Arabic twin and back.
 - [ ] Mobile nav opens and closes; docs chips scroll on a phone.
 - [ ] Search (`/` or the header button) finds “Instagram”, “dry run” and “backup” in English, and “إنستغرام” in Arabic.
+- [ ] On `/pricing.html` and `/ar/pricing.html`, three plans show $15 / $39 / $129 and every **Buy on WhatsApp** button opens `wa.me/9613091136` with the plan and price pre-filled.
+- [ ] The prices on the site match the `Plan` enum in the app build; the signing key is not in `publish/`.
 - [ ] All three download links serve the full files and the hashes match.
 - [ ] `SHA256SUMS.txt` matches the copies on the site and in the release.
 - [ ] No local file paths such as `E:\Business` appear in published docs.

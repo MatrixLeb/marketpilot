@@ -49,6 +49,20 @@
       keys: "sha256 checksum hash powershell integrity signed"
     },
     {
+      title: "Pricing and licence plans",
+      desc: "72-hour free trial, $15 / month, $39 / 3 months, $129 / year. Order on WhatsApp.",
+      url: "pricing.html",
+      cat: "Start",
+      keys: "pricing price plans licence license trial free 72 hours month quarter year buy whatsapp cost"
+    },
+    {
+      title: "Licence questions",
+      desc: "What happens at expiry, moving the key, renewals and refunds.",
+      url: "pricing.html#faq",
+      cat: "Start",
+      keys: "licence license activation key expiry read only renew refund move pc tax subscription"
+    },
+    {
       title: "Documentation overview",
       desc: "How this manual is organised and where to start.",
       url: "docs/index.html",
@@ -273,6 +287,18 @@
       desc: "افحص تجزئات SHA-256 في PowerShell قبل التثبيت.",
       cat: "البداية",
       keys: "sha256 تجزئة hash powershell تحقق سلامة موقّع"
+    },
+    "pricing.html": {
+      title: "الأسعار وخطط الترخيص",
+      desc: "تجربة مجانية 72 ساعة، ثم 15 دولارًا للشهر، و39 لثلاثة أشهر، و129 للسنة. اطلب عبر واتساب.",
+      cat: "البداية",
+      keys: "أسعار سعر خطط ترخيص تجربة مجانية 72 ساعة شهر سنة شراء واتساب تكلفة"
+    },
+    "pricing.html#faq": {
+      title: "أسئلة الترخيص",
+      desc: "ماذا يحدث عند الانتهاء، ونقل المفتاح، والتجديد والاسترداد.",
+      cat: "البداية",
+      keys: "ترخيص تفعيل مفتاح انتهاء قراءة فقط تجديد استرداد نقل جهاز ضريبة اشتراك"
     },
     "docs/index.html": {
       title: "نظرة على التوثيق",

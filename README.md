@@ -1,7 +1,7 @@
 # MarketPilot website
 
-Static marketing site and documentation for MarketPilot 1.0.0, in English and Arabic,
-with the Windows installer and portable build attached.
+Static marketing site and documentation for MarketPilot 1.1.0, in English and Arabic,
+with pricing and licence plans, plus the Windows installer and portable build attached.
 
 **Live:** <https://matrixleb.github.io/marketpilot/>
 **العربية:** <https://matrixleb.github.io/marketpilot/ar/>
@@ -21,18 +21,22 @@ Open <http://localhost:4173>. No install step and no dependencies.
 ## Verify
 
 ```powershell
+node tools/build-pricing.mjs
 node tools/build-ar.mjs
 node tools/check-links.mjs
 ```
 
-The first command rebuilds the Arabic mirror; the second checks local links, anchors,
-duplicate ids, both search indexes and the presence of the download files.
+The first command regenerates the plan cards from `site.config.json`, the second rebuilds
+the Arabic mirror, and the third checks local links, anchors, duplicate ids, both search
+indexes and the presence of the download files.
 
 ## Structure
 
 | Path | Purpose |
 | --- | --- |
 | `index.html` | Landing page: features, safety model, channels, downloads, FAQ |
+| `pricing.html` | Three paid plans, trial explanation, licence FAQ, WhatsApp buy buttons |
+| `site.config.json` | Prices and the WhatsApp order number (source for the plan cards) |
 | `downloads.html` | Install instructions, requirements, SHA-256 verification |
 | `404.html` | Styled not-found page |
 | `docs/` | Hub, setup guide, channels, automation, safety, FAQ |
@@ -45,6 +49,7 @@ duplicate ids, both search indexes and the presence of the download files.
 | `tools/serve.mjs` | Dependency-free preview server with Range support |
 | `tools/check-links.mjs` | Offline link checker |
 | `tools/build-ar.mjs` | Renders `ar/` from `i18n/ar/` |
+| `tools/build-pricing.mjs` | Injects the plan cards from `site.config.json` into four files |
 
 ## Editing notes
 
@@ -63,7 +68,10 @@ duplicate ids, both search indexes and the presence of the download files.
 - The theme uses the app's colours: Ink `#0A100E`, Mint `#45E0B0`, Amber `#FFC24B`,
   text `#E9F2ED`, muted `#93A69D`. `html[dir="rtl"]` overrides mirror the layout, while
   code, paths and hashes stay LTR.
-- Keep claims accurate to the build. The website documents 1.0.0, including its
+- Prices exist twice: `site.config.json` for the website and the `Plan` enum in the app's
+  `licensing/Licensing.kt`. Change both, then run `node tools/build-pricing.mjs`. Never
+  put the signing key in this folder; only the public key ships in the app.
+- Keep claims accurate to the build. The website documents 1.1.0, including its
   limitations: text-only Facebook/LinkedIn/X connectors, Instagram's public image URL
   requirement, WhatsApp templates, Manual TikTok bundles, per-install credentials and
   the unsigned installers.
@@ -73,16 +81,17 @@ duplicate ids, both search indexes and the presence of the download files.
 See [DEPLOY.md](DEPLOY.md) for hosting options, large-file limits, MIME types, cache
 rules, hash-update steps and the post-deploy checklist.
 
-The short version: run `node tools/build-ar.mjs`, mirror the folder into `publish`
-(excluding `i18n/` and the binaries), and host the three ~96–99 MB downloads on a
-service that allows files that large (GitHub Releases, S3/R2, or a VPS).
+The short version: run `node tools/build-pricing.mjs` and `node tools/build-ar.mjs`, mirror
+the folder into `publish` (excluding `i18n/` and the binaries), and host the three
+~96–99 MB downloads on a service that allows files that large (GitHub Releases, S3/R2, or
+a VPS).
 
 ## Download integrity
 
 ```text
-c2cfd3f339929ffe336ece38bd49193ca524159e772c236ef67aaf9b47137c4c  MarketPilot-1.0.0.exe
-704de36c21336839f6f85e6ef43d3b603dff68899840be2c454cc384474b998e  MarketPilot-1.0.0.msi
-7d3e285f6017caac320d96ee79727566ed49be6cccbaa3d3dc178b6d992fb7c5  MarketPilot-1.0.0-portable.zip
+4b9eaea625e30ab10448eff79b3bd4733f9b889f748d506454440c418ef84e82  MarketPilot-1.1.0.exe
+1aa337eb811f9569a8195ca4f7e902be65baf2c42cfcf7e548d02f8139505577  MarketPilot-1.1.0.msi
+6a3e0455933e6494de2990e4bb003feb67de6280e5db5588a4eb0399a2c489d8  MarketPilot-1.1.0-portable.zip
 ```
 
 Recompute these whenever the binaries are rebuilt.

@@ -21,12 +21,13 @@
           <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
         </svg>
         MarketPilot
-        <span class="brand-version">v1.0.0</span>
+        <span class="brand-version">v1.1.0</span>
       </a>
 
       <nav class="header-nav" aria-label="Main">
         <a href="../index.html#features">Features</a>
         <a href="index.html" aria-current="page">Documentation</a>
+        <a href="../pricing.html">Pricing</a>
         <a href="../downloads.html">Downloads</a>
       </nav>
 
@@ -47,9 +48,10 @@
       <div class="container">
         <a href="../index.html#features">Features</a>
         <a href="index.html">Documentation</a>
+        <a href="../pricing.html">Pricing</a>
         <a href="../downloads.html">Downloads</a>
         <a href="faq.html">FAQ &amp; troubleshooting</a>
-        <a class="btn btn-primary" href="../downloads.html#downloads">Download MarketPilot 1.0.0</a>
+        <a class="btn btn-primary" href="../downloads.html#downloads">Download MarketPilot 1.1.0</a>
       </div>
     </nav>
   </header>
@@ -78,6 +80,7 @@
         <nav aria-label="Documentation">
           <a href="index.html">Documentation home</a>
           <a href="guide.html">Setup guide</a>
+          <a href="../pricing.html">Pricing &amp; licence</a>
         </nav>
         <div class="side-label">Configure</div>
         <nav aria-label="Configure">
@@ -104,6 +107,10 @@
               <tr>
                 <td>Window is blank or the app fails to draw</td>
                 <td>The app should already use software rendering. If you set <code>MARKETPILOT_GPU=1</code>, remove it and restart. On a remote desktop or VM, keep software rendering.</td>
+              </tr>
+              <tr>
+                <td>Banner says “Read-only”</td>
+                <td>The 72-hour trial or the paid term has ended, or the system clock moved backwards. Open <strong>License &amp; plans</strong> to see the reason, then activate a key or fix the date and time. Data is untouched.</td>
               </tr>
               <tr>
                 <td>“Nothing due” on a tick</td>
@@ -159,7 +166,7 @@
               </tr>
               <tr>
                 <td>SmartScreen blocks the installer</td>
-                <td>The 1.0.0 build is unsigned. Verify the SHA-256, then choose <em>More info → Run anyway</em>. Sign future builds before public distribution.</td>
+                <td>The 1.1.0 build is unsigned. Verify the SHA-256, then choose <em>More info → Run anyway</em>. Sign future builds before public distribution.</td>
               </tr>
               <tr>
                 <td>Gradle task hangs after closing the app</td>
@@ -213,15 +220,58 @@
           <li><strong>Credentials are per installation, not per brand.</strong> Separate customers need
             separate Windows users or installs.</li>
           <li><strong>No auto-update.</strong> Replace the build manually; the data folder is preserved.</li>
-          <li><strong>The 1.0.0 build is unsigned.</strong> Windows SmartScreen will warn on first run.</li>
+          <li><strong>The 1.1.0 build is unsigned.</strong> Windows SmartScreen will warn on first run.</li>
         </ul>
+
+        <h2 id="licence">Trial, licence and activation</h2>
+        <div class="faq">
+          <details>
+            <summary>What happens after the 72-hour trial?</summary>
+            <div class="faq-body"><p>The app switches to read-only. Everything on disk stays visible and
+              unchanged; creating, approving, publishing, importing and outreach pause, and the scheduler
+              stops sending. Activate a key in <strong>License &amp; plans</strong> to continue.</p></div>
+          </details>
+          <details>
+            <summary>Where do I buy a licence?</summary>
+            <div class="faq-body"><p>In the app, open <strong>License &amp; plans</strong> and press
+              <strong>Buy on WhatsApp</strong> under a plan, or use the buttons on the
+              <a href="../pricing.html">pricing page</a>. Plans are 1 month for $15, 3 months for $39 and
+              1 year for $129. You pay in the chat and receive a key there.</p></div>
+          </details>
+          <details>
+            <summary>Does activation need internet?</summary>
+            <div class="faq-body"><p>No. The key is signed by the seller and checked on your PC with a
+              public key built into the app. Nothing is sent anywhere, and no account is created.</p></div>
+          </details>
+          <details>
+            <summary>Can I reuse a key or move it to another PC?</summary>
+            <div class="faq-body"><p>A key activates once per installation. If you reinstall Windows or
+              change PC, message the seller with the key id shown under <strong>License &amp; plans</strong>
+              and a replacement is issued. The remaining days live in your data folder, so a normal
+              reinstall keeps them.</p></div>
+          </details>
+          <details>
+            <summary>Why does it say the clock moved backwards?</summary>
+            <div class="faq-body"><p>The app remembers the last time it ran. If the system clock jumps back
+              more than two hours, the licence pauses to stop the trial from being extended. Set Windows
+              time to automatic and reopen the app.</p></div>
+          </details>
+          <details>
+            <summary>Can I run the scheduler without the window open?</summary>
+            <div class="faq-body"><p>Yes, through Task Scheduler and <code>MarketPilot-cli.cmd --once</code>.
+              It needs an active licence: in read-only mode the command exits with code 2 and sends
+              nothing.</p></div>
+          </details>
+        </div>
 
         <h2 id="questions">Frequently asked questions</h2>
         <div class="faq">
           <details>
             <summary>Is there a subscription or a MarketPilot account?</summary>
-            <div class="faq-body"><p>No. The app has no sign-up, no license server and no telemetry. You
-              pay your own AI provider and any platform fees. Channel APIs are used with your own
+            <div class="faq-body"><p>There is no account and no auto-renewing card charge. A fresh
+              install gets a 72-hour trial; after that you buy a prepaid term on WhatsApp and activate
+              the key offline. Nothing is stored on a server, and the app has no sign-up and no
+              telemetry. You pay your own AI provider and any platform fees; channel APIs use your own
               credentials.</p></div>
           </details>
           <details>
@@ -270,7 +320,7 @@
           <details>
             <summary>Does it run on macOS or Linux?</summary>
             <div class="faq-body"><p>The published build is Windows only. The source is Kotlin/Compose
-              Desktop, which is cross-platform, but the packaged 1.0.0 artifact and its instructions are
+              Desktop, which is cross-platform, but the packaged 1.1.0 artifact and its instructions are
               Windows 10/11 x64.</p></div>
           </details>
           <details>
@@ -300,7 +350,7 @@
         <p>Collect these details; they make almost every issue reproducible without access to your
           machine:</p>
         <ul>
-          <li>MarketPilot version (1.0.0) and whether you use the MSI or portable build.</li>
+          <li>MarketPilot version (1.1.0) and whether you use the MSI or portable build.</li>
           <li>Windows version and whether this is a normal desktop, VM or remote session.</li>
           <li>The exact queue status or message status, plus the Activity log lines around the failure.</li>
           <li>The channel, the step (test, publish, send) and the API error text.</li>
@@ -345,6 +395,7 @@
         <div class="footer-col">
           <h4>Product</h4>
           <a href="../index.html#features">Features</a>
+          <a href="../pricing.html">Pricing</a>
           <a href="../downloads.html">Downloads</a>
           <a href="../downloads.html#requirements">System requirements</a>
           <a href="../downloads.html#verify">Verify a download</a>

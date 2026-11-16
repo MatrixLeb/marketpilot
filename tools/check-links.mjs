@@ -125,9 +125,9 @@ if (existsSync(jsFile)) {
 
 /* Every download shown on the site should be present. */
 for (const file of [
-  "downloads/MarketPilot-1.0.0.exe",
-  "downloads/MarketPilot-1.0.0.msi",
-  "downloads/MarketPilot-1.0.0-portable.zip",
+  "downloads/MarketPilot-1.1.0.exe",
+  "downloads/MarketPilot-1.1.0.msi",
+  "downloads/MarketPilot-1.1.0-portable.zip",
   "downloads/SHA256SUMS.txt",
   "assets/dashboard.png",
   "assets/favicon.svg"

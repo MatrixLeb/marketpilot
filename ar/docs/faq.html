@@ -25,12 +25,13 @@
           <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
         </svg>
         MarketPilot
-        <span class="brand-version">v1.0.0</span>
+        <span class="brand-version">v1.1.0</span>
       </a>
 
       <nav class="header-nav" aria-label="القائمة الرئيسية">
         <a href="../index.html#features">المزايا</a>
         <a href="../docs/index.html" aria-current="page">التوثيق</a>
+        <a href="../pricing.html">الأسعار</a>
         <a href="../downloads.html">التنزيلات</a>
       </nav>
 
@@ -51,10 +52,11 @@
       <div class="container">
         <a href="../index.html#features">المزايا</a>
         <a href="../docs/index.html">التوثيق</a>
+        <a href="../pricing.html">الأسعار</a>
         <a href="../downloads.html">التنزيلات</a>
         <a href="../docs/faq.html">الأسئلة الشائعة واستكشاف الأخطاء</a>
         <a class="lang-switch lang-switch-mobile" href="../../docs/faq.html" hreflang="en" lang="en">English</a>
-        <a class="btn btn-primary" href="../downloads.html#downloads">نزّل MarketPilot 1.0.0</a>
+        <a class="btn btn-primary" href="../downloads.html#downloads">نزّل MarketPilot 1.1.0</a>
       </div>
     </nav>
   </header>
@@ -83,6 +85,7 @@
         <nav aria-label="التوثيق">
           <a href="index.html">الصفحة الرئيسية للتوثيق</a>
           <a href="guide.html">دليل الإعداد</a>
+          <a href="../pricing.html">الأسعار والترخيص</a>
         </nav>
         <div class="side-label">الإعداد</div>
         <nav aria-label="الإعداد">
@@ -109,6 +112,10 @@
               <tr>
                 <td>النافذة فارغة أو التطبيق لا يرسم</td>
                 <td>يفترض أن التطبيق يستخدم العرض البرمجي بالفعل. إذا ضبطت <code>MARKETPILOT_GPU=1</code>، فأزله وأعد التشغيل. على سطح مكتب بعيد أو جهاز ظاهري، أبقِ العرض البرمجي.</td>
+              </tr>
+              <tr>
+                <td>الشريط يقول «قراءة فقط»</td>
+                <td>انتهت تجربة الـ72 ساعة أو المدة المدفوعة، أو رجعت ساعة النظام إلى الخلف. افتح <strong>الترخيص والخطط</strong> لمعرفة السبب، ثم فعّل مفتاحًا أو صحّح التاريخ والوقت. البيانات سليمة.</td>
               </tr>
               <tr>
                 <td>«Nothing due» في دورة</td>
@@ -164,7 +171,7 @@
               </tr>
               <tr>
                 <td>SmartScreen يحجب المثبّت</td>
-                <td>بنية 1.0.0 غير موقّعة. تحقق من SHA-256، ثم اختر <em>More info → Run anyway</em>. وقّع البنيات المستقبلية قبل التوزيع العام.</td>
+                <td>بنية 1.1.0 غير موقّعة. تحقق من SHA-256، ثم اختر <em>More info → Run anyway</em>. وقّع البنيات المستقبلية قبل التوزيع العام.</td>
               </tr>
               <tr>
                 <td>مهمة Gradle تعلّق بعد إغلاق التطبيق</td>
@@ -218,15 +225,55 @@
           <li><strong>بيانات الاعتماد لكل تثبيت، لا لكل علامة.</strong> يحتاج العملاء المنفصلون إلى
             مستخدمي ويندوز أو تثبيتات منفصلة.</li>
           <li><strong>لا تحديث تلقائي.</strong> استبدل البنية يدويًا؛ ويُحفظ مجلد البيانات.</li>
-          <li><strong>بنية 1.0.0 غير موقّعة.</strong> سيحذّر Windows SmartScreen عند أول تشغيل.</li>
+          <li><strong>بنية 1.1.0 غير موقّعة.</strong> سيحذّر Windows SmartScreen عند أول تشغيل.</li>
         </ul>
+
+        <h2 id="licence">التجربة والترخيص والتفعيل</h2>
+        <div class="faq">
+          <details>
+            <summary>ماذا يحدث بعد تجربة الـ72 ساعة؟</summary>
+            <div class="faq-body"><p>يتحول التطبيق إلى وضع القراءة فقط. يبقى كل شيء على القرص ظاهرًا
+              ودون تغيير؛ تتوقف الكتابة والموافقة والنشر والاستيراد والتواصل، ويتوقف المُجدول عن
+              الإرسال. فعّل مفتاحًا في <strong>الترخيص والخطط</strong> لتكمل.</p></div>
+          </details>
+          <details>
+            <summary>من أين أشتري ترخيصًا؟</summary>
+            <div class="faq-body"><p>من التطبيق، افتح <strong>الترخيص والخطط</strong> واضغط
+              <strong>اشترِ عبر واتساب</strong> تحت الخطة، أو استخدم الأزرار في
+              <a href="../pricing.html">صفحة الأسعار</a>. الخطط: شهر بـ15 دولارًا، وثلاثة أشهر بـ39
+              دولارًا، وسنة بـ129 دولارًا. تدفع في المحادثة وتستلم المفتاح فيها.</p></div>
+          </details>
+          <details>
+            <summary>هل يحتاج التفعيل إلى إنترنت؟</summary>
+            <div class="faq-body"><p>لا. المفتاح موقّع من البائع ويُفحص على جهازك بمفتاح عام مضمّن في
+              التطبيق. لا يُرسل شيء إلى أي مكان، ولا يُنشأ حساب.</p></div>
+          </details>
+          <details>
+            <summary>هل أعيد استخدام المفتاح أو أنقله إلى جهاز آخر؟</summary>
+            <div class="faq-body"><p>يُفعّل المفتاح مرة واحدة لكل تثبيت. إن أعدت تثبيت ويندوز أو غيّرت
+              الجهاز، راسل البائع مع معرّف المفتاح الظاهر في <strong>الترخيص والخطط</strong> ويُصدر
+              بديلًا. تبقى الأيام المتبقية في مجلد بياناتك، فإعادة التثبيت العادية تحفظها.</p></div>
+          </details>
+          <details>
+            <summary>لماذا تظهر رسالة أن الساعة رجعت إلى الخلف؟</summary>
+            <div class="faq-body"><p>يتذكر التطبيق آخر وقت عمل فيه. إذا رجعت ساعة النظام أكثر من ساعتين،
+              يتوقف الترخيص منعًا لتمديد التجربة. اضبط وقت ويندوز على التلقائي وأعد فتح التطبيق.</p></div>
+          </details>
+          <details>
+            <summary>هل يعمل المُجدول والنافذة مغلقة؟</summary>
+            <div class="faq-body"><p>نعم، عبر مُجدول المهام و<code>MarketPilot-cli.cmd --once</code>.
+              ويحتاج ترخيصًا نشطًا: في وضع القراءة فقط يخرج الأمر بالرمز 2 ولا يرسل شيئًا.</p></div>
+          </details>
+        </div>
 
         <h2 id="questions">الأسئلة الشائعة</h2>
         <div class="faq">
           <details>
             <summary>هل يوجد اشتراك أو حساب MarketPilot؟</summary>
-            <div class="faq-body"><p>لا. لا يوجد تسجيل، ولا خادم تراخيص، ولا قياس عن بُعد. تدفع لمزوّد
-              الذكاء الاصطناعي وأي رسوم منصات بنفسك. وتُستخدم واجهات القنوات ببيانات اعتمادك.</p></div>
+            <div class="faq-body"><p>لا حساب ولا خصم تلقائي من بطاقة. يحصل التثبيت الجديد على تجربة
+              72 ساعة؛ بعدها تشتري مدة مسبقة الدفع عبر واتساب وتفعّل المفتاح دون اتصال. لا يُخزَّن شيء
+              على خادم، ولا تسجيل ولا قياس عن بُعد. تدفع لمزوّد الذكاء الاصطناعي وأي رسوم منصات
+              بنفسك، وتُستخدم واجهات القنوات ببيانات اعتمادك.</p></div>
           </details>
           <details>
             <summary>هل أستطيع استخدام تثبيت واحد لعدة عملاء؟</summary>
@@ -272,7 +319,7 @@
           <details>
             <summary>هل يعمل على macOS أو لينكس؟</summary>
             <div class="faq-body"><p>البنية المنشورة لويندوز فقط. المصدر Kotlin/Compose Desktop وهو
-              متعدد المنصات، لكن أثر 1.0.0 المعبأ وتعليماته لنظامي Windows 10/11 x64.</p></div>
+              متعدد المنصات، لكن أثر 1.1.0 المعبأ وتعليماته لنظامي Windows 10/11 x64.</p></div>
           </details>
           <details>
             <summary>كيف أحدّث أو أزيل؟</summary>
@@ -299,7 +346,7 @@
         <h2 id="support">قبل أن تطلب المساعدة</h2>
         <p>اجمع هذه التفاصيل؛ فهي تجعل معظم المشكلات قابلة للتكرار دون الوصول إلى جهازك:</p>
         <ul>
-          <li>إصدار MarketPilot (1.0.0) وما إذا كنت تستخدم EXE أو MSI أو البنية المحمولة.</li>
+          <li>إصدار MarketPilot (1.1.0) وما إذا كنت تستخدم EXE أو MSI أو البنية المحمولة.</li>
           <li>إصدار ويندوز وما إذا كان هذا سطح مكتب عاديًا أو جهازًا ظاهريًا أو جلسة بعيدة.</li>
           <li>حالة القائمة أو حالة الرسالة بالضبط، مع أسطر سجل النشاط حول الفشل.</li>
           <li>القناة، والخطوة (اختبار، نشر، إرسال)، ونص خطأ الواجهة.</li>
@@ -343,6 +390,7 @@
         <div class="footer-col">
           <h4>المنتج</h4>
           <a href="../index.html#features">المزايا</a>
+          <a href="../pricing.html">الأسعار والترخيص</a>
           <a href="../downloads.html">التنزيلات</a>
           <a href="../downloads.html#requirements">متطلبات النظام</a>
           <a href="../downloads.html#verify">تحقّق من التنزيل</a>
