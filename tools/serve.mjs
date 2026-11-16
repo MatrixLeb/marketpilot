@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Local preview server for the MarketPilot site.
+ * Local preview server for the Masar site.
  *
  *   node tools/serve.mjs            → http://localhost:4173
  *   node tools/serve.mjs 8080       → custom port
@@ -109,6 +109,6 @@ const server = createServer((req, res) => {
 });
 
 server.listen(port, () => {
-  console.log(`MarketPilot site: http://localhost:${port}`);
+  console.log(`Masar site: http://localhost:${port}`);
   console.log(`Serving: ${root}`);
 });

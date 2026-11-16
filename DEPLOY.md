@@ -1,4 +1,4 @@
-# Deploying the MarketPilot site
+# Deploying the Masar site
 
 The site is plain HTML, CSS and JavaScript. There is no framework, no package manager
 and no external font or analytics request. Upload the folder and it works. The Arabic
@@ -13,7 +13,7 @@ pages are the source of truth.
 | Arabic site | <https://matrixleb.github.io/marketpilot/ar/> |
 | Repository | <https://github.com/MatrixLeb/marketpilot> |
 | Pages source | `main` branch, repository root, legacy build |
-| Download host | GitHub Release `v1.1.0` (EXE, MSI and portable ZIP) |
+| Download host | GitHub Release `v1.2.0` (EXE, MSI and portable ZIP) |
 
 The published repository contains the site only. The EXE, MSI and ZIP stay out of Git
 and are attached to the release; the download buttons on the site point straight at the
@@ -37,7 +37,7 @@ source, not published output). `site/.nojekyll` must stay: without it, Pages run
 and hides paths that start with an underscore.
 
 A push to `main` rebuilds the Pages site automatically. Update the release assets and
-`SHA256SUMS.txt` separately with `gh release upload v1.1.0 <files> --clobber`.
+`SHA256SUMS.txt` separately with `gh release upload v1.2.0 <files> --clobber`.
 
 ## Pricing and licence keys
 
@@ -123,9 +123,9 @@ site/
     favicon.svg
     dashboard.png            real app screenshot
   downloads/
-    MarketPilot-1.1.0.exe
-    MarketPilot-1.1.0.msi
-    MarketPilot-1.1.0-portable.zip
+    Masar-1.2.0.exe
+    Masar-1.2.0.msi
+    Masar-1.2.0-portable.zip
     SHA256SUMS.txt
   tools/
     serve.mjs                local preview with Range support
@@ -174,9 +174,9 @@ Because the site is static, any of these work:
 
 | File | Size |
 | --- | --- |
-| `MarketPilot-1.1.0.exe` | 103,206,912 bytes (98.4 MB) |
-| `MarketPilot-1.1.0.msi` | 102,523,376 bytes (97.8 MB) |
-| `MarketPilot-1.1.0-portable.zip` | 101,103,163 bytes (96.4 MB) |
+| `Masar-1.2.0.exe` | 103,206,912 bytes (98.4 MB) |
+| `Masar-1.2.0.msi` | 102,523,376 bytes (97.8 MB) |
+| `Masar-1.2.0-portable.zip` | 101,103,163 bytes (96.4 MB) |
 
 Recommended pattern:
 
@@ -193,13 +193,13 @@ $site = "E:\Business\MarketPilot\site"
 $base = "https://downloads.example.com/marketpilot"
 
 (Get-Content "$site\index.html" -Raw) `
-  -replace 'href="downloads/MarketPilot-1\.1\.0\.msi"', "href=`"$base/MarketPilot-1.1.0.msi`"" `
-  -replace 'href="downloads/MarketPilot-1\.1\.0-portable\.zip"', "href=`"$base/MarketPilot-1.1.0-portable.zip`"" `
+  -replace 'href="downloads/Masar-1\.1\.0\.msi"', "href=`"$base/Masar-1.2.0.msi`"" `
+  -replace 'href="downloads/Masar-1\.1\.0-portable\.zip"', "href=`"$base/Masar-1.2.0-portable.zip`"" `
   | Set-Content "$site\index.html" -NoNewline
 
 (Get-Content "$site\downloads.html" -Raw) `
-  -replace 'href="downloads/MarketPilot-1\.1\.0\.msi"', "href=`"$base/MarketPilot-1.1.0.msi`"" `
-  -replace 'href="downloads/MarketPilot-1\.1\.0-portable\.zip"', "href=`"$base/MarketPilot-1.1.0-portable.zip`"" `
+  -replace 'href="downloads/Masar-1\.1\.0\.msi"', "href=`"$base/Masar-1.2.0.msi`"" `
+  -replace 'href="downloads/Masar-1\.1\.0-portable\.zip"', "href=`"$base/Masar-1.2.0-portable.zip`"" `
   | Set-Content "$site\downloads.html" -NoNewline
 ```
 
@@ -238,8 +238,8 @@ DNS, test:
 
 ```powershell
 curl.exe -I https://your-domain.example/
-curl.exe -I https://your-domain.example/downloads/MarketPilot-1.1.0.msi
-curl.exe -I -H "Range: bytes=0-1023" https://your-domain.example/downloads/MarketPilot-1.1.0.msi
+curl.exe -I https://your-domain.example/downloads/Masar-1.2.0.msi
+curl.exe -I -H "Range: bytes=0-1023" https://your-domain.example/downloads/Masar-1.2.0.msi
 ```
 
 The last command should return `206 Partial Content` and `Content-Range`. If it returns
@@ -249,14 +249,14 @@ The last command should return `206 Partial Content` and `Content-Range`. If it 
 
 1. Build the EXE, MSI and portable folder from the app project
    (`.\gradlew.bat packageExe packageMsi createDistributable`).
-2. Replace `site/downloads/MarketPilot-<version>.exe` and `.msi`.
-3. Recreate the portable ZIP from `build\compose\binaries\main\app\MarketPilot`:
+2. Replace `site/downloads/Masar-<version>.exe` and `.msi`.
+3. Recreate the portable ZIP from `build\compose\binaries\main\app\Masar`:
 
    ```powershell
    Add-Type -AssemblyName System.IO.Compression.FileSystem
    [System.IO.Compression.ZipFile]::CreateFromDirectory(
-     'E:\Business\MarketPilot\build\compose\binaries\main\app\MarketPilot',
-     'E:\Business\MarketPilot\site\downloads\MarketPilot-<version>-portable.zip',
+     'E:\Business\MarketPilot\build\compose\binaries\main\app\Masar',
+     'E:\Business\MarketPilot\site\downloads\Masar-<version>-portable.zip',
      [System.IO.Compression.CompressionLevel]::Optimal,
      $true)
    ```
@@ -264,16 +264,16 @@ The last command should return `206 Partial Content` and `Content-Range`. If it 
 4. Recompute hashes and update **all** of these:
 
    ```powershell
-   Get-FileHash .\downloads\MarketPilot-<version>.exe -Algorithm SHA256
-   Get-FileHash .\downloads\MarketPilot-<version>.msi -Algorithm SHA256
-   Get-FileHash .\downloads\MarketPilot-<version>-portable.zip -Algorithm SHA256
+   Get-FileHash .\downloads\Masar-<version>.exe -Algorithm SHA256
+   Get-FileHash .\downloads\Masar-<version>.msi -Algorithm SHA256
+   Get-FileHash .\downloads\Masar-<version>-portable.zip -Algorithm SHA256
    ```
 
    - `downloads/SHA256SUMS.txt`
    - `index.html` — file names, sizes, all three hash strings and their `data-copy` values
    - `downloads.html` — file names, byte counts, sizes, all three hashes and `data-copy`
    - Arabic copies under `i18n/ar/pages/` for every field above
-   - any version label (`v1.1.0`, “Version 1.1.0”, and `1.1.0` in titles) if the version changed
+   - any version label (`v1.2.0`, “Version 1.2.0”, and `1.2.0` in titles) if the version changed
 
 5. Update docs where behaviour changed, and the search index entries in `assets/site.js`
    — `searchIndexEn` and its Arabic twin `searchIndexAr`.
@@ -284,15 +284,15 @@ The last command should return `206 Partial Content` and `Content-Range`. If it 
 
    ```powershell
    $env:Path = "$env:LOCALAPPDATA\GitHubCLI\bin;$env:Path"
-   gh release create v1.1.0 <exe> <msi> <zip> downloads\SHA256SUMS.txt `
-     --repo MatrixLeb/marketpilot --title "MarketPilot 1.1.0" --notes-file notes.md
-   gh release upload v1.1.0 <files> --clobber   # for later corrections
+   gh release create v1.2.0 <exe> <msi> <zip> downloads\SHA256SUMS.txt `
+     --repo MatrixLeb/marketpilot --title "Masar 1.2.0" --notes-file notes.md
+   gh release upload v1.2.0 <files> --clobber   # for later corrections
    ```
 
 8. Confirm the local file matches:
 
    ```powershell
-   (Get-FileHash .\downloads\MarketPilot-1.1.0.exe -Algorithm SHA256).Hash.ToLower()
+   (Get-FileHash .\downloads\Masar-1.2.0.exe -Algorithm SHA256).Hash.ToLower()
    ```
 
 ## Security and privacy

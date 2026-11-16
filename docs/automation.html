@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Automation &amp; CLI — MarketPilot</title>
-  <meta name="description" content="MarketPilot automation: cadences, the in-app scheduler, headless MarketPilot.exe --once, runAuto, Task Scheduler, exit codes and data backup.">
+  <title>Automation &amp; CLI — Masar</title>
+  <meta name="description" content="Masar automation: cadences, the in-app scheduler, headless Masar.exe --once, runAuto, Task Scheduler, exit codes and data backup.">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/site.css">
 </head>
@@ -13,15 +13,15 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="../index.html" aria-label="MarketPilot home">
+      <a class="brand" href="../index.html" aria-label="Masar home">
         <svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true">
           <rect width="32" height="32" rx="8" fill="#12201A"/>
           <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
           <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
           <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
         </svg>
-        MarketPilot
-        <span class="brand-version">v1.1.0</span>
+        Masar
+        <span class="brand-version">v1.2.0</span>
       </a>
 
       <nav class="header-nav" aria-label="Main">
@@ -51,7 +51,7 @@
         <a href="../pricing.html">Pricing</a>
         <a href="../downloads.html">Downloads</a>
         <a href="faq.html">FAQ &amp; troubleshooting</a>
-        <a class="btn btn-primary" href="../downloads.html#downloads">Download MarketPilot 1.1.0</a>
+        <a class="btn btn-primary" href="../downloads.html#downloads">Download Masar 1.2.0</a>
       </div>
     </nav>
   </header>
@@ -182,7 +182,7 @@
         <h2 id="cli">Headless runner</h2>
         <p>The packaged launcher detects CLI flags and runs without opening a window. From an installed
           or portable copy:</p>
-        <pre><code>MarketPilot.exe --once</code></pre>
+        <pre><code>Masar.exe --once</code></pre>
         <p>From source, use the Gradle task:</p>
         <pre><code>$env:JAVA_HOME="C:\Program Files\Android\Android Studio\jbr"
 .\gradlew.bat runAuto --console=plain</code></pre>
@@ -213,7 +213,7 @@
         <p>A normal tick prints a one-line summary and up to twelve notes. Output is ASCII-safe for the
           Windows console. Exit code <code>1</code> means at least one publish or outreach action failed;
           held items and simulations do not fail the task.</p>
-        <pre><code>MarketPilot tick - dry run: true, scheduler: true
+        <pre><code>Masar tick - dry run: true, scheduler: true
 Result: 1 generated - 1 simulated
   - Cadence "Monday tips": ai copy (...)</code></pre>
         <p><code>--status</code> prints a snapshot without changing anything:</p>
@@ -234,11 +234,11 @@ Scheduler:     true</code></pre>
         <h3>Graphical setup</h3>
         <ol class="steps">
           <li><strong>Create a task</strong><p>Open Task Scheduler → <em>Create Task</em> (not “Basic
-            Task”). Name it <code>MarketPilot tick</code>.</p></li>
+            Task”). Name it <code>Masar tick</code>.</p></li>
           <li><strong>Add a trigger</strong><p>Daily, starting at a time you choose. Tick <em>Repeat task
             every</em> → <code>15 minutes</code> → <em>for a duration of</em> <code>Indefinitely</code>.</p></li>
           <li><strong>Add an action</strong><p>Start a program: the full path to
-            <code>MarketPilot.exe</code>. Arguments: <code>--once</code>. Start in: the folder that
+            <code>Masar.exe</code>. Arguments: <code>--once</code>. Start in: the folder that
             contains the EXE.</p></li>
           <li><strong>Choose the account</strong><p>Either “run only when the user is logged on” or “run
             whether the user is logged on or not”. The CLI does not open a window either way.</p></li>
@@ -248,9 +248,9 @@ Scheduler:     true</code></pre>
         </ol>
 
         <h3>Command-line creation</h3>
-        <pre><code>$exe = "C:\Path\To\MarketPilot\MarketPilot.exe"
-schtasks /Create /TN "MarketPilot tick" /SC MINUTE /MO 15 /TR "`"$exe`" --once" /ST 08:00 /F
-schtasks /Run /TN "MarketPilot tick"</code></pre>
+        <pre><code>$exe = "C:\Path\To\Masar\Masar.exe"
+schtasks /Create /TN "Masar tick" /SC MINUTE /MO 15 /TR "`"$exe`" --once" /ST 08:00 /F
+schtasks /Run /TN "Masar tick"</code></pre>
         <p>Replace the path with your real install location. The scheduled task uses the same
           <code>%APPDATA%</code> data only when it runs as the same Windows user.</p>
 
@@ -305,12 +305,12 @@ Start in:  E:\Business\MarketPilot</code></pre>
 
         <h3>Restore and upgrade</h3>
         <ol>
-          <li>Quit MarketPilot.</li>
+          <li>Quit Masar.</li>
           <li>Copy the backed-up folders back under <code>%APPDATA%\MarketPilot</code>.</li>
           <li>Install the new build and launch it. The workspace opens with the same brands and queue.</li>
         </ol>
         <p>The uninstaller removes the program, not <code>%APPDATA%\MarketPilot</code>. Delete that folder
-          yourself if you want a clean slate. There is no auto-update in 1.1.0.</p>
+          yourself if you want a clean slate. There is no auto-update in 1.2.0.</p>
 
         <h3>More than one brand</h3>
         <p>The scheduler ticks every brand in the workspace. Cadences are per brand, as are windows,
@@ -349,7 +349,7 @@ Start in:  E:\Business\MarketPilot</code></pre>
               <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
               <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
             </svg>
-            MarketPilot
+            Masar
           </a>
           <p>Marketing autopilot for small businesses. Windows desktop, local-first data,
             official APIs, and brakes that work.</p>
@@ -378,7 +378,7 @@ Start in:  E:\Business\MarketPilot</code></pre>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span data-year>2026</span> MarketPilot. Built for Windows 10 and 11.</span>
+        <span>© <span data-year>2026</span> Masar. Built for Windows 10 and 11.</span>
         <span class="note"><i></i> Official APIs only · No scraping · No purchased lists</span>
       </div>
     </div>

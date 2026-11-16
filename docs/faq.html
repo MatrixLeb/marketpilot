@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FAQ &amp; troubleshooting — MarketPilot</title>
-  <meta name="description" content="MarketPilot troubleshooting table, known limitations, multi-brand guidance, update and uninstall notes.">
+  <title>FAQ &amp; troubleshooting — Masar</title>
+  <meta name="description" content="Masar troubleshooting table, known limitations, multi-brand guidance, update and uninstall notes.">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/site.css">
 </head>
@@ -13,15 +13,15 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="../index.html" aria-label="MarketPilot home">
+      <a class="brand" href="../index.html" aria-label="Masar home">
         <svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true">
           <rect width="32" height="32" rx="8" fill="#12201A"/>
           <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
           <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
           <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
         </svg>
-        MarketPilot
-        <span class="brand-version">v1.1.0</span>
+        Masar
+        <span class="brand-version">v1.2.0</span>
       </a>
 
       <nav class="header-nav" aria-label="Main">
@@ -51,7 +51,7 @@
         <a href="../pricing.html">Pricing</a>
         <a href="../downloads.html">Downloads</a>
         <a href="faq.html">FAQ &amp; troubleshooting</a>
-        <a class="btn btn-primary" href="../downloads.html#downloads">Download MarketPilot 1.1.0</a>
+        <a class="btn btn-primary" href="../downloads.html#downloads">Download Masar 1.2.0</a>
       </div>
     </nav>
   </header>
@@ -166,7 +166,7 @@
               </tr>
               <tr>
                 <td>SmartScreen blocks the installer</td>
-                <td>The 1.1.0 build is unsigned. Verify the SHA-256, then choose <em>More info → Run anyway</em>. Sign future builds before public distribution.</td>
+                <td>The 1.2.0 build is unsigned. Verify the SHA-256, then choose <em>More info → Run anyway</em>. Sign future builds before public distribution.</td>
               </tr>
               <tr>
                 <td>Gradle task hangs after closing the app</td>
@@ -180,7 +180,7 @@
         <ol class="steps">
           <li><strong>Read the Activity log</strong><p>Filter by <code>WARN</code> and <code>ERROR</code>.
             The message includes the connector and the API's own error text.</p></li>
-          <li><strong>Run <code>MarketPilot.exe --status</code></strong><p>Shows counts, dry run and
+          <li><strong>Run <code>Masar.exe --status</code></strong><p>Shows counts, dry run and
             scheduler state without changing anything.</p></li>
           <li><strong>Test the connector</strong><p>Settings → Channels → <strong>Test connection</strong>.
             It performs a safe read and never publishes.</p></li>
@@ -220,7 +220,7 @@
           <li><strong>Credentials are per installation, not per brand.</strong> Separate customers need
             separate Windows users or installs.</li>
           <li><strong>No auto-update.</strong> Replace the build manually; the data folder is preserved.</li>
-          <li><strong>The 1.1.0 build is unsigned.</strong> Windows SmartScreen will warn on first run.</li>
+          <li><strong>The 1.2.0 build is unsigned.</strong> Windows SmartScreen will warn on first run.</li>
         </ul>
 
         <h2 id="licence">Trial, licence and activation</h2>
@@ -258,7 +258,7 @@
           </details>
           <details>
             <summary>Can I run the scheduler without the window open?</summary>
-            <div class="faq-body"><p>Yes, through Task Scheduler and <code>MarketPilot-cli.cmd --once</code>.
+            <div class="faq-body"><p>Yes, through Task Scheduler and <code>Masar-cli.cmd --once</code>.
               It needs an active licence: in read-only mode the command exits with code 2 and sends
               nothing.</p></div>
           </details>
@@ -267,7 +267,7 @@
         <h2 id="questions">Frequently asked questions</h2>
         <div class="faq">
           <details>
-            <summary>Is there a subscription or a MarketPilot account?</summary>
+            <summary>Is there a subscription or a Masar account?</summary>
             <div class="faq-body"><p>There is no account and no auto-renewing card charge. A fresh
               install gets a 72-hour trial; after that you buy a prepaid term on WhatsApp and activate
               the key offline. Nothing is stored on a server, and the app has no sign-up and no
@@ -295,7 +295,7 @@
           </details>
           <details>
             <summary>Can I reply to comments or DMs automatically?</summary>
-            <div class="faq-body"><p>No. MarketPilot publishes content, sends approved outreach and
+            <div class="faq-body"><p>No. Masar publishes content, sends approved outreach and
               records activity. It does not monitor inboxes, scrape comments or automate replies.</p></div>
           </details>
           <details>
@@ -307,7 +307,7 @@
           <details>
             <summary>What happens to my content when I use AI?</summary>
             <div class="faq-body"><p>The brand profile, brief and channel limits are sent to the provider
-              you configured. Artwork is rendered locally. Nothing is sent to MarketPilot itself. Review
+              you configured. Artwork is rendered locally. Nothing is sent to Masar itself. Review
               your provider's data policy before pasting confidential offers or customer details into a
               brief.</p></div>
           </details>
@@ -320,21 +320,21 @@
           <details>
             <summary>Does it run on macOS or Linux?</summary>
             <div class="faq-body"><p>The published build is Windows only. The source is Kotlin/Compose
-              Desktop, which is cross-platform, but the packaged 1.1.0 artifact and its instructions are
+              Desktop, which is cross-platform, but the packaged 1.2.0 artifact and its instructions are
               Windows 10/11 x64.</p></div>
           </details>
           <details>
             <summary>How do I update or uninstall?</summary>
             <div class="faq-body"><p>Install the new MSI over the old version, or replace the portable
               folder. There is no auto-update. To uninstall the MSI, use <em>Settings → Apps → Installed
-              apps → MarketPilot → Uninstall</em>; for the portable build, delete the folder. The
+              apps → Masar → Uninstall</em>; for the portable build, delete the folder. The
               uninstaller does not remove <code>%APPDATA%\MarketPilot</code> — delete that separately if
               you want a clean slate.</p></div>
           </details>
           <details>
             <summary>Can I move the workspace to another PC?</summary>
             <div class="faq-body"><p>Yes. Close the app, copy <code>data</code> and <code>media</code> to
-              the same location on the new PC, install MarketPilot, and launch. Re-enter channel
+              the same location on the new PC, install Masar, and launch. Re-enter channel
               credentials instead of copying <code>settings.properties</code> if you are unsure who can
               read the old machine. See <a href="automation.html#data">data and backup</a>.</p></div>
           </details>
@@ -350,7 +350,7 @@
         <p>Collect these details; they make almost every issue reproducible without access to your
           machine:</p>
         <ul>
-          <li>MarketPilot version (1.1.0) and whether you use the MSI or portable build.</li>
+          <li>Masar version (1.2.0) and whether you use the MSI or portable build.</li>
           <li>Windows version and whether this is a normal desktop, VM or remote session.</li>
           <li>The exact queue status or message status, plus the Activity log lines around the failure.</li>
           <li>The channel, the step (test, publish, send) and the API error text.</li>
@@ -387,7 +387,7 @@
               <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
               <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
             </svg>
-            MarketPilot
+            Masar
           </a>
           <p>Marketing autopilot for small businesses. Windows desktop, local-first data,
             official APIs, and brakes that work.</p>
@@ -416,7 +416,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span data-year>2026</span> MarketPilot. Built for Windows 10 and 11.</span>
+        <span>© <span data-year>2026</span> Masar. Built for Windows 10 and 11.</span>
         <span class="note"><i></i> Official APIs only · No scraping · No purchased lists</span>
       </div>
     </div>

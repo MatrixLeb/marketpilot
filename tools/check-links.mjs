@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Offline link + anchor checker for the MarketPilot site.
+ * Offline link + anchor checker for the Masar site.
  *
  *   node tools/check-links.mjs
  *
@@ -125,9 +125,9 @@ if (existsSync(jsFile)) {
 
 /* Every download shown on the site should be present. */
 for (const file of [
-  "downloads/MarketPilot-1.1.0.exe",
-  "downloads/MarketPilot-1.1.0.msi",
-  "downloads/MarketPilot-1.1.0-portable.zip",
+  "downloads/Masar-1.2.0.exe",
+  "downloads/Masar-1.2.0.msi",
+  "downloads/Masar-1.2.0-portable.zip",
   "downloads/SHA256SUMS.txt",
   "assets/dashboard.png",
   "assets/favicon.svg"

@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>الأتمتة وسطر الأوامر — MarketPilot</title>
-  <meta name="description" content="الإيقاعات، والتشغيل الآلي، وأعلام سطر الأوامر، ومُجدول المهام، ومواقع البيانات والنسخ الاحتياطي في MarketPilot.">
-  <meta property="og:title" content="الأتمتة وسطر الأوامر — MarketPilot">
-  <meta property="og:description" content="الإيقاعات، والتشغيل الآلي، وأعلام سطر الأوامر، ومُجدول المهام، ومواقع البيانات والنسخ الاحتياطي في MarketPilot.">
+  <title>الأتمتة وسطر الأوامر — Masar</title>
+  <meta name="description" content="الإيقاعات، والتشغيل الآلي، وأعلام سطر الأوامر، ومُجدول المهام، ومواقع البيانات والنسخ الاحتياطي في Masar.">
+  <meta property="og:title" content="الأتمتة وسطر الأوامر — Masar">
+  <meta property="og:description" content="الإيقاعات، والتشغيل الآلي، وأعلام سطر الأوامر، ومُجدول المهام، ومواقع البيانات والنسخ الاحتياطي في Masar.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="../../assets/dashboard.png">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
@@ -17,15 +17,15 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="../index.html" aria-label="الصفحة الرئيسية لـ MarketPilot">
+      <a class="brand" href="../index.html" aria-label="الصفحة الرئيسية لـ Masar">
         <svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true">
           <rect width="32" height="32" rx="8" fill="#12201A"/>
           <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#2C4639"/>
           <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
           <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
         </svg>
-        MarketPilot
-        <span class="brand-version">v1.1.0</span>
+        Masar
+        <span class="brand-version">v1.2.0</span>
       </a>
 
       <nav class="header-nav" aria-label="القائمة الرئيسية">
@@ -56,7 +56,7 @@
         <a href="../downloads.html">التنزيلات</a>
         <a href="../docs/faq.html">الأسئلة الشائعة واستكشاف الأخطاء</a>
         <a class="lang-switch lang-switch-mobile" href="../../docs/automation.html" hreflang="en" lang="en">English</a>
-        <a class="btn btn-primary" href="../downloads.html#downloads">نزّل MarketPilot 1.1.0</a>
+        <a class="btn btn-primary" href="../downloads.html#downloads">نزّل Masar 1.2.0</a>
       </div>
     </nav>
   </header>
@@ -183,7 +183,7 @@
 
         <h2 id="cli">المشغّل بلا واجهة</h2>
         <p>يكتشف المشغّل المعبأ أعلام سطر الأوامر ويعمل دون فتح نافذة. من نسخة مثبتة أو محمولة:</p>
-        <pre><code>MarketPilot.exe --once</code></pre>
+        <pre><code>Masar.exe --once</code></pre>
         <p>من المصدر، استخدم مهمة Gradle:</p>
         <pre><code>$env:JAVA_HOME="C:\Program Files\Android\Android Studio\jbr"
 .\gradlew.bat runAuto --console=plain</code></pre>
@@ -213,7 +213,7 @@
         <p>تطبع الدورة العادية سطر ملخص وحتى اثنتي عشرة ملاحظة. المخرجات آمنة ASCII لطرفية Windows.
           رمز الخروج <code>1</code> يعني فشل إجراء نشر أو تواصل واحد على الأقل؛ أما العناصر المحتجزة
           والمحاكاة فلا تُفشل المهمة.</p>
-        <pre><code>MarketPilot tick - dry run: true, scheduler: true
+        <pre><code>Masar tick - dry run: true, scheduler: true
 Result: 1 generated - 1 simulated
   - Cadence "Monday tips": ai copy (...)</code></pre>
         <p>يطبع <code>--status</code> لقطة دون تغيير أي شيء:</p>
@@ -234,10 +234,10 @@ Scheduler:     true</code></pre>
         <h3>الإعداد الرسومي</h3>
         <ol class="steps">
           <li><strong>أنشئ مهمة</strong><p>افتح مُجدول المهام ← <em>Create Task</em> (لا «Basic Task»).
-            سمّها <code>MarketPilot tick</code>.</p></li>
+            سمّها <code>Masar tick</code>.</p></li>
           <li><strong>أضف مشغّلًا</strong><p>يوميًا، بدءًا من وقت تختاره. أشّر <em>Repeat task every</em>
             ← <code>15 minutes</code> ← <em>for a duration of</em> <code>Indefinitely</code>.</p></li>
-          <li><strong>أضف إجراءً</strong><p>ابدأ برنامجًا: المسار الكامل إلى <code>MarketPilot.exe</code>.
+          <li><strong>أضف إجراءً</strong><p>ابدأ برنامجًا: المسار الكامل إلى <code>Masar.exe</code>.
             الوسائط: <code>--once</code>. ابدأ في: المجلد الذي يحتوي EXE.</p></li>
           <li><strong>اختر الحساب</strong><p>إما «run only when the user is logged on» أو «run whether the
             user is logged on or not». ولا يفتح سطر الأوامر نافذة في الحالتين.</p></li>
@@ -247,9 +247,9 @@ Scheduler:     true</code></pre>
         </ol>
 
         <h3>الإنشاء من سطر الأوامر</h3>
-        <pre><code>$exe = "C:\Path\To\MarketPilot\MarketPilot.exe"
-schtasks /Create /TN "MarketPilot tick" /SC MINUTE /MO 15 /TR "`"$exe`" --once" /ST 08:00 /F
-schtasks /Run /TN "MarketPilot tick"</code></pre>
+        <pre><code>$exe = "C:\Path\To\Masar\Masar.exe"
+schtasks /Create /TN "Masar tick" /SC MINUTE /MO 15 /TR "`"$exe`" --once" /ST 08:00 /F
+schtasks /Run /TN "Masar tick"</code></pre>
         <p>استبدل المسار بموقع التثبيت الحقيقي. وتستخدم المهمة المجدولة بيانات <code>%APPDATA%</code>
           نفسها فقط عندما تعمل كمستخدم ويندوز نفسه.</p>
 
@@ -303,12 +303,12 @@ Start in:  E:\Business\MarketPilot</code></pre>
 
         <h3>الاستعادة والترقية</h3>
         <ol>
-          <li>أغلق MarketPilot.</li>
+          <li>أغلق Masar.</li>
           <li>انسخ المجلدات الاحتياطية مرة أخرى تحت <code>%APPDATA%\MarketPilot</code>.</li>
           <li>ثبّت البنية الجديدة وشغّلها. تُفتح مساحة العمل بالعلامات والقائمة نفسها.</li>
         </ol>
         <p>تزيل أداة الإزالة البرنامج، لا <code>%APPDATA%\MarketPilot</code>. احذف ذلك المجلد بنفسك إن
-          أردت بداية نظيفة. لا يوجد تحديث تلقائي في 1.1.0.</p>
+          أردت بداية نظيفة. لا يوجد تحديث تلقائي في 1.2.0.</p>
 
         <h3>أكثر من علامة</h3>
         <p>يعمل المجدول على كل علامة في مساحة العمل. الإيقاعات لكل علامة، وكذلك النوافذ والحدود وأدنى
@@ -345,7 +345,7 @@ Start in:  E:\Business\MarketPilot</code></pre>
               <path d="M8 22.5V10l8 7.5 8-7.5v12.5" fill="none" stroke="#45E0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
               <circle cx="24" cy="9" r="2" fill="#FFC24B"/>
             </svg>
-            MarketPilot
+            Masar
           </a>
           <p>الطيار الآلي للتسويق للشركات الصغيرة. تطبيق سطح مكتب لويندوز، بيانات محلية
             أولًا، واجهات رسمية فقط، وفرامل تعمل فعلًا.</p>
@@ -374,7 +374,7 @@ Start in:  E:\Business\MarketPilot</code></pre>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span data-year>2026</span> MarketPilot. صُنع لنظامي Windows 10 و11.</span>
+        <span>© <span data-year>2026</span> Masar. صُنع لنظامي Windows 10 و11.</span>
         <span class="note"><i></i> واجهات رسمية فقط · بلا كشط · بلا قوائم مشتراة</span>
       </div>
     </div>

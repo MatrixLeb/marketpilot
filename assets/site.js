@@ -1,4 +1,4 @@
-/* MarketPilot site — navigation, docs search and copy helpers. */
+/* Masar site — navigation, docs search and copy helpers. */
 (() => {
   "use strict";
 
@@ -28,7 +28,7 @@
 
   const searchIndexEn = [
     {
-      title: "Install MarketPilot",
+      title: "Install Masar",
       desc: "MSI installer, portable ZIP, SmartScreen and first launch.",
       url: "downloads.html#install",
       cat: "Start",
@@ -204,7 +204,7 @@
     },
     {
       title: "Run headless with Task Scheduler",
-      desc: "MarketPilot.exe --once, every 15 minutes, no window.",
+      desc: "Masar.exe --once, every 15 minutes, no window.",
       url: "docs/automation.html#task-scheduler",
       cat: "Automation",
       keys: "task scheduler headless once cli 24/7 windows"
@@ -271,7 +271,7 @@
   // locales keep identical hrefs and data-root resolution.
   const searchIndexAr = {
     "downloads.html#install": {
-      title: "تثبيت MarketPilot",
+      title: "تثبيت Masar",
       desc: "مثبّت MSI، ونسخة محمولة ZIP، وSmartScreen، وأول تشغيل.",
       cat: "البداية",
       keys: "تحميل تثبيت msi zip محمول smartscreen ويندوز exe"
@@ -422,7 +422,7 @@
     },
     "docs/automation.html#task-scheduler": {
       title: "شغّله بلا واجهة مع مُجدول المهام",
-      desc: "MarketPilot.exe --once كل 15 دقيقة بلا نافذة.",
+      desc: "Masar.exe --once كل 15 دقيقة بلا نافذة.",
       cat: "الأتمتة",
       keys: "مُجدول مهام بلا واجهة once cli 24/7 ويندوز"
     },

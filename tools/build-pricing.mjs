@@ -128,11 +128,11 @@ function card(meta, locale) {
   const message =
     locale === "ar"
       ? isTrial
-        ? "مرحبًا، أريد تجربة MarketPilot لمدة 72 ساعة."
-        : `مرحبًا، أريد MarketPilot لمدة ${copy.name} (${price} دولارًا). أرسلوا لي مفتاح الترخيص.`
+        ? "مرحبًا، أريد تجربة Masar لمدة 72 ساعة."
+        : `مرحبًا، أريد Masar لمدة ${copy.name} (${price} دولارًا). أرسلوا لي مفتاح الترخيص.`
       : isTrial
-        ? "Hello, I want to try MarketPilot for 72 hours."
-        : `Hello, I want MarketPilot for ${copy.name} (${money(price)}). Please send me a licence key.`;
+        ? "Hello, I want to try Masar for 72 hours."
+        : `Hello, I want Masar for ${copy.name} (${money(price)}). Please send me a licence key.`;
 
   const cta = isTrial
     ? `<span class="plan-cta plan-static">${copy.cta}</span>`

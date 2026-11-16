@@ -1,6 +1,6 @@
-# MarketPilot website
+# Masar website
 
-Static marketing site and documentation for MarketPilot 1.1.0, in English and Arabic,
+Static marketing site and documentation for Masar 1.2.0, in English and Arabic,
 with pricing and licence plans, plus the Windows installer and portable build attached.
 
 **Live:** <https://matrixleb.github.io/marketpilot/>
@@ -71,7 +71,7 @@ indexes and the presence of the download files.
 - Prices exist twice: `site.config.json` for the website and the `Plan` enum in the app's
   `licensing/Licensing.kt`. Change both, then run `node tools/build-pricing.mjs`. Never
   put the signing key in this folder; only the public key ships in the app.
-- Keep claims accurate to the build. The website documents 1.1.0, including its
+- Keep claims accurate to the build. The website documents 1.2.0, including its
   limitations: text-only Facebook/LinkedIn/X connectors, Instagram's public image URL
   requirement, WhatsApp templates, Manual TikTok bundles, per-install credentials and
   the unsigned installers.
@@ -89,9 +89,9 @@ a VPS).
 ## Download integrity
 
 ```text
-4b9eaea625e30ab10448eff79b3bd4733f9b889f748d506454440c418ef84e82  MarketPilot-1.1.0.exe
-1aa337eb811f9569a8195ca4f7e902be65baf2c42cfcf7e548d02f8139505577  MarketPilot-1.1.0.msi
-6a3e0455933e6494de2990e4bb003feb67de6280e5db5588a4eb0399a2c489d8  MarketPilot-1.1.0-portable.zip
+76de4cc4570f0ac3d7045029ac51deab83ed81f3d72144a8dc74ff6de0db2b2c  Masar-1.2.0.exe
+505f3534a7a669ebc5e7d7caee19d6cb4d5c18abbab3f2e901285af4faaf30a4  Masar-1.2.0.msi
+21d8dfdd32158f9fa7ddc75f5fae3b4e965cc7d98318bcdda776934738737856  Masar-1.2.0-portable.zip
 ```
 
 Recompute these whenever the binaries are rebuilt.
