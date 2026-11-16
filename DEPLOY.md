@@ -62,19 +62,23 @@ public key ships in the app:
 MCowBQYDK2VwAyEAdsOGxbdBaDZSLU0fDtDdMTWPatr62zxh6bou1Rh2OHw
 ```
 
-Issue a key after a WhatsApp order:
+Issue a key after a WhatsApp order — either double-click `Keygen.cmd` for the
+local web UI, or use the CLI:
 
 ```powershell
 cd E:\Business\MarketPilot
-node tools\license\issue-key.mjs --plan year --ref ORDER-1042
-node tools\license\issue-key.mjs --plan quarter --count 3
-node tools\license\issue-key.mjs --verify "MP1.YEAR.K7Q2M9XD.2026-11-15...."
+node tools\license\keygen.mjs --plan year --ref ORDER-1042
+node tools\license\keygen.mjs --plan quarter --count 3
+node tools\license\keygen.mjs --verify "MP1.YEAR.K7Q2M9XD.2026-11-15...."
+node tools\license\keygen.mjs --info
 ```
 
-The script prints the key on stdout and a ready-to-paste WhatsApp reply on stderr.
-Keys are single-use per installation and add their full term from the activation date.
-Rotating the keypair with `node tools\license\new-keypair.mjs --force` invalidates every
-key already sold and needs a new app release.
+The keygen prints the key plus a ready-to-paste WhatsApp reply and records the
+order in `.license/issued.csv` (order ref, customer, plan, price, key id). The UI
+binds to `127.0.0.1` only and needs the token printed in its URL. Keys are
+single-use per installation and add their full term from the activation date.
+Rotating the keypair with `node tools\license\new-keypair.mjs --force` invalidates
+every key already sold and needs a new app release.
 
 ### If the live site suddenly returns 404
 
