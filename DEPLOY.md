@@ -9,9 +9,9 @@ pages are the source of truth.
 
 | Item | Value |
 | --- | --- |
-| Site | <https://matrixleb.github.io/marketpilot/> |
-| Arabic site | <https://matrixleb.github.io/marketpilot/ar/> |
-| Repository | <https://github.com/MatrixLeb/marketpilot> |
+| Site | [English site](https://matrixleb.github.io/marketpilot/) |
+| Arabic site | [Arabic site](https://matrixleb.github.io/marketpilot/ar/) |
+| Repository | [GitHub repository](https://github.com/MatrixLeb/marketpilot) |
 | Pages source | `main` branch, repository root, legacy build |
 | Download host | GitHub Release `v1.2.0` (EXE, MSI and portable ZIP) |
 

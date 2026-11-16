@@ -3,10 +3,10 @@
 Static marketing site and documentation for Masar 1.2.0, in English and Arabic,
 with pricing and licence plans, plus the Windows installer and portable build attached.
 
-**Live:** <https://matrixleb.github.io/marketpilot/>
-**العربية:** <https://matrixleb.github.io/marketpilot/ar/>
+**Live:** [English site](https://matrixleb.github.io/marketpilot/)
+**العربية:** [Arabic site](https://matrixleb.github.io/marketpilot/ar/)
 
-The public repo at <https://github.com/MatrixLeb/marketpilot> contains the site only.
+The [public repo](https://github.com/MatrixLeb/marketpilot) contains the site only.
 The 96–99 MB downloads are GitHub Release assets, not Git files.
 
 ## Preview
